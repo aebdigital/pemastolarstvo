@@ -60,7 +60,7 @@ export default function ModelSlider({ models, selectedId, doorType, onSelect }: 
             <button
               key={model.id}
               onClick={() => onSelect(model.id)}
-              className={`group flex-shrink-0 w-60 md:w-64 snap-center rounded-[2.5rem] overflow-hidden border-2 transition-premium transform ${selectedId === model.id
+              className={`group flex-shrink-0 w-60 md:w-64 snap-center rounded-[2.5rem] overflow-hidden border-2 transition-premium transform relative ${selectedId === model.id
                 ? 'border-gold shadow-premium scale-[1.02] bg-white'
                 : 'border-gray-50 bg-white hover:border-gold/30 hover:shadow-xl'
                 }`}
@@ -92,6 +92,18 @@ export default function ModelSlider({ models, selectedId, doorType, onSelect }: 
                 </div>
               )}
             </button>
+          ))}
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="flex justify-center gap-2 mt-4 md:hidden">
+          {models.map((model) => (
+            <div
+              key={model.id}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                selectedId === model.id ? 'w-6 bg-gold' : 'bg-gray-200'
+              }`}
+            />
           ))}
         </div>
       </div>

@@ -31,7 +31,7 @@ export default function StolarstvoONasPage() {
                                 <div className="absolute inset-0 bg-dark/20 group-hover:bg-transparent transition-premium" />
                             </div>
                             <div className="p-8 flex-1">
-                                <h3 className="font-heading text-2xl font-black text-dark mb-6 uppercase tracking-wider">Nábytok na mieru</h3>
+                                <h3 className="font-heading text-2xl font-black text-dark mb-6 tracking-wider">Nábytok na mieru</h3>
                                 <ul className="space-y-3">
                                     {[
                                         'kuchynské linky',
@@ -45,7 +45,7 @@ export default function StolarstvoONasPage() {
                                     ].map((item, idx) => (
                                         <li key={idx} className="flex items-center gap-2 text-sm text-gray-medium font-medium leading-tight">
                                             <span className="w-1.5 h-1.5 bg-gold rounded-full shrink-0" />
-                                            <span className="uppercase tracking-tight">{item}</span>
+                                            <span className="tracking-tight">{item}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -199,11 +199,18 @@ export default function StolarstvoONasPage() {
                         <Link href="/stolarstvo/referencie" className="text-gold font-bold hover:underline">Všetky referencie &rarr;</Link>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                        {[2, 8, 15, 22, 30].map((id) => (
-                            <div key={id} className="relative aspect-square rounded-2xl overflow-hidden shadow-lg group">
+                        {[
+                            "/sources/referencie/kuchyne/1.jpg",
+                            "/sources/referencie/stoly/stol-dreveny.jpg",
+                            "/sources/referencie/obyvacie izby/1.jpg",
+                            "/sources/referencie/schodiska/schodisko.jpg",
+                            "/sources/referencie/vstavane skrine/1.jpg",
+                            "/sources/referencie/kuchyne/10.jpg"
+                        ].map((src, idx) => (
+                            <div key={idx} className="relative aspect-square rounded-2xl overflow-hidden shadow-lg group">
                                 <Image
-                                    src={`/sources/referencie/vyroba/${id}.jpg`}
-                                    alt={`Inšpirácia ${id}`}
+                                    src={src}
+                                    alt={`Inšpirácia ${idx + 1}`}
                                     fill
                                     className="object-cover transition-premium group-hover:scale-105"
                                 />

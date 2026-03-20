@@ -19,12 +19,6 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
 
   return (
     <div className="space-y-16">
-      <div className="flex flex-col gap-4">
-        <h2 className="font-heading text-4xl font-black text-dark uppercase tracking-[0.1em]">
-          Konfigurácia <span className="text-gold">Prvku</span>
-        </h2>
-        <div className="h-1.5 w-32 bg-gold rounded-full" />
-      </div>
 
       {/* 1. Color picker */}
       <section className="space-y-8">
@@ -32,7 +26,7 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
           <div className="w-12 h-12 rounded-2xl bg-dark text-gold flex items-center justify-center text-lg font-black shadow-xl rotate-3">1</div>
           <h3 className="font-heading text-2xl font-black text-dark uppercase tracking-widest">CPL Lamináty a Dekory</h3>
         </div>
-        <div className="bg-light p-10 rounded-[2.5rem] border border-gray-100 shadow-sm">
+        <div className="bg-light p-0 rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden">
           <ColorPicker selectedCode={config.color} onSelect={handleColorSelect} doorType={config.doorType} />
         </div>
       </section>
@@ -68,52 +62,6 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
         </div>
       </section>
 
-      {/* 2.5 Interior Environment (Wall & Floor) */}
-      <section id="interior-section" className="space-y-8">
-        <div className="flex items-center gap-6">
-          <div className="w-12 h-12 rounded-2xl bg-dark text-gold flex items-center justify-center text-lg font-black shadow-xl rotate-3">
-            <i className="fas fa-home text-sm" />
-          </div>
-          <h3 className="font-heading text-xl font-black text-dark uppercase tracking-widest">Interiér - Stena a Podlaha</h3>
-        </div>
-        
-        <div className="bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-sm space-y-10">
-          {/* Wall Color */}
-          <div className="space-y-4">
-            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Farba steny</label>
-            <div className="flex items-center gap-6">
-              <input 
-                type="color" 
-                value={config.wallColor} 
-                onChange={(e) => onUpdate({ wallColor: e.target.value })}
-                className="w-16 h-16 rounded-2xl cursor-pointer border-4 border-gray-50 shadow-sm"
-              />
-              <div className="flex flex-col">
-                <span className="text-sm font-black text-dark uppercase">{config.wallColor}</span>
-                <span className="text-[10px] font-medium text-gray-400">Kliknite na štvorec pre výber vlastnej farby</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Floor Selection */}
-          <div className="space-y-4">
-            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">Typ podlahy</label>
-            <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-11 gap-3">
-              {require('@/lib/door-models').floorOptions.map((floor: any) => (
-                <button
-                  key={floor.id}
-                  onClick={() => onUpdate({ floorId: floor.id })}
-                  className={`group relative aspect-square rounded-2xl overflow-hidden border-2 transition-premium ${config.floorId === floor.id ? 'border-gold shadow-lg scale-110' : 'border-transparent opacity-70 hover:opacity-100'
-                    }`}
-                  title={floor.name}
-                >
-                  <Image src={floor.image} alt={floor.name} fill className="object-cover" />
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 3 & 4. Construction & Glass */}
       <div className="grid md:grid-cols-2 gap-12">
@@ -261,7 +209,7 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
       </section>
 
       {/* Finalize section */}
-      <section className="bg-dark text-white p-12 rounded-[3rem] shadow-premium relative overflow-hidden group">
+      <section className="bg-dark text-white p-8 sm:p-12 rounded-[2rem] sm:rounded-[3rem] shadow-premium relative overflow-hidden group">
         <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none group-hover:scale-110 group-hover:rotate-6 transition-premium duration-1000">
           <i className="fas fa-file-signature text-[12rem]" />
         </div>
@@ -276,7 +224,7 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
             onChange={(e) => onUpdate({ notes: e.target.value })}
             rows={4}
             placeholder="Špecifikujte prosím vaše požiadavky, napríklad atypické rozmery, špeciálne kovanie alebo iné detaily..."
-            className="w-full px-8 py-6 bg-white/5 border border-white/10 rounded-3xl focus:ring-2 focus:ring-gold focus:bg-white/10 outline-none resize-none text-white placeholder:text-white/20 transition-premium text-sm leading-relaxed"
+            className="w-full px-6 py-4 sm:px-8 sm:py-6 bg-white/5 border border-white/10 rounded-[1.5rem] sm:rounded-3xl focus:ring-2 focus:ring-gold focus:bg-white/10 outline-none resize-none text-white placeholder:text-white/20 transition-premium text-sm leading-relaxed"
           />
         </div>
       </section>

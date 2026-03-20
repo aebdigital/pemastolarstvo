@@ -160,23 +160,35 @@ export default function DvereONasPage() {
       </section>
 
       {/* Inspirations Gallery section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="font-heading text-3xl font-black text-dark uppercase tracking-widest">Referencie</h2>
-            <Link href="/dvere/referencie" className="text-gold font-bold hover:underline">Galéria referencií &rarr;</Link>
+          <div className="text-center mb-16">
+            <h2 className="font-heading text-4xl font-black text-dark uppercase tracking-[0.2em] mb-4">Referencie</h2>
+            <div className="w-20 h-1.5 bg-gold mx-auto rounded-full" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 p-0">
             {[1, 5, 12, 23, 35].map((id) => (
-              <div key={id} className="relative aspect-square rounded-2xl overflow-hidden shadow-lg group">
+              <div key={id} className="relative aspect-[2/3] overflow-hidden group">
                 <Image
                   src={`/sources/referencie/dvere/${id}.jpg`}
                   alt={`Referencia ${id}`}
                   fill
-                  className="object-cover transition-premium group-hover:scale-105"
+                  className="object-cover transition-premium group-hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/20 transition-premium" />
               </div>
             ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <Link
+              href="/dvere/referencie"
+              className="px-10 py-5 bg-dark text-white rounded-2xl font-black uppercase tracking-widest hover:bg-gold hover:text-dark transition-premium shadow-xl inline-block"
+            >
+              Galéria referencií
+              <i className="fas fa-arrow-right ml-3 text-xs" />
+            </Link>
           </div>
         </div>
       </section>

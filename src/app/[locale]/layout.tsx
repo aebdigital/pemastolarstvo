@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CookieBanner from '@/components/layout/CookieBanner';
+import MobileMenu from '@/components/layout/MobileMenu';
 import CartSidebar from '@/components/configurator/CartSidebar';
 
 export const metadata: Metadata = {
@@ -58,6 +59,7 @@ export default async function LocaleLayout({
       </head>
       <body className="font-body text-dark antialiased">
         <NextIntlClientProvider messages={messages}>
+          <MobileMenu />
           <Header />
           <main>{children}</main>
           <Footer />

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import { useCart } from '@/hooks/useCart';
@@ -14,6 +14,7 @@ export default function CartSidebar() {
   const { items, removeItem, count } = useCart();
   const router = useRouter();
   const locale = useLocale();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
@@ -21,23 +22,27 @@ export default function CartSidebar() {
     return () => window.removeEventListener('open-cart', handleOpen);
   }, []);
 
+  const isConfigurator = pathname?.includes('konfigurator');
+
   return (
     <>
       {/* Floating cart button */}
+      {isConfigurator && (
       <button
         onClick={() => setIsOpen(true)}
-        className={`fixed top-32 right-0 z-[120] w-16 h-16 bg-dark text-white rounded-l-2xl shadow-premium flex items-center justify-center group border-y-2 border-l-2 border-gold/20 transition-all duration-300 ${isOpen ? 'translate-x-full' : 'translate-x-0'}`}
+        className={`fixed top-32 right-4 z-[120] w-16 h-16 bg-dark text-white rounded-full shadow-premium flex items-center justify-center group border-2 border-gold/20 transition-all duration-300 ${isOpen ? 'translate-x-32' : 'translate-x-0'}`}
         aria-label="Open cart"
       >
-        <div className="relative">
-          <i className="fas fa-shopping-cart text-xl group-hover:text-gold transition-colors" />
-          {count > 0 && (
-            <span className="absolute -top-3 -right-3 w-6 h-6 bg-red-600 text-white text-[10px] font-black rounded-full flex items-center justify-center border-2 border-dark shadow-lg">
-              {count}
-            </span>
-          )}
-        </div>
-      </button>
+          <div className="relative">
+            <i className="fas fa-shopping-cart text-xl group-hover:text-gold transition-colors" />
+            {count > 0 && (
+              <span className="absolute -top-3 -right-3 w-6 h-6 bg-red-600 text-white text-[10px] font-black rounded-full flex items-center justify-center border-2 border-dark shadow-lg">
+                {count}
+              </span>
+            )}
+          </div>
+        </button>
+      )}
 
       {/* Sidebar overlay */}
       <div
@@ -47,7 +52,7 @@ export default function CartSidebar() {
 
       {/* Sidebar container */}
       <div
-        className={`fixed top-0 right-0 h-full w-full max-w-[450px] bg-white z-[99999] shadow-[-20px_0_50px_rgba(0,0,0,0.15)] flex flex-col transition-transform duration-500 cubic-bezier(0.16, 1, 0.3, 1) ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed top-0 right-0 h-full w-full max-w-[450px] bg-white z-[99999] shadow-[-20px_0_50px_rgba(0,0,0,0.15)] flex flex-col transition-transform duration-500 cubic-bezier(0.16, 1, 0.3, 1) ${isOpen ? 'translate-x-0' : 'translate-x-full pointer-events-none'}`}
         onClick={(e) => e.stopPropagation()}
         data-lenis-prevent
       >
@@ -89,72 +94,76 @@ export default function CartSidebar() {
                 return (
                   <div
                     key={item.id}
-                    className="bg-light rounded-[2rem] p-6 border border-gray-100 shadow-inner-premium group relative"
+                    className="bg-light rounded-[2.5rem] p-6 border border-gray-100 shadow-inner-premium group relative"
                   >
-                    <div className="flex gap-6">
-                      {/* Door Image Thumbnail */}
-                      <div className="w-24 h-32 relative bg-white rounded-xl overflow-hidden shadow-sm shrink-0 border border-gray-100">
+                    <div className="flex flex-col gap-6">
+                      {/* Door Image Thumbnail - Larger on top */}
+                      <div className="w-full h-64 relative bg-white rounded-2xl overflow-hidden shadow-sm shrink-0 border border-gray-100 group-hover:shadow-md transition-premium">
                         <Image
                           src={imagePath}
                           alt={item.configuration.modelId}
                           fill
-                          className="object-contain p-2"
+                          className="object-contain p-4 group-hover:scale-105 transition-transform duration-700"
                         />
                       </div>
 
-                      <div className="flex-1 space-y-4">
+                      <div className="flex-1 space-y-4 px-2">
                         <div className="flex justify-between items-start">
                           <div>
-                            <span className="text-[9px] font-black uppercase tracking-widest text-gold">{item.configuration.doorType === 'ramove' ? 'Rámové dvere' : 'Sendvičové dvere'}</span>
-                            <h3 className="font-heading text-lg font-black text-dark uppercase mt-0.5 leading-none">
-                              {item.configuration.modelId} — VARIANT {item.configuration.variantIndex}
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gold">{item.configuration.doorType === 'ramove' ? 'Rámové dvere' : 'Sendvičové dvere'}</span>
+                            <h3 className="font-heading text-xl font-black text-dark uppercase mt-1 leading-none tracking-tight">
+                              Model {item.configuration.modelId} — VARIANT {item.configuration.variantIndex}
                             </h3>
                           </div>
                           <button
                             onClick={() => removeItem(item.id)}
-                            className="w-8 h-8 rounded-full bg-white text-gray-400 flex items-center justify-center hover:bg-red-50 hover:text-red-500 transition-premium shadow-sm shrink-0"
+                            className="w-10 h-10 rounded-full bg-white text-gray-400 flex items-center justify-center hover:bg-red-50 hover:text-red-500 transition-premium shadow-sm shrink-0"
                             aria-label="Remove"
                           >
-                            <i className="fas fa-trash-alt text-[10px]" />
+                            <i className="fas fa-trash-alt text-xs" />
                           </button>
                         </div>
 
-                        <div className="space-y-3 text-[11px] leading-relaxed">
-                          <div className="space-y-1">
-                            <p className="font-black text-dark uppercase tracking-tighter text-[10px]">Rozmery</p>
-                            <p className="text-gray-medium">— Výška stavebného otvoru [cm] → <span className="text-dark font-bold">{item.configuration.height} cm</span></p>
-                            <p className="text-gray-medium">— Šírka stavebného otvoru [cm] → <span className="text-dark font-bold">{item.configuration.width} cm</span></p>
-                            <p className="text-gray-medium">— Hrúbka muriva [cm] → <span className="text-dark font-bold">{item.configuration.thickness} cm</span></p>
+                        <div className="space-y-4 text-[12px] leading-relaxed">
+                          <div className="space-y-2">
+                            <p className="font-black text-dark uppercase tracking-widest text-[10px] opacity-30">Technické Parametre</p>
+                            <div className="grid grid-cols-1 gap-1.5 pl-1 italic text-gray-medium">
+                              <p>— Výška stavebného otvoru [cm] → <span className="text-dark font-bold not-italic">{item.configuration.height} cm</span></p>
+                              <p>— Šírka stavebného otvoru [cm] → <span className="text-dark font-bold not-italic">{item.configuration.width} cm</span></p>
+                              <p>— Hrúbka muriva [cm] → <span className="text-dark font-bold not-italic">{item.configuration.thickness} cm</span></p>
+                            </div>
                           </div>
 
-                          <div className="space-y-1.5 pt-2 border-t border-gray-200/50">
-                            <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">CPL lamináty</span> — {item.configuration.colorName.replace('.png', '')}</p>
-                            <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">Konštrukčné prevedenie</span> — {
-                              item.configuration.construction === 'plna-mdf' ? 'Plná MDF výplň' : 
-                              item.configuration.construction === 'vostinove' ? 'Voštinová výplň' : 
-                              item.configuration.construction === 'dutinkove' ? 'Dutinková drevotrieska' : 'Plná MDF výplň'
-                            }</p>
-                            <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">Typ skla</span> — {
-                              item.configuration.glassType === 'none' ? 'Bez skla' :
-                              item.configuration.glassType === 'matelux' ? 'Matelux' :
-                              item.configuration.glassType === 'cincila' ? 'Činčila číra' :
-                              item.configuration.glassType === 'dub-kora' ? 'Dubová kôra číra' : 'Matelux'
-                            }</p>
-                            <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">Typ otvárania</span> — {
-                              item.configuration.openingType === 'otocne' ? 'Otočné' :
-                              item.configuration.openingType === 'posuvne-stena' ? 'Na stenu' :
-                              item.configuration.openingType === 'posuvne-puzdro' ? 'Do púzdra' :
-                              item.configuration.openingType === 'lomene' ? 'Lomené' :
-                              item.configuration.openingType === 'kyvne' ? 'Kyvné' :
-                              item.configuration.openingType === 'protipoziarne' ? 'Protipožiarne' : 'Otočné'
-                            }</p>
-                            <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">Falcové/Bezfalcové dvere</span> — {item.configuration.frameType === 'falcove' ? 'Falcové dvere' : 'Bezfalcové dvere'}</p>
-                            <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">Kovanie - zámok</span> — {
-                              item.configuration.lockType === 'dozicky-bb' ? 'Dózický zámok (BB)' :
-                              item.configuration.lockType === 'wc-zamok' ? 'WC zámok (WC)' :
-                              item.configuration.lockType === 'fab-zamok' ? 'Cylindrický zámok (PZ)' : 'Dózický zámok (BB)'
-                            }</p>
-                            <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">Montáž</span> — {item.configuration.assembly ? 'S montážou' : 'Bez montáže'}</p>
+                          <div className="space-y-2 pt-4 border-t border-gray-200/50">
+                            <div className="flex flex-col gap-1.5">
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">CPL lamináty / Dekor</span> {item.configuration.colorName.replace('.png', '')}</p>
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">Konštrukčné prevedenie</span> {
+                                item.configuration.construction === 'plna-mdf' ? 'Plná MDF výplň' : 
+                                item.configuration.construction === 'vostinove' ? 'Voštinová výplň' : 
+                                item.configuration.construction === 'dutinkove' ? 'Dutinková drevotrieska' : 'Plná MDF výplň'
+                              }</p>
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">Typ skla</span> {
+                                item.configuration.glassType === 'none' ? 'Bez skla' :
+                                item.configuration.glassType === 'matelux' ? 'Matelux' :
+                                item.configuration.glassType === 'cincila' ? 'Činčila číra' :
+                                item.configuration.glassType === 'dub-kora' ? 'Dubová kôra číra' : 'Matelux'
+                              }</p>
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">Typ otvárania</span> {
+                                item.configuration.openingType === 'otocne' ? 'Otočné' :
+                                item.configuration.openingType === 'posuvne-stena' ? 'Na stenu' :
+                                item.configuration.openingType === 'posuvne-puzdro' ? 'Do púzdra' :
+                                item.configuration.openingType === 'lomene' ? 'Lomené' :
+                                item.configuration.openingType === 'kyvne' ? 'Kyvné' :
+                                item.configuration.openingType === 'protipoziarne' ? 'Protipožiarne' : 'Otočné'
+                              }</p>
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">Prevedenie dverí</span> {item.configuration.frameType === 'falcove' ? 'Falcové dvere' : 'Bezfalcové dvere'}</p>
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">Kovanie - zámok</span> {
+                                item.configuration.lockType === 'dozicky-bb' ? 'Dózický zámok (BB)' :
+                                item.configuration.lockType === 'wc-zamok' ? 'WC zámok (WC)' :
+                                item.configuration.lockType === 'fab-zamok' ? 'Cylindrický zámok (PZ)' : 'Dózický zámok (BB)'
+                              }</p>
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block text-gold">Požadovaná montáž</span> {item.configuration.assembly ? 'ÁNO' : 'NIE'}</p>
+                            </div>
                           </div>
 
                           {item.configuration.notes && (
@@ -178,22 +187,17 @@ export default function CartSidebar() {
         </div>
 
         {items.length > 0 && (
-          <div className="p-8 border-t border-gray-100 bg-white space-y-6">
-            <div className="flex justify-between items-end">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">Orientačný Súčet</span>
-              <span className="text-2xl font-black uppercase tracking-wider text-dark">{count} Položky</span>
-            </div>
+          <div className="p-8 border-t border-gray-100 bg-white">
             <button
               onClick={() => {
                 setIsOpen(false);
                 router.push(`/${locale}/dvere/dopyt`);
               }}
-              className="w-full py-6 bg-dark text-white font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-gold hover:text-dark transition-premium shadow-2xl flex items-center justify-center gap-4 group"
+              className="w-full py-4 bg-dark text-white font-black uppercase tracking-[0.1em] text-sm rounded-xl hover:bg-gold hover:text-dark transition-premium shadow-xl flex items-center justify-center gap-3 group"
             >
               <span>Odoslať dopyt</span>
               <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform" />
             </button>
-            <p className="text-[9px] text-center text-gray-400 uppercase font-bold tracking-widest">Cenová ponuka vám bude zaslaná po spracovaní dopytu</p>
           </div>
         )}
       </div>

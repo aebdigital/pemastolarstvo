@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useCart } from '@/hooks/useCart';
 import { getDoorImagePath, getColoredDoorImagePath } from '@/lib/door-models';
+import PrivacyModal from '@/components/ui/PrivacyModal';
 
 export default function InquiryForm() {
   const t = useTranslations('inquiry');
@@ -22,6 +23,7 @@ export default function InquiryForm() {
     gdpr: false,
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [privacyOpen, setPrivacyOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,11 +88,12 @@ export default function InquiryForm() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-semibold text-dark mb-1">
-                  {t('firstName')}
+                  Meno *
                 </label>
                 <input
                   type="text"
                   required
+                  placeholder="Test"
                   value={formData.firstName}
                   onChange={(e) => updateField('firstName', e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -98,11 +101,12 @@ export default function InquiryForm() {
               </div>
               <div>
                 <label className="block text-sm font-semibold text-dark mb-1">
-                  {t('lastName')}
+                  Priezvisko *
                 </label>
                 <input
                   type="text"
                   required
+                  placeholder="Test"
                   value={formData.lastName}
                   onChange={(e) => updateField('lastName', e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -111,11 +115,12 @@ export default function InquiryForm() {
             </div>
             <div>
               <label className="block text-sm font-semibold text-dark mb-1">
-                {t('email')}
+                Emailová adresa *
               </label>
               <input
                 type="email"
                 required
+                placeholder="lukas.knotek@gmail.com"
                 value={formData.email}
                 onChange={(e) => updateField('email', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -123,11 +128,12 @@ export default function InquiryForm() {
             </div>
             <div>
               <label className="block text-sm font-semibold text-dark mb-1">
-                {t('phone')}
+                Telefón *
               </label>
               <input
                 type="tel"
                 required
+                placeholder="0900123456"
                 value={formData.phone}
                 onChange={(e) => updateField('phone', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -135,10 +141,11 @@ export default function InquiryForm() {
             </div>
             <div>
               <label className="block text-sm font-semibold text-dark mb-1">
-                {t('company')}
+                Názov firmy (nepovinné)
               </label>
               <input
                 type="text"
+                placeholder="ABC s.r.o."
                 value={formData.company}
                 onChange={(e) => updateField('company', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -151,6 +158,7 @@ export default function InquiryForm() {
               <input
                 type="text"
                 required
+                placeholder="Testovacia, 22"
                 value={formData.address}
                 onChange={(e) => updateField('address', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -159,11 +167,12 @@ export default function InquiryForm() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-semibold text-dark mb-1">
-                  {t('city')}
+                  Mesto *
                 </label>
                 <input
                   type="text"
                   required
+                  placeholder="Senica (905 01)"
                   value={formData.city}
                   onChange={(e) => updateField('city', e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -171,11 +180,12 @@ export default function InquiryForm() {
               </div>
               <div>
                 <label className="block text-sm font-semibold text-dark mb-1">
-                  {t('zipCode')}
+                  PSČ *
                 </label>
                 <input
                   type="text"
                   required
+                  placeholder="90501"
                   value={formData.zipCode}
                   onChange={(e) => updateField('zipCode', e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -183,11 +193,13 @@ export default function InquiryForm() {
               </div>
             </div>
             <div>
+              <h3 className="text-xl font-bold text-dark mt-8 mb-4">Dodatočné informácie</h3>
               <label className="block text-sm font-semibold text-dark mb-1">
-                {t('message')}
+                Poznámky (nepovinné)
               </label>
               <textarea
                 rows={4}
+                placeholder="Poznámky k vašej objednávke, napr. špeciálne pokyny na doručenie."
                 value={formData.message}
                 onChange={(e) => updateField('message', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-y"
@@ -197,7 +209,7 @@ export default function InquiryForm() {
         </div>
 
         {/* Order summary */}
-        <div className="bg-white p-8 rounded-3xl shadow-premium border border-gray-100 h-fit sticky top-32">
+        <div className="bg-white p-0 sm:p-8 rounded-3xl sm:shadow-premium sm:border border-gray-100 h-fit sticky top-32">
           <div className="flex flex-col items-center mb-10">
             <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gold mb-2">Prehľad dopytu</span>
             <h2 className="font-heading text-2xl font-black text-dark uppercase tracking-widest text-center">
@@ -215,27 +227,15 @@ export default function InquiryForm() {
           ) : (
             <div className="space-y-6">
               {items.map((item, i) => {
-                const imagePath = item.configuration.color && item.configuration.color.endsWith('.png')
-                  ? getColoredDoorImagePath(item.configuration.modelId, item.configuration.variantIndex, item.configuration.color)
-                  : getDoorImagePath(item.configuration.doorType, item.configuration.modelId, item.configuration.variantIndex);
-
                 return (
                   <div key={item.id} className="bg-light rounded-3xl p-6 border border-gray-100 shadow-inner-premium group">
                     <div className="flex gap-4 mb-4 pb-4 border-b border-gray-200/50">
-                      <div className="w-16 h-20 relative bg-white rounded-xl overflow-hidden shadow-sm shrink-0 border border-gray-100">
-                        <Image
-                          src={imagePath}
-                          alt={item.configuration.modelId}
-                          fill
-                          className="object-contain p-1"
-                        />
-                      </div>
                       <div className="flex-1">
                         <span className="text-[9px] font-black uppercase tracking-widest text-gold">{item.configuration.doorType === 'ramove' ? 'Rámové' : 'Sendvičové'}</span>
-                        <h3 className="font-heading text-sm font-black text-dark uppercase mt-0.5">
+                        <h3 className="font-heading text-lg font-black text-dark uppercase mt-0.5">
                           {item.configuration.modelId} — VARIANT {item.configuration.variantIndex}
                         </h3>
-                        <p className="text-[10px] font-black text-gray- medium mt-1 uppercase tracking-wider">Množstvo: {item.quantity} ks</p>
+                        <p className="text-[10px] font-black text-gray-medium mt-1 uppercase tracking-wider">Množstvo: {item.quantity} ks</p>
                       </div>
                     </div>
 
@@ -299,10 +299,17 @@ export default function InquiryForm() {
             required
             checked={formData.gdpr}
             onChange={(e) => updateField('gdpr', e.target.checked)}
-            className="mt-1 w-5 h-5 rounded border-gray-300 text-primary focus:ring-primary"
+            className="mt-1 w-5 h-5 rounded border-gray-300 text-dark focus:ring-dark"
           />
           <label htmlFor="gdpr-inquiry" className="text-sm text-gray-medium">
-            {t('terms')}
+            Súhlasím so spracovaním osobných údajov podľa{' '}
+            <button
+              type="button"
+              onClick={() => setPrivacyOpen(true)}
+              className="text-dark font-bold underline underline-offset-4 hover:text-gold transition-colors"
+            >
+              zásad ochrany osobných údajov
+            </button>
           </label>
         </div>
         <button
@@ -316,6 +323,11 @@ export default function InquiryForm() {
           <p className="mt-3 text-red-600 text-sm font-semibold">{t('error')}</p>
         )}
       </div>
+
+      <PrivacyModal 
+        isOpen={privacyOpen}
+        onClose={() => setPrivacyOpen(false)}
+      />
     </form>
   );
 }

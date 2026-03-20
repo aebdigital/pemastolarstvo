@@ -51,7 +51,7 @@ export default function StolarstvoReferenciePage() {
       </section>
 
       {/* Gallery */}
-      <section className="gallery-section">
+      <section className="gallery-section pb-32">
         <div className="gallery-container">
           <PortfolioGrid images={galleryData[activeCategory] || []} />
         </div>

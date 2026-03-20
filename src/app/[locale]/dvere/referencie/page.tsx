@@ -13,11 +13,20 @@ export const metadata: Metadata = {
 export default function DvereReferenciePage() {
   return (
     <main>
-      <PageHero title="REFERENCIE DVERÍ" subtitle="Pozrite si naše realizácie interiérových dverí" image="/sources/doorhero2.jpg" />
+      <PageHero title="REFERENCIE DVERÍ" image="/sources/doorhero2.jpg" />
 
+      {/* Intro Text */}
+      <section className="pt-24 pb-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-xl md:text-2xl font-black text-dark uppercase tracking-widest leading-tight">
+            Pozrite si naše realizácie interiérových dverí
+          </h2>
+          <div className="w-16 h-1 bg-gold mx-auto mt-6 rounded-full" />
+        </div>
+      </section>
 
       {/* Gallery */}
-      <section className="gallery-section py-32">
+      <section className="gallery-section pb-32 bg-white">
         <div className="gallery-container">
           <PortfolioGrid images={doorGallery.dvere} variant="dvere" />
         </div>

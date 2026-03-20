@@ -16,8 +16,8 @@ export default function ColorPicker({ selectedCode, onSelect, doorType }: ColorP
   const selectedColor = colors.find(c => c.code === selectedCode);
 
   return (
-    <div className="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm">
-      <div className="flex justify-between items-baseline mb-6">
+    <div className="bg-white rounded-3xl p-3 sm:p-6 border-0 shadow-none">
+      <div className="flex justify-between items-baseline mb-6 px-1">
         <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
           Dostupné dekory
         </label>

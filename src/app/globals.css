@@ -140,7 +140,7 @@ h6 {
 /* ── Split Homepage ── */
 .split-container {
   display: flex;
-  height: calc(100vh - 5rem);
+  height: 100vh;
   width: 100%;
   position: relative;
   overflow: hidden;
@@ -308,7 +308,7 @@ h6 {
 /* ── Page Hero ── */
 .page-hero {
   position: relative;
-  height: 340px;
+  height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -326,7 +326,7 @@ h6 {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 0 24px;
+  padding: 80px 24px 0;
 }
 
 .page-hero-title {
@@ -352,17 +352,21 @@ h6 {
 
 @media (max-width: 991px) {
   .page-hero {
-    height: 280px;
+    height: 420px;
   }
 
   .page-hero-title {
     font-size: 2.5rem;
   }
+
+  .page-hero-content {
+    padding-top: 100px;
+  }
 }
 
 @media (max-width: 767px) {
   .page-hero {
-    height: 240px;
+    height: 400px;
   }
 
   .page-hero-title {
@@ -371,6 +375,10 @@ h6 {
 
   .page-hero-subtitle {
     font-size: 1rem;
+  }
+
+  .page-hero-content {
+    padding-top: 100px;
   }
 }
 
