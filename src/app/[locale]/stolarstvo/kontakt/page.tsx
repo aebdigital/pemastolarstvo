@@ -1,0 +1,145 @@
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import ContactFormSection from '@/components/forms/ContactFormSection';
+import PageHero from '@/components/ui/PageHero';
+
+export const metadata: Metadata = {
+  title: 'Kontakt - PMP-Produkt | Stolárstvo a nábytok na mieru Svidník',
+  description:
+    'Kontaktujte PMP-Produkt pre stolárstvo a nábytok na mieru. Showroom v Svidníku, bezplatné zameranie a cenová ponuka.',
+};
+
+export default function StolarstvoKontaktPage() {
+  return (
+    <main>
+      <PageHero title="KONTAKT" image="/sources/leftnabytok.jpg" />
+
+      {/* Contact Content */}
+      <section className="contact-content-section">
+        <div className="container mx-auto px-4">
+          <div className="contact-sections">
+            {/* Sídlo */}
+            <div className="contact-section">
+              <div className="section-content">
+                <h2>SÍDLO SPOLOČNOSTI</h2>
+                <h3 className="text-xl font-bold text-dark mb-4">PMP-Produkt s.r.o</h3>
+
+                <div className="address-info">
+                  <p>
+                    <a
+                      href="https://maps.google.com/?q=Vyšná Jedľová 37, 089 01 Svidník"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="address-link"
+                    >
+                      Vyšná Jedľová 37<br />
+                      089 01 Svidník<br />
+                      Slovenská republika
+                    </a>
+                  </p>
+                </div>
+
+                <div className="contact-details">
+                  <p><strong>Tel/Fax:</strong> <a href="tel:+421948380618" className="phone-link">0948 380 618</a></p>
+                  <p><strong>Mobil:</strong> <a href="tel:+421914225257" className="phone-link">0914 225 257</a></p>
+                  <p><strong>E-mail:</strong> <a href="mailto:pmpprodukt@gmail.com" className="email-link">pmpprodukt@gmail.com</a></p>
+
+                  <div className="opening-hours">
+                    <p><strong>Otváracie hodiny</strong></p>
+                    <ul>
+                      <li>podľa objednávky</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="section-image">
+                <Image
+                  src="/sources/SIDLO.jpg"
+                  alt="Sídlo firmy PMP-Produkt"
+                  width={800}
+                  height={250}
+                  className="location-image"
+                />
+              </div>
+
+              <div className="section-map">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2585.844!2d21.57447!3d49.31139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473e0c5f8c5f8c5f%3A0x5f8c5f8c5f8c5f8c!2sVy%C5%A1n%C3%A1%20Jed%C4%BEov%C3%A1%2037%2C%20089%2001%20Svidn%C3%ADk!5e0!3m2!1ssk!2ssk!4v1641234567890!5m2!1ssk!2ssk"
+                  width="100%"
+                  height="300"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Sídlo - Google Maps"
+                />
+              </div>
+            </div>
+
+            {/* Showroom */}
+            <div className="contact-section">
+              <div className="section-content">
+                <h2>SHOWROOM</h2>
+                <h3 className="text-xl font-bold text-dark mb-4">PeMa Stolárstvo</h3>
+
+                <div className="address-info">
+                  <p>
+                    <a
+                      href="https://maps.google.com/?q=Vyšná Jedľová 37, 089 01 Svidník"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="address-link"
+                    >
+                      Vyšná Jedľová 37<br />
+                      089 01 Svidník<br />
+                      Slovenská republika
+                    </a>
+                  </p>
+                </div>
+
+                <div className="contact-details">
+                  <p><strong>Tel/Fax:</strong> <a href="tel:+421948380618" className="phone-link">0948 380 618</a></p>
+                  <p><strong>Mobil:</strong> <a href="tel:+421914225257" className="phone-link">0914 225 257</a></p>
+                  <p><strong>E-mail:</strong> <a href="mailto:pemastolarstvo@gmail.com" className="email-link">pemastolarstvo@gmail.com</a></p>
+
+                  <div className="opening-hours">
+                    <p><strong>Otváracie hodiny</strong></p>
+                    <ul>
+                      <li>podľa objednávky</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="section-image">
+                <Image
+                  src="/sources/Showroom foto.jpg"
+                  alt="PMP-Produkt Showroom"
+                  width={800}
+                  height={250}
+                  className="location-image"
+                />
+              </div>
+
+              <div className="section-map">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2585.844!2d21.57447!3d49.31139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473e0c5f8c5f8c5f%3A0x5f8c5f8c5f8c5f8c!2sStropkovsk%C3%A1%20568%2C%20089%2001%20Svidn%C3%ADk!5e0!3m2!1ssk!2ssk!4v1641234567890!5m2!1ssk!2ssk"
+                  width="100%"
+                  height="300"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Showroom - Google Maps"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <ContactFormSection section="stolarstvo" />
+    </main>
+  );
+}

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="320" height="320" viewBox="0 0 320 320">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_226" data-name="Rectangle 226" width="320" height="70.062" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Group_3428" data-name="Group 3428" transform="translate(3289 -6386)">
+    <rect id="Rectangle_253" data-name="Rectangle 253" width="320" height="320" transform="translate(-3289 6386)" fill="none"/>
+    <g id="Group_3418" data-name="Group 3418" transform="translate(-3289 6511)">
+      <rect id="Rectangle_224" data-name="Rectangle 224" width="68.948" height="24.132" transform="translate(250.5 38.482)" fill="#c1c3c5"/>
+      <g id="Group_3361" data-name="Group 3361" transform="translate(0 0)">
+        <g id="Group_3360" data-name="Group 3360" clip-path="url(#clip-path)">
+          <rect id="Rectangle_225" data-name="Rectangle 225" width="68.948" height="24.132" transform="translate(250.494 38.477)" fill="none" stroke="#000" stroke-miterlimit="22.926" stroke-width="0.212"/>
+        </g>
+      </g>
+      <rect id="Rectangle_227" data-name="Rectangle 227" width="68.948" height="24.132" transform="translate(250.5 7.454)" fill="#c1c3c5"/>
+      <g id="Group_3363" data-name="Group 3363" transform="translate(0 0)">
+        <g id="Group_3362" data-name="Group 3362" clip-path="url(#clip-path)">
+          <rect id="Rectangle_228" data-name="Rectangle 228" width="68.948" height="24.132" transform="translate(250.494 7.454)" fill="none" stroke="#000" stroke-miterlimit="22.926" stroke-width="0.212"/>
+        </g>
+      </g>
+      <rect id="Rectangle_230" data-name="Rectangle 230" width="68.948" height="24.132" transform="translate(250.5 7.454)" fill="#603235"/>
+      <g id="Group_3365" data-name="Group 3365" transform="translate(0 0)">
+        <g id="Group_3364" data-name="Group 3364" clip-path="url(#clip-path)">
+          <rect id="Rectangle_231" data-name="Rectangle 231" width="68.948" height="24.132" transform="translate(250.494 7.454)" fill="none" stroke="#000" stroke-miterlimit="22.926" stroke-width="0.212"/>
+        </g>
+      </g>
+      <rect id="Rectangle_233" data-name="Rectangle 233" width="68.948" height="24.132" transform="translate(250.5 38.482)" fill="#603235"/>
+      <g id="Group_3367" data-name="Group 3367" transform="translate(0 0)">
+        <g id="Group_3366" data-name="Group 3366" clip-path="url(#clip-path)">
+          <rect id="Rectangle_234" data-name="Rectangle 234" width="68.948" height="24.132" transform="translate(250.494 38.477)" fill="none" stroke="#000" stroke-miterlimit="22.926" stroke-width="0.212"/>
+        </g>
+      </g>
+      <path id="Path_9334" data-name="Path 9334" d="M.106.106V25.957H25.963v43.1H250.043V38.026h-27.58V31.134h27.58V.106Z" transform="translate(0.452 0.452)" fill="#603235"/>
+      <g id="Group_3369" data-name="Group 3369" transform="translate(0 0)">
+        <g id="Group_3368" data-name="Group 3368" clip-path="url(#clip-path)">
+          <path id="Path_9335" data-name="Path 9335" d="M.106.106H250.043V31.134h-27.58v6.891h27.58V69.054H25.962V25.962H.106Z" transform="translate(0.451 0.451)" fill="none" stroke="#000018" stroke-miterlimit="22.926" stroke-width="0.212"/>
+        </g>
+      </g>
+      <rect id="Rectangle_237" data-name="Rectangle 237" width="96.529" height="6.896" transform="translate(222.914 31.585)" fill="#97d7e5"/>
+      <g id="Group_3371" data-name="Group 3371" transform="translate(0 0)">
+        <g id="Group_3370" data-name="Group 3370" clip-path="url(#clip-path)">
+          <rect id="Rectangle_238" data-name="Rectangle 238" width="96.529" height="6.896" transform="translate(222.914 31.585)" fill="none" stroke="#000" stroke-miterlimit="22.926" stroke-width="0.212"/>
+          <line id="Line_10" data-name="Line 10" x2="249.942" transform="translate(0.556 6.563)" fill="none" stroke="#000018" stroke-miterlimit="22.926" stroke-width="0.212"/>
+        </g>
+      </g>
+      <line id="Line_11" data-name="Line 11" x2="223.193" transform="translate(26.412 63.5)" fill="none" stroke="#000018" stroke-miterlimit="22.926" stroke-width="0.212"/>
+    </g>
+  </g>
+</svg>

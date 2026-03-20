@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="320" height="320" viewBox="0 0 320 320">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_194" data-name="Rectangle 194" width="320" height="83.849" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Group_3426" data-name="Group 3426" transform="translate(3989 -6386)">
+    <rect id="Rectangle_251" data-name="Rectangle 251" width="320" height="320" transform="translate(-3989 6386)" fill="none"/>
+    <g id="Group_3416" data-name="Group 3416" transform="translate(-3989 6504)">
+      <path id="Path_9320" data-name="Path 9320" d="M25.962,2.729v36.2H.106v18.96H60.434V2.729Z" transform="translate(0.45 11.617)" fill="#8ac8ca"/>
+      <g id="Group_3345" data-name="Group 3345" transform="translate(0 0)">
+        <g id="Group_3344" data-name="Group 3344" clip-path="url(#clip-path)">
+          <path id="Path_9321" data-name="Path 9321" d="M.106,57.889H60.434V2.729H25.962v36.2H.106Z" transform="translate(0.451 11.615)" fill="none" stroke="#000" stroke-miterlimit="22.926" stroke-width="0.212"/>
+        </g>
+      </g>
+      <rect id="Rectangle_195" data-name="Rectangle 195" width="249.937" height="6.896" transform="translate(0.557 69.505)" fill="#c1c3c5"/>
+      <g id="Group_3347" data-name="Group 3347" transform="translate(0 0)">
+        <g id="Group_3346" data-name="Group 3346" clip-path="url(#clip-path)">
+          <rect id="Rectangle_196" data-name="Rectangle 196" width="249.937" height="6.896" transform="translate(0.557 69.505)" fill="none" stroke="#000" stroke-miterlimit="22.926" stroke-width="0.212"/>
+        </g>
+      </g>
+      <rect id="Rectangle_198" data-name="Rectangle 198" width="224.081" height="6.896" transform="translate(26.408 7.448)" fill="#c1c3c5"/>
+      <rect id="Rectangle_199" data-name="Rectangle 199" width="224.081" height="6.896" transform="translate(26.413 7.448)" fill="none" stroke="#000" stroke-miterlimit="22.926" stroke-width="0.212"/>
+      <rect id="Rectangle_200" data-name="Rectangle 200" width="68.954" height="6.896" transform="translate(250.494 38.477)" fill="#97d7e5"/>
+      <g id="Group_3349" data-name="Group 3349" transform="translate(0 0)">
+        <g id="Group_3348" data-name="Group 3348" clip-path="url(#clip-path)">
+          <rect id="Rectangle_201" data-name="Rectangle 201" width="68.948" height="6.896" transform="translate(250.494 38.477)" fill="none" stroke="#000" stroke-miterlimit="22.926" stroke-width="0.212"/>
+          <path id="Path_9322" data-name="Path 9322" d="M76.06,8.632V39.66a6.9,6.9,0,0,1-6.891,6.891H51.927a6.909,6.909,0,0,1-6.9-6.891H58.824V8.632Z" transform="translate(191.671 36.742)" fill="#8ac8ca" fill-rule="evenodd"/>
+          <path id="Path_9323" data-name="Path 9323" d="M76.06,8.632V39.66a6.9,6.9,0,0,1-6.891,6.891H51.927a6.909,6.909,0,0,1-6.9-6.891H58.824V8.632Z" transform="translate(191.671 36.742)" fill="none" stroke="#000" stroke-miterlimit="22.926" stroke-width="0.212"/>
+          <path id="Path_9324" data-name="Path 9324" d="M76.06,38.025V7A6.9,6.9,0,0,0,69.168.106H51.927A6.909,6.909,0,0,0,45.031,7H58.824V38.025Z" transform="translate(191.671 0.452)" fill="#8ac8ca" fill-rule="evenodd"/>
+          <path id="Path_9325" data-name="Path 9325" d="M76.06,38.025V7A6.9,6.9,0,0,0,69.168.106H51.927A6.909,6.909,0,0,0,45.031,7H58.824V38.025Z" transform="translate(191.671 0.452)" fill="none" stroke="#000" stroke-miterlimit="22.926" stroke-width="0.212"/>
+          <path id="Path_9326" data-name="Path 9326" d="M119.313,53.574A23.27,23.27,0,1,0,96.043,30.3a23.274,23.274,0,0,0,23.27,23.27m-51.707,0A23.27,23.27,0,1,0,44.336,30.3a23.273,23.273,0,0,0,23.27,23.27m103.42,0A23.27,23.27,0,1,1,194.3,30.3a23.27,23.27,0,0,1-23.27,23.27M11.583,57.884H201.192V2.729H11.583v4.7a23.273,23.273,0,1,1,0,45.736Z" transform="translate(49.302 11.617)" fill="#8ac8ca" fill-rule="evenodd"/>
+          <path id="Path_9327" data-name="Path 9327" d="M119.313,53.574A23.27,23.27,0,1,0,96.043,30.3,23.274,23.274,0,0,0,119.313,53.574Zm-51.707,0A23.27,23.27,0,1,0,44.336,30.3,23.273,23.273,0,0,0,67.606,53.574Zm103.42,0A23.27,23.27,0,1,1,194.3,30.3,23.27,23.27,0,0,1,171.026,53.574ZM11.583,57.884H201.192V2.729H11.583v4.7a23.273,23.273,0,1,1,0,45.736Z" transform="translate(49.302 11.617)" fill="none" stroke="#000" stroke-miterlimit="22.926" stroke-width="0.212"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
