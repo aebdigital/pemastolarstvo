@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 import Lightbox from './Lightbox';
 
 interface PortfolioGridProps {
@@ -35,13 +36,15 @@ export default function PortfolioGrid({ images, variant = 'default' }: Portfolio
         ))}
       </div>
 
-      {lightboxIndex !== null && (
-        <Lightbox
-          images={images}
-          initialIndex={lightboxIndex}
-          onClose={() => setLightboxIndex(null)}
-        />
-      )}
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <Lightbox
+            images={images}
+            initialIndex={lightboxIndex}
+            onClose={() => setLightboxIndex(null)}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }
