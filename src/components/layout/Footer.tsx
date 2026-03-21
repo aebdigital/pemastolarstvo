@@ -4,10 +4,12 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
 import PrivacyModal from "@/components/ui/PrivacyModal";
+import CookieSettingsModal from "@/components/ui/CookieSettingsModal";
 
 export default function Footer() {
   const t = useTranslations("footer");
   const [privacyOpen, setPrivacyOpen] = useState(false);
+  const [cookiesOpen, setCookiesOpen] = useState(false);
   const pathname = usePathname();
   const isStolarstvo = pathname.includes("/stolarstvo");
 
@@ -119,6 +121,12 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <button
+                onClick={() => setCookiesOpen(true)}
+                className="hover:text-white transition-colors"
+              >
+                Cookies
+              </button>
+              <button
                 onClick={() => setPrivacyOpen(true)}
                 className="hover:text-white transition-colors"
               >
@@ -138,6 +146,11 @@ export default function Footer() {
       <PrivacyModal 
         isOpen={privacyOpen}
         onClose={() => setPrivacyOpen(false)}
+      />
+
+      <CookieSettingsModal 
+        isOpen={cookiesOpen}
+        onClose={() => setCookiesOpen(false)}
       />
     </>
   );
