@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import PortfolioGrid from '@/components/gallery/PortfolioGrid';
 import PageHero from '@/components/ui/PageHero';
 import stolarstvoGallery from '@/data/stolarstvo-gallery.json';
@@ -27,7 +28,17 @@ const galleryData: Record<string, string[]> = stolarstvoGallery.reduce(
 );
 
 export default function StolarstvoReferenciePage() {
-  const [activeCategory, setActiveCategory] = useState('kuchyne');
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get('kategoria');
+  const [activeCategory, setActiveCategory] = useState(
+    categories.some((c) => c.id === categoryParam) ? categoryParam! : 'kuchyne'
+  );
+
+  useEffect(() => {
+    if (categoryParam && categories.some((c) => c.id === categoryParam)) {
+      setActiveCategory(categoryParam);
+    }
+  }, [categoryParam]);
 
   return (
     <main>

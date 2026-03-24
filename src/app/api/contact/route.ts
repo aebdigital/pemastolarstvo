@@ -11,17 +11,17 @@ export async function POST(req: Request) {
     }
 
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'mail.smtp2go.com',
-      port: Number(process.env.SMTP_PORT) || 2525,
-      secure: false, 
+      host: 'mail.smtp2go.com',
+      port: 2525,
+      secure: false,
       auth: {
-        user: process.env.SMTP_USER || process.env.SMTP2GO_SENDER,
-        pass: process.env.SMTP_PASS || process.env.SMTP2GO_API_KEY,
+        user: process.env.SMTP2GO_SENDER,
+        pass: process.env.SMTP2GO_API_KEY,
       },
     });
 
-    const to = process.env.CONTACT_FORM_RECIPIENT || process.env.EMAIL_TO || 'pmpprodukt@gmail.com';
-    const from = process.env.SMTP2GO_SENDER || process.env.EMAIL_FROM || 'web@dvereastolarstvo.sk';
+    const to = process.env.CONTACT_FORM_RECIPIENT!;
+    const from = process.env.SMTP2GO_SENDER!;
 
     let subject = 'Nová správa z webu dvereastolarstvo.sk';
     let htmlContent = '';

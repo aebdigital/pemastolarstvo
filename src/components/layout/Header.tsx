@@ -34,11 +34,12 @@ export default function Header({ section = "dvere" }: HeaderProps) {
     { href: "/dvere/referencie", label: t("references") },
     { href: "/dvere/blog", label: t("blog") },
     { href: "/dvere/kontakt", label: t("contact") },
-    { href: "/1.pdf", label: "AKCIOVÝ KATALÓG", isExternal: true },
+    { href: "/Akciovy-katalog-5_26-1.pdf", label: "AKCIOVÝ KATALÓG", isExternal: true },
   ];
 
   const carpentryLinks = [
     { href: "/stolarstvo/o-nas", label: t("aboutUs") },
+    { href: "/stolarstvo/vstavane-skrine", label: "Vstavané skrine" },
     { href: "/stolarstvo/referencie", label: t("references") },
     { href: "/stolarstvo/kontakt", label: t("contact") },
   ];
