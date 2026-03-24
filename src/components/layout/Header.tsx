@@ -39,7 +39,7 @@ export default function Header({ section = "dvere" }: HeaderProps) {
 
   const carpentryLinks = [
     { href: "/stolarstvo/o-nas", label: t("aboutUs") },
-    { href: "/stolarstvo/vstavane-skrine", label: "Vstavané skrine" },
+    { href: "/stolarstvo/vstavane-skrine", label: "Vstavané skrine na mieru" },
     { href: "/stolarstvo/referencie", label: t("references") },
     { href: "/stolarstvo/kontakt", label: t("contact") },
   ];

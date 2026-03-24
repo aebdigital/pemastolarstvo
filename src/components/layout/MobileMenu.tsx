@@ -31,6 +31,7 @@ export default function MobileMenu() {
 
   const carpentryLinks = [
     { href: "/stolarstvo/o-nas", label: t("aboutUs") },
+    { href: "/stolarstvo/vstavane-skrine", label: "Vstavané skrine na mieru" },
     { href: "/stolarstvo/referencie", label: t("references") },
     { href: "/stolarstvo/kontakt", label: t("contact") },
   ];
