@@ -69,7 +69,7 @@ export default function InquiryForm() {
         <h2 className="font-heading text-3xl font-bold text-dark mb-4">
           {t('successTitle')}
         </h2>
-        <p className="text-gray-medium max-w-md mx-auto">
+        <p className="text-gray-medium max-w-2xl mx-auto">
           {t('successMessage')}
         </p>
       </div>
