@@ -5,9 +5,9 @@ import doorGallery from '@/data/door-gallery.json';
 import ContactFormSection from '@/components/forms/ContactFormSection';
 
 export const metadata: Metadata = {
-  title: 'Referencie - Dvere | PMP-Produkt',
+  title: 'Referencie - Interiérové dvere',
   description:
-    'Galéria realizácií interiérových dverí. Pozrite si naše referencie z reálnych inštalácií.',
+    'Galéria realizácií interiérových dverí na mieru. Pozrite si naše referencie z reálnych inštalácií vo Svidníku a okolí.',
 };
 
 export default function DvereReferenciePage() {

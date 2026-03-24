@@ -5,9 +5,9 @@ import ContactFormSection from '@/components/forms/ContactFormSection';
 import { Link } from '@/i18n/routing';
 
 export const metadata: Metadata = {
-    title: 'O nás - Stolárstvo | PMP-Produkt',
+    title: 'Stolárstvo - Nábytok a kuchyne na mieru',
     description:
-        'Sme rodinná firma s bohatými skúsenosťami zo zahraničia. Špecializujeme sa na výrobu nábytku a interiérov na mieru.',
+        'PeMa Stolárstvo - rodinná firma s bohatými skúsenosťami zo zahraničia. Kuchyne, vstavané skrine, nábytok a interiéry na mieru. Svidník.',
 };
 
 export default function StolarstvoONasPage() {

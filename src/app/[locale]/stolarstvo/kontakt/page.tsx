@@ -4,9 +4,9 @@ import ContactFormSection from '@/components/forms/ContactFormSection';
 import PageHero from '@/components/ui/PageHero';
 
 export const metadata: Metadata = {
-  title: 'Kontakt - PMP-Produkt | Stolárstvo a nábytok na mieru Svidník',
+  title: 'Kontakt - Stolárstvo a nábytok na mieru Svidník',
   description:
-    'Kontaktujte PMP-Produkt pre stolárstvo a nábytok na mieru. Showroom v Svidníku, bezplatné zameranie a cenová ponuka.',
+    'Kontaktujte PMP-Produkt pre stolárstvo a nábytok na mieru. Showroom vo Svidníku, bezplatné zameranie a cenová ponuka.',
 };
 
 export default function StolarstvoKontaktPage() {

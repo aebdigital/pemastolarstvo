@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import Configurator from '@/components/configurator/Configurator';
 
 export const metadata: Metadata = {
-  title: 'Konfigurátor dverí | PMP-Produkt',
+  title: 'Konfigurátor interiérových dverí',
   description:
-    'Online konfigurátor interiérových dverí. Vyberte si typ, model, farbu a ďalšie parametre vašich nových dverí.',
+    'Online konfigurátor interiérových dverí. Vyberte si typ, model, farbu a ďalšie parametre. Bezplatná cenová ponuka.',
 };
 
 export default function KonfiguratorPage() {

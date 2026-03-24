@@ -5,9 +5,9 @@ import ContactFormSection from '@/components/forms/ContactFormSection';
 import { Link } from '@/i18n/routing';
 
 export const metadata: Metadata = {
-  title: 'O nás - Interiérové dvere | PMP-Produkt',
+  title: 'O nás - Interiérové dvere na mieru',
   description:
-    'Spoznajte PMP-Produkt - výrobcu kvalitných interiérových dverí na mieru. Rodinná firma s medzinárodnou praxou a showroomom v Svidníku.',
+    'Spoznajte PMP-Produkt - výrobcu kvalitných interiérových dverí na mieru. Rodinná firma s medzinárodnou praxou a showroomom vo Svidníku.',
 };
 
 const faqItems = [

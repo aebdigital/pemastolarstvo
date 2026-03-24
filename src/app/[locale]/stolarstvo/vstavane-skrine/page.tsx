@@ -5,9 +5,9 @@ import PageHero from '@/components/ui/PageHero';
 import ContactFormSection from '@/components/forms/ContactFormSection';
 
 export const metadata: Metadata = {
-    title: 'Vstavané skrine na mieru | PeMa Stolárstvo',
+    title: 'Vstavané skrine na mieru - PeMa Stolárstvo',
     description:
-        'Vstavané skrine na mieru od PeMa Stolárstvo. Kvalitné korpusy DTDL 18mm, ABS hrany 2mm, výsuvy Blum. Žiadne kompromisy.',
+        'Vstavané skrine na mieru s vlastnými korpusmi DTDL 18mm, ABS hranami 2mm a výsuvmi Blum. Kvalita bez kompromisov. Svidník.',
 };
 
 const features = [

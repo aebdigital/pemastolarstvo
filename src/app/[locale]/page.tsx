@@ -3,9 +3,9 @@ import HomeHeader from '@/components/layout/HomeHeader';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'PMP-Produkt | Dvere a Stolárstvo',
+  title: 'PMP-Produkt | Interiérové dvere a stolárstvo na mieru | Svidník',
   description:
-    'Interiérové dvere na mieru and stolárska výroba. Kvalitné slovenské dvere, kuchyne, postele a ďalší nábytok na zákazku.',
+    'Kvalitné interiérové dvere na mieru a kompletné stolárstvo. Kuchyne, vstavané skrine, nábytok na mieru. Rodinná firma s showroomom vo Svidníku.',
 };
 
 export default function HomePage() {

@@ -3,8 +3,8 @@ import InquiryForm from '@/components/forms/InquiryForm';
 import PageHero from '@/components/ui/PageHero';
 
 export const metadata: Metadata = {
-    title: 'Odoslať dopyt - Dvere',
-    description: 'Vyplňte formulár a odošlite dopyt na vaše nové dvere na mieru.',
+    title: 'Odoslať dopyt na dvere na mieru',
+    description: 'Vyplňte formulár a odošlite dopyt na interiérové dvere na mieru. Bezplatná cenová ponuka od PMP-Produkt.',
 };
 
 export default function DopytPage() {

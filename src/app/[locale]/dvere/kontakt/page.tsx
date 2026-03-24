@@ -4,9 +4,9 @@ import ContactFormSection from '@/components/forms/ContactFormSection';
 import PageHero from '@/components/ui/PageHero';
 
 export const metadata: Metadata = {
-  title: 'Kontakt - PMP-Produkt | Interiérové dvere Svidník',
+  title: 'Kontakt - Interiérové dvere Svidník',
   description:
-    'Kontaktujte PMP-Produkt pre interiérové dvere na mieru. Showroom v Svidníku, bezplatné zameranie a cenová ponuka.',
+    'Kontaktujte PMP-Produkt pre interiérové dvere na mieru. Showroom vo Svidníku, bezplatné zameranie a cenová ponuka.',
 };
 
 export default function DvereKontaktPage() {

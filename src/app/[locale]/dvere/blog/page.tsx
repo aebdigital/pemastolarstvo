@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import PageHero from '@/components/ui/PageHero';
 
 export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Novinky a články o interiérových dverách a stolárskej výrobe.',
+  title: 'Blog - Novinky a články o dverách',
+  description: 'Novinky a články o interiérových dverách, trendoch v bývaní a stolárskej výrobe od PMP-Produkt.',
 };
 
 export default function BlogPage() {

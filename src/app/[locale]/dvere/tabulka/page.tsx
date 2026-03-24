@@ -4,8 +4,8 @@ import { Link } from '@/i18n/routing';
 import PageHero from '@/components/ui/PageHero';
 
 export const metadata: Metadata = {
-    title: 'Tabuľka rozmerov interiérových dverí | PMP-Produkt',
-    description: '📋 Kompletná tabuľka typizovaných rozmerov interiérových dverí podľa STN normy. Falcové a bezfalcové prevedenie.',
+    title: 'Tabuľka rozmerov interiérových dverí',
+    description: 'Kompletná tabuľka typizovaných rozmerov interiérových dverí podľa STN normy. Falcové a bezfalcové prevedenie.',
 };
 
 const tableData1 = [

@@ -14,9 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/dvere/blog',
         '/dvere/kontakt',
         '/dvere/tabulka',
-        '/dvere/polozkydopytu',
-        '/dvere/dopyt',
         '/stolarstvo/o-nas',
+        '/stolarstvo/vstavane-skrine',
         '/stolarstvo/referencie',
         '/stolarstvo/kontakt',
     ];

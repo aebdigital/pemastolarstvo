@@ -3,9 +3,9 @@ import PageHero from '@/components/ui/PageHero';
 import ContactFormSection from '@/components/forms/ContactFormSection';
 
 export const metadata: Metadata = {
-  title: 'Poradňa - Ako zamerať dvere | PMP-Produkt',
+  title: 'Poradňa - Ako správne zamerať dvere',
   description:
-    'Inštruktážne video, ktoré vám poradí, ako správne zamerať a pripraviť stavebný otvor.',
+    'Návod ako správne zamerať a pripraviť stavebný otvor pre interiérové dvere. Inštruktážne video a tipy od PMP-Produkt.',
 };
 
 export default function PoradnaPage() {
