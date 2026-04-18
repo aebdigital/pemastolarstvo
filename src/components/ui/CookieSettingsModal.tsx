@@ -2,6 +2,9 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useLocale } from "next-intl";
+import type { Locale } from "@/i18n/routing";
+import { getSiteUiContent } from "@/lib/site-ui-content";
 
 interface CookieSettingsModalProps {
   isOpen: boolean;
@@ -9,6 +12,8 @@ interface CookieSettingsModalProps {
 }
 
 export default function CookieSettingsModal({ isOpen, onClose }: CookieSettingsModalProps) {
+  const locale = useLocale() as Locale;
+  const copy = getSiteUiContent(locale).cookies;
   const [settings, setSettings] = useState({
     necessary: true,
     analytics: true,
@@ -59,9 +64,9 @@ export default function CookieSettingsModal({ isOpen, onClose }: CookieSettingsM
             <div className="p-8 md:p-10 overflow-y-auto" data-lenis-prevent>
               <div className="flex items-center justify-between mb-8">
                 <div className="text-left">
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gold mb-1 block">Súkromie</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gold mb-1 block">{copy.modalEyebrow}</span>
                   <h2 className="font-heading text-2xl md:text-3xl font-black text-dark uppercase tracking-widest leading-tight">
-                    Nastavenia Cookies
+                    {copy.modalTitle}
                   </h2>
                 </div>
                 <button
@@ -76,8 +81,8 @@ export default function CookieSettingsModal({ isOpen, onClose }: CookieSettingsM
                 {/* Necessary */}
                 <div className="p-6 rounded-3xl bg-gray-50 border border-gray-100 flex items-start justify-between gap-6">
                   <div className="text-left">
-                    <p className="font-black text-dark uppercase tracking-wider text-sm mb-1">Nevyhnutné</p>
-                    <p className="text-gray-500 leading-relaxed text-xs">Tieto cookies sú potrebné na základné fungovanie webu (zabezpečenie, nákupný košík) a nemožno ich vypnúť.</p>
+                    <p className="font-black text-dark uppercase tracking-wider text-sm mb-1">{copy.necessaryTitle}</p>
+                    <p className="text-gray-500 leading-relaxed text-xs">{copy.necessaryDescription}</p>
                   </div>
                   <div className="mt-1 shrink-0">
                     <div className="w-12 h-6 bg-gold rounded-full relative opacity-50 cursor-not-allowed">
@@ -89,8 +94,8 @@ export default function CookieSettingsModal({ isOpen, onClose }: CookieSettingsM
                 {/* Analytics */}
                 <div className="p-6 rounded-3xl border border-gray-100 flex items-start justify-between gap-6 hover:bg-gray-50 transition-colors group">
                   <div className="text-left">
-                    <p className="font-black text-dark uppercase tracking-wider text-sm mb-1">Analytické</p>
-                    <p className="text-gray-500 leading-relaxed text-xs">Pomáhajú nám anonymne sledovať návštevnosť a správanie používateľov, aby sme mohli stránku neustále zlepšovať.</p>
+                    <p className="font-black text-dark uppercase tracking-wider text-sm mb-1">{copy.analyticsTitle}</p>
+                    <p className="text-gray-500 leading-relaxed text-xs">{copy.analyticsDescription}</p>
                   </div>
                   <button
                     onClick={() => setSettings(s => ({ ...s, analytics: !s.analytics }))}
@@ -105,8 +110,8 @@ export default function CookieSettingsModal({ isOpen, onClose }: CookieSettingsM
                 {/* Marketing */}
                 <div className="p-6 rounded-3xl border border-gray-100 flex items-start justify-between gap-6 hover:bg-gray-50 transition-colors group">
                   <div className="text-left">
-                    <p className="font-black text-dark uppercase tracking-wider text-sm mb-1">Marketingové</p>
-                    <p className="text-gray-500 leading-relaxed text-xs">Umožňujú nám zobrazovať relevantnú reklamu na iných platformách a sledovať úspešnosť našich kampaní.</p>
+                    <p className="font-black text-dark uppercase tracking-wider text-sm mb-1">{copy.marketingTitle}</p>
+                    <p className="text-gray-500 leading-relaxed text-xs">{copy.marketingDescription}</p>
                   </div>
                   <button
                     onClick={() => setSettings(s => ({ ...s, marketing: !s.marketing }))}
@@ -123,7 +128,7 @@ export default function CookieSettingsModal({ isOpen, onClose }: CookieSettingsM
                 onClick={save}
                 className="w-full bg-dark text-white py-5 rounded-[2rem] font-black uppercase tracking-[0.2em] text-xs hover:bg-gold hover:text-dark transition-premium shadow-xl"
               >
-                Uložiť a potvrdiť výber
+                {copy.save}
               </button>
             </div>
           </motion.div>

@@ -1,14 +1,27 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
-import Image from 'next/image';
+import { useLocale, useTranslations } from 'next-intl';
+import type { Locale } from '@/i18n/routing';
 import { useCart } from '@/hooks/useCart';
-import { getDoorImagePath, getColoredDoorImagePath } from '@/lib/door-models';
+import { getColorDisplayName } from '@/lib/colors';
+import {
+  getConfiguratorCopy,
+  getConstructionLabel,
+  getDoorTypeLabel,
+  getFrameTypeLabel,
+  getGlassTypeLabel,
+  getLockTypeLabel,
+  getOpeningTypeLabel,
+} from '@/lib/configurator-i18n';
+import { getSiteUiContent } from '@/lib/site-ui-content';
 import PrivacyModal from '@/components/ui/PrivacyModal';
 
 export default function InquiryForm() {
+  const locale = useLocale() as Locale;
   const t = useTranslations('inquiry');
+  const copy = getSiteUiContent(locale).inquiryForm;
+  const configCopy = getConfiguratorCopy(locale);
   const { items, clearAll } = useCart();
   const [formData, setFormData] = useState({
     firstName: '',
@@ -82,18 +95,18 @@ export default function InquiryForm() {
         {/* Customer info */}
         <div>
           <h2 className="font-heading text-2xl font-bold text-dark mb-6 text-dark uppercase">
-            {t('orderItems')}
+            {copy.contactDetailsTitle}
           </h2>
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-semibold text-dark mb-1">
-                  Meno *
+                  {copy.firstName}
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Test"
+                  placeholder={copy.firstNamePlaceholder}
                   value={formData.firstName}
                   onChange={(e) => updateField('firstName', e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -101,12 +114,12 @@ export default function InquiryForm() {
               </div>
               <div>
                 <label className="block text-sm font-semibold text-dark mb-1">
-                  Priezvisko *
+                  {copy.lastName}
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Test"
+                  placeholder={copy.lastNamePlaceholder}
                   value={formData.lastName}
                   onChange={(e) => updateField('lastName', e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -115,12 +128,12 @@ export default function InquiryForm() {
             </div>
             <div>
               <label className="block text-sm font-semibold text-dark mb-1">
-                Emailová adresa *
+                {copy.email}
               </label>
               <input
                 type="email"
                 required
-                placeholder="lukas.knotek@gmail.com"
+                placeholder={copy.emailPlaceholder}
                 value={formData.email}
                 onChange={(e) => updateField('email', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -128,12 +141,12 @@ export default function InquiryForm() {
             </div>
             <div>
               <label className="block text-sm font-semibold text-dark mb-1">
-                Telefón *
+                {copy.phone}
               </label>
               <input
                 type="tel"
                 required
-                placeholder="0900123456"
+                placeholder={copy.phonePlaceholder}
                 value={formData.phone}
                 onChange={(e) => updateField('phone', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -141,11 +154,11 @@ export default function InquiryForm() {
             </div>
             <div>
               <label className="block text-sm font-semibold text-dark mb-1">
-                Názov firmy (nepovinné)
+                {copy.company}
               </label>
               <input
                 type="text"
-                placeholder="ABC s.r.o."
+                placeholder={copy.companyPlaceholder}
                 value={formData.company}
                 onChange={(e) => updateField('company', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -153,12 +166,12 @@ export default function InquiryForm() {
             </div>
             <div>
               <label className="block text-sm font-semibold text-dark mb-1">
-                Ulica a číslo *
+                {copy.address}
               </label>
               <input
                 type="text"
                 required
-                placeholder="Testovacia, 22"
+                placeholder={copy.addressPlaceholder}
                 value={formData.address}
                 onChange={(e) => updateField('address', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -167,12 +180,12 @@ export default function InquiryForm() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-semibold text-dark mb-1">
-                  Mesto *
+                  {copy.city}
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Senica (905 01)"
+                  placeholder={copy.cityPlaceholder}
                   value={formData.city}
                   onChange={(e) => updateField('city', e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -180,12 +193,12 @@ export default function InquiryForm() {
               </div>
               <div>
                 <label className="block text-sm font-semibold text-dark mb-1">
-                  PSČ *
+                  {copy.zipCode}
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="90501"
+                  placeholder={copy.zipPlaceholder}
                   value={formData.zipCode}
                   onChange={(e) => updateField('zipCode', e.target.value)}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -193,13 +206,13 @@ export default function InquiryForm() {
               </div>
             </div>
             <div>
-              <h3 className="text-xl font-bold text-dark mt-8 mb-4">Dodatočné informácie</h3>
+              <h3 className="text-xl font-bold text-dark mt-8 mb-4">{copy.additionalInfoTitle}</h3>
               <label className="block text-sm font-semibold text-dark mb-1">
-                Poznámky (nepovinné)
+                {copy.notes}
               </label>
               <textarea
                 rows={4}
-                placeholder="Poznámky k vašej objednávke, napr. špeciálne pokyny na doručenie."
+                placeholder={copy.notesPlaceholder}
                 value={formData.message}
                 onChange={(e) => updateField('message', e.target.value)}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-y"
@@ -211,9 +224,9 @@ export default function InquiryForm() {
         {/* Order summary */}
         <div className="bg-white p-0 sm:p-8 rounded-3xl sm:shadow-premium sm:border border-gray-100 h-fit sticky top-32">
           <div className="flex flex-col items-center mb-10">
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gold mb-2">Prehľad dopytu</span>
+            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-gold mb-2">{copy.summaryEyebrow}</span>
             <h2 className="font-heading text-2xl font-black text-dark uppercase tracking-widest text-center">
-              Položky dopytu
+              {copy.summaryTitle}
             </h2>
           </div>
 
@@ -222,59 +235,39 @@ export default function InquiryForm() {
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 text-gray-300 shadow-sm">
                 <i className="fas fa-shopping-cart text-2xl" />
               </div>
-              <p className="text-gray-medium font-medium">Váš košík je momentálne prázdny</p>
+              <p className="text-gray-medium font-medium">{copy.emptyCart}</p>
             </div>
           ) : (
             <div className="space-y-6">
-              {items.map((item, i) => {
+              {items.map((item) => {
                 return (
                   <div key={item.id} className="bg-light rounded-3xl p-6 border border-gray-100 shadow-inner-premium group">
                     <div className="flex gap-4 mb-4 pb-4 border-b border-gray-200/50">
                       <div className="flex-1">
-                        <span className="text-[9px] font-black uppercase tracking-widest text-gold">{item.configuration.doorType === 'ramove' ? 'Rámové' : 'Sendvičové'}</span>
+                        <span className="text-[9px] font-black uppercase tracking-widest text-gold">{getDoorTypeLabel(locale, item.configuration.doorType)}</span>
                         <h3 className="font-heading text-lg font-black text-dark uppercase mt-0.5">
-                          {item.configuration.modelId} — VARIANT {item.configuration.variantIndex}
+                          {item.configuration.modelId} — {configCopy.previewVariant} {item.configuration.variantIndex}
                         </h3>
-                        <p className="text-[10px] font-black text-gray-medium mt-1 uppercase tracking-wider">Množstvo: {item.quantity} ks</p>
+                        <p className="text-[10px] font-black text-gray-medium mt-1 uppercase tracking-wider">{configCopy.quantity}: {item.quantity} {copy.pieces}</p>
                       </div>
                     </div>
 
                       <div className="space-y-3 text-[11px] leading-relaxed">
                         <div className="space-y-0.5">
-                          <p className="font-black text-dark uppercase tracking-tighter text-[10px]">Rozmery</p>
-                          <p className="text-gray-medium">— Výška stavebného otvoru [cm] → <span className="text-dark font-bold">{item.configuration.height} cm</span></p>
-                          <p className="text-gray-medium">— Šírka stavebného otvoru [cm] → <span className="text-dark font-bold">{item.configuration.width} cm</span></p>
-                          <p className="text-gray-medium">— Hrúbka muriva [cm] → <span className="text-dark font-bold">{item.configuration.thickness} cm</span></p>
+                          <p className="font-black text-dark uppercase tracking-tighter text-[10px]">{configCopy.technicalDimensions}</p>
+                          <p className="text-gray-medium">— {configCopy.dimensions.height} [cm] → <span className="text-dark font-bold">{item.configuration.height} cm</span></p>
+                          <p className="text-gray-medium">— {configCopy.dimensions.width} [cm] → <span className="text-dark font-bold">{item.configuration.width} cm</span></p>
+                          <p className="text-gray-medium">— {configCopy.dimensions.thickness} [cm] → <span className="text-dark font-bold">{item.configuration.thickness} cm</span></p>
                         </div>
 
                         <div className="space-y-1.5 pt-2 border-t border-gray-200/50">
-                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">CPL lamináty</span> — {item.configuration.colorName.replace('.png', '')}</p>
-                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">Konštrukčné prevedenie</span> — {
-                            item.configuration.construction === 'plna-mdf' ? 'Plná MDF výplň' : 
-                            item.configuration.construction === 'vostinove' ? 'Voštinová výplň' : 
-                            item.configuration.construction === 'dutinkove' ? 'Dutinková drevotrieska' : 'Plná MDF výplň'
-                          }</p>
-                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">Typ skla</span> — {
-                            item.configuration.glassType === 'none' ? 'Bez skla' :
-                            item.configuration.glassType === 'matelux' ? 'Matelux' :
-                            item.configuration.glassType === 'cincila' ? 'Činčila číra' :
-                            item.configuration.glassType === 'dub-kora' ? 'Dubová kôra číra' : 'Matelux'
-                          }</p>
-                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">Typ otvárania</span> — {
-                            item.configuration.openingType === 'otocne' ? 'Otočné' :
-                            item.configuration.openingType === 'posuvne-stena' ? 'Na stenu' :
-                            item.configuration.openingType === 'posuvne-puzdro' ? 'Do púzdra' :
-                            item.configuration.openingType === 'lomene' ? 'Lomené' :
-                            item.configuration.openingType === 'kyvne' ? 'Kyvné' :
-                            item.configuration.openingType === 'protipoziarne' ? 'Protipožiarne' : 'Otočné'
-                          }</p>
-                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">Falcové/Bezfalcové dvere</span> — {item.configuration.frameType === 'falcove' ? 'Falcové dvere' : 'Bezfalcové dvere'}</p>
-                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">Kovanie - zámok</span> — {
-                            item.configuration.lockType === 'dozicky-bb' ? 'Dózický zámok (BB)' :
-                            item.configuration.lockType === 'wc-zamok' ? 'WC zámok (WC)' :
-                            item.configuration.lockType === 'fab-zamok' ? 'Cylindrický zámok (PZ)' : 'Dózický zámok (BB)'
-                          }</p>
-                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">Montáž</span> — {item.configuration.assembly ? 'S montážou' : 'Bez montáže'}</p>
+                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">{configCopy.colorDecor}</span> — {getColorDisplayName(item.configuration.color, locale)}</p>
+                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">{configCopy.constructionSummary}</span> — {getConstructionLabel(locale, item.configuration.construction)}</p>
+                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">{configCopy.glassSummary}</span> — {getGlassTypeLabel(locale, item.configuration.glassType)}</p>
+                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">{configCopy.openingSummary}</span> — {getOpeningTypeLabel(locale, item.configuration.openingType)}</p>
+                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">{configCopy.doorExecution}</span> — {getFrameTypeLabel(locale, item.configuration.frameType)}</p>
+                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">{configCopy.lockSummary}</span> — {getLockTypeLabel(locale, item.configuration.lockType)}</p>
+                          <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[10px]">{configCopy.requestedAssembly}</span> — {item.configuration.assembly ? configCopy.yes : configCopy.no}</p>
                         </div>
                       </div>
                   </div>
@@ -282,8 +275,8 @@ export default function InquiryForm() {
               })}
               
               <div className="pt-6 border-t font-black uppercase tracking-[0.2em] text-dark flex justify-between items-center px-2">
-                <span className="text-xs">Celkom dverí</span>
-                <span className="text-xl">{items.reduce((sum, item) => sum + item.quantity, 0)} ks</span>
+                <span className="text-xs">{copy.totalDoors}</span>
+                <span className="text-xl">{items.reduce((sum, item) => sum + item.quantity, 0)} {copy.pieces}</span>
               </div>
             </div>
           )}
@@ -302,13 +295,13 @@ export default function InquiryForm() {
             className="mt-1 w-5 h-5 rounded border-gray-300 text-dark focus:ring-dark"
           />
           <label htmlFor="gdpr-inquiry" className="text-sm text-gray-medium">
-            Súhlasím so spracovaním osobných údajov podľa{' '}
+            {copy.consentPrefix}{' '}
             <button
               type="button"
               onClick={() => setPrivacyOpen(true)}
               className="text-dark font-bold underline underline-offset-4 hover:text-gold transition-colors"
             >
-              zásad ochrany osobných údajov
+              {copy.privacyPolicy}
             </button>
           </label>
         </div>
@@ -320,7 +313,7 @@ export default function InquiryForm() {
           {status === 'sending' ? t('sending') : t('submit')}
         </button>
         {status === 'error' && (
-          <p className="mt-3 text-red-600 text-sm font-semibold">{t('error')}</p>
+          <p className="mt-3 text-red-600 text-sm font-semibold">{copy.error}</p>
         )}
       </div>
 

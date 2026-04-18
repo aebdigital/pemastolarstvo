@@ -16,7 +16,15 @@
     "close": "Zatvoriť",
     "loading": "Načítava sa...",
     "error": "Chyba",
-    "success": "Úspech"
+    "success": "Úspech",
+    "questionsLabel": "Máte otázky?",
+    "openMenu": "Otvoriť menu"
+  },
+  "languages": {
+    "label": "Jazyk",
+    "sk": "SK",
+    "en": "EN",
+    "de": "DE"
   },
   "nav": {
     "doors": "Interiérové dvere",
@@ -28,7 +36,12 @@
     "howToMeasure": "Ako zamerať?",
     "references": "Referencie",
     "blog": "Blog",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "builtInWardrobes": "Vstavané skrine na mieru",
+    "promoCatalog": "Akciový katalóg"
+  },
+  "homeHeader": {
+    "welcome": "Vitajte na stránke dvere a stolárstvo"
   },
   "home": {
     "carpentry": "Stolárstvo",
@@ -38,6 +51,92 @@
     "carpentrySubtitle": "Nábytok na mieru, kuchyne, skrine a kompletné stolárske práce",
     "metaTitle": "PMP-Produkt | Interiérové dvere a Stolárstvo na mieru",
     "metaDescription": "PMP-Produkt - Kvalitné interiérové dvere a stolárstvo na mieru. Konfigurátor dverí, kuchyne, nábytok a interiéry na kľúč."
+  },
+  "metadata": {
+    "shared": {
+      "defaultTitle": "PMP-Produkt | Interiérové dvere a stolárstvo na mieru | Svidník",
+      "defaultDescription": "Interiérové dvere na mieru a stolárska výroba od PMP-Produkt. Kuchyne, vstavané skrine, nábytok na mieru. Showroom Svidník, východné Slovensko.",
+      "structuredDataDescription": "Interiérové dvere na mieru a stolárska výroba. Kuchyne, vstavané skrine, nábytok na mieru.",
+      "structuredDoorOfferTitle": "Interiérové dvere na mieru",
+      "structuredDoorOfferDescription": "Výroba interiérových dverí na mieru podľa vašich rozmerov a požiadaviek.",
+      "structuredCarpentryOfferTitle": "Stolárstvo a nábytok na mieru",
+      "structuredCarpentryOfferDescription": "Kuchyne, vstavané skrine, nábytok a kompletné interiéry na mieru.",
+      "keywords": [
+        "interiérové dvere",
+        "dvere na mieru",
+        "stolárstvo",
+        "kuchyne na mieru",
+        "vstavané skrine",
+        "nábytok na mieru",
+        "PMP-Produkt",
+        "PeMa Stolárstvo",
+        "Svidník"
+      ]
+    },
+    "home": {
+      "title": "PMP-Produkt | Interiérové dvere a stolárstvo na mieru | Svidník",
+      "description": "Kvalitné interiérové dvere na mieru a kompletné stolárstvo. Kuchyne, vstavané skrine, nábytok na mieru. Rodinná firma s showroomom vo Svidníku."
+    },
+    "doors": {
+      "about": {
+        "title": "O nás - Interiérové dvere na mieru",
+        "description": "Spoznajte PMP-Produkt - výrobcu kvalitných interiérových dverí na mieru. Rodinná firma s medzinárodnou praxou a showroomom vo Svidníku."
+      },
+      "custom": {
+        "title": "Interiérové dvere na mieru",
+        "description": "Atypické interiérové dvere presne podľa vašich rozmerov. Kvalitné materiály, profesionálna montáž. Bezplatné zameranie."
+      },
+      "standard": {
+        "title": "Typizované interiérové dvere",
+        "description": "Štandardné interiérové dvere podľa normy STN. Kvalitné typizované dvere pre váš domov s rýchlym dodaním."
+      },
+      "configurator": {
+        "title": "Konfigurátor interiérových dverí",
+        "description": "Online konfigurátor interiérových dverí. Vyberte si typ, model, farbu a ďalšie parametre. Bezplatná cenová ponuka."
+      },
+      "advice": {
+        "title": "Poradňa - Ako správne zamerať dvere",
+        "description": "Návod ako správne zamerať a pripraviť stavebný otvor pre interiérové dvere. Inštruktážne video a tipy od PMP-Produkt."
+      },
+      "references": {
+        "title": "Referencie - Interiérové dvere",
+        "description": "Galéria realizácií interiérových dverí na mieru. Pozrite si naše referencie z reálnych inštalácií vo Svidníku a okolí."
+      },
+      "blog": {
+        "title": "Blog - Novinky a články o dverách",
+        "description": "Novinky a články o interiérových dverách, trendoch v bývaní a stolárskej výrobe od PMP-Produkt."
+      },
+      "contact": {
+        "title": "Kontakt - Interiérové dvere Svidník",
+        "description": "Kontaktujte PMP-Produkt pre interiérové dvere na mieru. Showroom vo Svidníku, bezplatné zameranie a cenová ponuka."
+      },
+      "inquiry": {
+        "title": "Odoslať dopyt na dvere na mieru",
+        "description": "Vyplňte formulár a odošlite dopyt na interiérové dvere na mieru. Bezplatná cenová ponuka od PMP-Produkt."
+      },
+      "table": {
+        "title": "Tabuľka rozmerov interiérových dverí",
+        "description": "Kompletná tabuľka typizovaných rozmerov interiérových dverí podľa STN normy. Falcové a bezfalcové prevedenie."
+      }
+    },
+    "carpentry": {
+      "about": {
+        "title": "Stolárstvo - Nábytok a kuchyne na mieru",
+        "description": "PeMa Stolárstvo - rodinná firma s bohatými skúsenosťami zo zahraničia. Kuchyne, vstavané skrine, nábytok a interiéry na mieru. Svidník."
+      },
+      "wardrobes": {
+        "title": "Vstavané skrine na mieru - PeMa Stolárstvo",
+        "description": "Vstavané skrine na mieru s vlastnými korpusmi DTDL 18mm, ABS hranami 2mm a výsuvmi Blum. Kvalita bez kompromisov. Svidník."
+      },
+      "references": {
+        "title": "Referencie - Stolárstvo a nábytok na mieru",
+        "description": "Galéria realizácií stolárskych prác. Kuchyne, vstavané skrine, nábytok na mieru. Pozrite si naše referencie."
+      },
+      "contact": {
+        "title": "Kontakt - Stolárstvo a nábytok na mieru Svidník",
+        "description": "Kontaktujte PMP-Produkt pre stolárstvo a nábytok na mieru. Showroom vo Svidníku, bezplatné zameranie a cenová ponuka."
+      }
+    }
   },
   "configurator": {
     "title": "KONFIGURÁTOR",
@@ -129,7 +228,7 @@
     "emptyCart": "Váš košík je prázdny",
     "emptyCartMessage": "Najskôr si nakonfigurujte dvere v konfigurátore.",
     "goToConfigurator": "Prejsť na konfigurátor",
-    "continueInquiry": "Pokračovať v dopytu"
+    "continueInquiry": "Pokračovať v dopyte"
   },
   "contact": {
     "title": "KONTAKT",
@@ -180,6 +279,13 @@
       "other": "Iné"
     }
   },
+  "gallery": {
+    "close": "Zatvoriť galériu",
+    "previous": "Predchádzajúci obrázok",
+    "next": "Ďalší obrázok",
+    "imageAlt": "Obrázok {index}",
+    "portfolioImageAlt": "Referenčná fotografia {index}"
+  },
   "footer": {
     "showroomTitle": "Showroom",
     "showroomAddress": "PeMa Stolárstvo\nVyšná Jedľová 37\n089 01 Svidník",
@@ -193,7 +299,8 @@
     "collaborationCarpentryText": "Zariaďte si svoj interiér dverami od nášho partnera PMP-Produkt. Ponúkame široký výber interiérových dverí na mieru aj typizovaných riešení:",
     "privacyPolicy": "Zásady ochrany osobných údajov",
     "cookieSettings": "Nastavenia cookies",
-    "allRightsReserved": "Všetky práva vyhradené"
+    "allRightsReserved": "Všetky práva vyhradené",
+    "viewMore": "Pozrieť viac"
   },
   "cookies": {
     "title": "Cookies",

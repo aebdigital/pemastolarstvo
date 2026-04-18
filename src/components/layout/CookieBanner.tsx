@@ -1,12 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import CookieSettingsModal from "@/components/ui/CookieSettingsModal";
+import type { Locale } from "@/i18n/routing";
+import { getSiteUiContent } from "@/lib/site-ui-content";
 
 export default function CookieBanner() {
-  const t = useTranslations("cookies");
+  const locale = useLocale() as Locale;
+  const copy = getSiteUiContent(locale).cookies;
   const [visible, setVisible] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
 
@@ -57,11 +60,10 @@ export default function CookieBanner() {
               <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
                 <div className="flex-1 max-w-2xl text-left">
                   <h4 className="font-heading text-xl font-black text-dark uppercase tracking-widest mb-2">
-                    {t("title")}
+                    {copy.bannerTitle}
                   </h4>
                   <p className="text-gray-500 text-sm leading-relaxed">
-                    {t("message")} Táto stránka využíva súbory cookies na zabezpečenie správneho fungovania, personalizáciu obsahu a analýzu návštevnosti. 
-                    Môžete si prispôsobiť svoje preferencie v nastaveniach.
+                    {copy.bannerMessage}
                   </p>
                 </div>
 
@@ -70,19 +72,19 @@ export default function CookieBanner() {
                     onClick={() => setSettingsOpen(true)}
                     className="text-xs font-black uppercase tracking-[0.2em] text-dark/40 hover:text-gold transition-colors lg:mr-4 w-full lg:w-auto text-center"
                   >
-                    {t("settings")}
+                    {copy.settings}
                   </button>
                   <button
                     onClick={declineAll}
                     className="flex-1 lg:flex-none px-8 py-4 text-xs font-black uppercase tracking-[0.2em] text-dark border-2 border-dark/10 rounded-2xl hover:bg-dark hover:text-white transition-premium"
                   >
-                    {t("decline")}
+                    {copy.decline}
                   </button>
                   <button
                     onClick={acceptAll}
                     className="flex-1 lg:flex-none px-10 py-5 text-xs font-black uppercase tracking-[0.2em] bg-dark text-white rounded-2xl hover:bg-gold hover:text-dark transition-premium shadow-xl"
                   >
-                    {t("accept")}
+                    {copy.accept}
                   </button>
                 </div>
               </div>

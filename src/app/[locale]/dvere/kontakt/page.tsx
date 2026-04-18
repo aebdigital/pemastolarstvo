@@ -1,18 +1,43 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
 import ContactFormSection from '@/components/forms/ContactFormSection';
 import PageHero from '@/components/ui/PageHero';
+import { getContactPageCopy } from '@/lib/contact-page-content';
+import { buildPageMetadata } from '@/lib/seo';
+import type { Locale } from '@/i18n/routing';
 
-export const metadata: Metadata = {
-  title: 'Kontakt - Interiérové dvere Svidník',
-  description:
-    'Kontaktujte PMP-Produkt pre interiérové dvere na mieru. Showroom vo Svidníku, bezplatné zameranie a cenová ponuka.',
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({
+    locale,
+    namespace: 'metadata.doors.contact',
+  });
 
-export default function DvereKontaktPage() {
+  return buildPageMetadata({
+    locale,
+    pathname: '/dvere/kontakt',
+    title: t('title'),
+    description: t('description'),
+    image: '/sources/doorhero2.jpg',
+  });
+}
+
+export default async function DvereKontaktPage({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+  const copy = getContactPageCopy(locale);
+
   return (
     <main>
-      <PageHero title="KONTAKT" image="/sources/doorhero2.jpg" />
+      <PageHero title={copy.pageTitle} image="/sources/doorhero2.jpg" />
 
       {/* Contact Content */}
       <section className="contact-content-section">
@@ -21,8 +46,8 @@ export default function DvereKontaktPage() {
             {/* Sídlo */}
             <div className="contact-section">
               <div className="section-content">
-                <h2>SÍDLO SPOLOČNOSTI</h2>
-                <h3 className="text-xl font-bold text-dark mb-4">PMP-Produkt s.r.o</h3>
+                <h2>{copy.headquartersTitle}</h2>
+                <h3 className="text-xl font-bold text-dark mb-4">{copy.companyName}</h3>
 
                 <div className="address-info">
                   <p>
@@ -34,20 +59,20 @@ export default function DvereKontaktPage() {
                     >
                       Vyšná Jedľová 37<br />
                       089 01 Svidník<br />
-                      Slovenská republika
+                      {copy.country}
                     </a>
                   </p>
                 </div>
 
                 <div className="contact-details">
-                  <p><strong>Tel/Fax:</strong> <a href="tel:+421948380618" className="phone-link">0948 380 618</a></p>
-                  <p><strong>Mobil:</strong> <a href="tel:+421914225257" className="phone-link">0914 225 257</a></p>
-                  <p><strong>E-mail:</strong> <a href="mailto:pmpprodukt@gmail.com" className="email-link">pmpprodukt@gmail.com</a></p>
+                  <p><strong>{copy.phoneFaxLabel}:</strong> <a href="tel:+421948380618" className="phone-link">0948 380 618</a></p>
+                  <p><strong>{copy.mobileLabel}:</strong> <a href="tel:+421914225257" className="phone-link">0914 225 257</a></p>
+                  <p><strong>{copy.emailLabel}:</strong> <a href="mailto:pmpprodukt@gmail.com" className="email-link">pmpprodukt@gmail.com</a></p>
 
                   <div className="opening-hours">
-                    <p><strong>Otváracie hodiny</strong></p>
+                    <p><strong>{copy.hours}</strong></p>
                     <ul>
-                      <li>podľa objednávky</li>
+                      <li>{copy.hoursByAppointment}</li>
                     </ul>
                   </div>
                 </div>
@@ -56,7 +81,7 @@ export default function DvereKontaktPage() {
               <div className="section-image">
                 <Image
                   src="/sources/SIDLO.jpg"
-                  alt="Sídlo firmy PMP-Produkt"
+                  alt={copy.headquartersAlt}
                   width={800}
                   height={250}
                   className="location-image"
@@ -72,7 +97,7 @@ export default function DvereKontaktPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Sídlo - Google Maps"
+                  title={copy.headquartersMapTitle}
                 />
               </div>
             </div>
@@ -80,8 +105,8 @@ export default function DvereKontaktPage() {
             {/* Showroom */}
             <div className="contact-section">
               <div className="section-content">
-                <h2>SHOWROOM</h2>
-                <h3 className="text-xl font-bold text-dark mb-4">PeMa Stolárstvo</h3>
+                <h2>{copy.showroomTitle}</h2>
+                <h3 className="text-xl font-bold text-dark mb-4">{copy.showroomName}</h3>
 
                 <div className="address-info">
                   <p>
@@ -93,20 +118,20 @@ export default function DvereKontaktPage() {
                     >
                       Vyšná Jedľová 37<br />
                       089 01 Svidník<br />
-                      Slovenská republika
+                      {copy.country}
                     </a>
                   </p>
                 </div>
 
                 <div className="contact-details">
-                  <p><strong>Tel/Fax:</strong> <a href="tel:+421948380618" className="phone-link">0948 380 618</a></p>
-                  <p><strong>Mobil:</strong> <a href="tel:+421914225257" className="phone-link">0914 225 257</a></p>
-                  <p><strong>E-mail:</strong> <a href="mailto:pemastolarstvo@gmail.com" className="email-link">pemastolarstvo@gmail.com</a></p>
+                  <p><strong>{copy.phoneFaxLabel}:</strong> <a href="tel:+421948380618" className="phone-link">0948 380 618</a></p>
+                  <p><strong>{copy.mobileLabel}:</strong> <a href="tel:+421914225257" className="phone-link">0914 225 257</a></p>
+                  <p><strong>{copy.emailLabel}:</strong> <a href="mailto:pemastolarstvo@gmail.com" className="email-link">pemastolarstvo@gmail.com</a></p>
 
                   <div className="opening-hours">
-                    <p><strong>Otváracie hodiny</strong></p>
+                    <p><strong>{copy.hours}</strong></p>
                     <ul>
-                      <li>podľa objednávky</li>
+                      <li>{copy.hoursByAppointment}</li>
                     </ul>
                   </div>
                 </div>
@@ -115,7 +140,7 @@ export default function DvereKontaktPage() {
               <div className="section-image">
                 <Image
                   src="/sources/Showroom foto.jpg"
-                  alt="PMP-Produkt Showroom"
+                  alt={copy.showroomAlt}
                   width={800}
                   height={250}
                   className="location-image"
@@ -131,7 +156,7 @@ export default function DvereKontaktPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Showroom - Google Maps"
+                  title={copy.showroomMapTitle}
                 />
               </div>
             </div>

@@ -5,9 +5,11 @@ import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
 import PrivacyModal from "@/components/ui/PrivacyModal";
 import CookieSettingsModal from "@/components/ui/CookieSettingsModal";
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 
 export default function Footer() {
   const t = useTranslations("footer");
+  const tNav = useTranslations("nav");
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [cookiesOpen, setCookiesOpen] = useState(false);
   const pathname = usePathname();
@@ -93,7 +95,7 @@ export default function Footer() {
                     {isStolarstvo ? t("collaborationCarpentryTitle") : t("collaborationDoorsTitle")}
                   </span>
                   <span className="text-[10px] text-gold font-bold uppercase tracking-widest">
-                    Pozrieť viac &rarr;
+                    {t("viewMore")} &rarr;
                   </span>
                 </Link>
                 
@@ -119,7 +121,8 @@ export default function Footer() {
               &copy; {new Date().getFullYear()} PMP-Produkt s.r.o.{" "}
               {t("allRightsReserved")}
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <LanguageSwitcher />
               <button
                 onClick={() => setCookiesOpen(true)}
                 className="hover:text-white transition-colors"
@@ -136,7 +139,7 @@ export default function Footer() {
                 href="/dvere/kontakt"
                 className="hover:text-white transition-colors"
               >
-                Kontakt
+                {tNav("contact")}
               </Link>
             </div>
           </div>

@@ -2,8 +2,10 @@
 
 import { useRef } from 'react';
 import Image from 'next/image';
+import { useLocale } from 'next-intl';
+import type { Locale } from '@/i18n/routing';
+import { getConfiguratorCopy } from '@/lib/configurator-i18n';
 import type { DoorModel, DoorType } from '@/types/door';
-import { motion } from 'framer-motion';
 
 interface VariantSliderProps {
   model: DoorModel;
@@ -14,6 +16,8 @@ interface VariantSliderProps {
 
 export default function VariantSlider({ model, doorType, selectedIndex, onSelect }: VariantSliderProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const locale = useLocale() as Locale;
+  const copy = getConfiguratorCopy(locale);
 
   if (model.variants <= 1) return null;
 
@@ -22,9 +26,9 @@ export default function VariantSlider({ model, doorType, selectedIndex, onSelect
   return (
     <div className="mb-20">
       <div className="flex flex-col items-center gap-2 mb-12">
-        <span className="text-gold font-black uppercase tracking-[0.4em] text-[10px]">Varianty Modelu</span>
+        <span className="text-gold font-black uppercase tracking-[0.4em] text-[10px]">{copy.modelVariants}</span>
         <h2 className="font-heading text-2xl md:text-3xl font-black text-dark text-center uppercase tracking-widest text-balance">
-          {model.name} <span className="text-gold">Varianty</span>
+          {model.name} <span className="text-gold">{copy.modelVariants}</span>
         </h2>
       </div>
 
@@ -45,7 +49,7 @@ export default function VariantSlider({ model, doorType, selectedIndex, onSelect
             <div className="relative aspect-[3/5] bg-white overflow-hidden p-0">
               <Image
                 src={`/sources/konfig/${doorType === "sendvicove" ? "sendvic" : "ramove"}/${model.id}${variantNum}.png`}
-                alt={`${model.name} variant ${variantNum}`}
+                alt={`${model.name} ${copy.previewVariant} ${variantNum}`}
                 fill
                 className="object-contain scale-[1.6] group-hover:scale-[1.7] transition-premium duration-700"
                 sizes="320px"

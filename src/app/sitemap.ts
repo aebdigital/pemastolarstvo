@@ -1,34 +1,27 @@
 import { MetadataRoute } from 'next';
+import { locales, pathnames, type InternalPathname } from '@/i18n/routing';
+import { BASE_URL, getLocalizedPath } from '@/lib/seo';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://dvereastolarstvo.sk';
-    const locales = ['sk'];
-    const paths = [
-        '',
-        '/dvere/o-nas',
-        '/dvere/dverenamieru',
-        '/dvere/typizovane-dvere',
-        '/dvere/konfigurator',
-        '/dvere/poradna',
-        '/dvere/referencie',
-        '/dvere/blog',
-        '/dvere/kontakt',
-        '/dvere/tabulka',
-        '/stolarstvo/o-nas',
-        '/stolarstvo/vstavane-skrine',
-        '/stolarstvo/referencie',
-        '/stolarstvo/kontakt',
-    ];
-
     const entries: MetadataRoute.Sitemap = [];
+    const now = new Date();
+    const routes = Object.keys(pathnames) as InternalPathname[];
 
     for (const locale of locales) {
-        for (const path of paths) {
+        for (const pathname of routes) {
             entries.push({
-                url: `${baseUrl}/${locale}${path}`,
-                lastModified: new Date(),
-                changeFrequency: 'monthly',
-                priority: path === '' ? 1 : 0.8,
+                url: `${BASE_URL}${getLocalizedPath(pathname, locale)}`,
+                lastModified: now,
+                changeFrequency: pathname === '/' ? 'weekly' : 'monthly',
+                priority: pathname === '/' ? 1 : 0.8,
+                alternates: {
+                    languages: Object.fromEntries(
+                        locales.map((altLocale) => [
+                            altLocale,
+                            `${BASE_URL}${getLocalizedPath(pathname, altLocale)}`,
+                        ]),
+                    ),
+                },
             });
         }
     }

@@ -2,8 +2,10 @@
 
 import { useRef } from 'react';
 import Image from 'next/image';
+import { useLocale } from 'next-intl';
+import type { Locale } from '@/i18n/routing';
+import { getConfiguratorCopy } from '@/lib/configurator-i18n';
 import type { DoorModel } from '@/types/door';
-import { motion } from 'framer-motion';
 
 interface ModelSliderProps {
   models: DoorModel[];
@@ -14,6 +16,8 @@ interface ModelSliderProps {
 
 export default function ModelSlider({ models, selectedId, doorType, onSelect }: ModelSliderProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const locale = useLocale() as Locale;
+  const copy = getConfiguratorCopy(locale);
 
   const scroll = (direction: 'left' | 'right') => {
     if (!scrollRef.current) return;
@@ -27,9 +31,9 @@ export default function ModelSlider({ models, selectedId, doorType, onSelect }: 
   return (
     <div className="mb-20">
       <div className="flex flex-col items-center gap-2 mb-12">
-        <span className="text-gold font-black uppercase tracking-[0.4em] text-[10px]">Modelová Rada</span>
+        <span className="text-gold font-black uppercase tracking-[0.4em] text-[10px]">{copy.modelSeries}</span>
         <h2 className="font-heading text-3xl md:text-4xl font-black text-dark text-center uppercase tracking-widest text-balance">
-          Vyberte si svoj <span className="text-gold">Vzor</span>
+          {copy.choosePattern}
         </h2>
       </div>
 
@@ -38,14 +42,14 @@ export default function ModelSlider({ models, selectedId, doorType, onSelect }: 
         <button
           onClick={() => scroll('left')}
           className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white shadow-premium rounded-2xl flex items-center justify-center hover:bg-dark hover:text-gold transition-premium opacity-0 group-hover/slider:opacity-100 -translate-x-7"
-          aria-label="Previous"
+          aria-label={copy.previousModels}
         >
           <i className="fas fa-chevron-left text-lg" />
         </button>
         <button
           onClick={() => scroll('right')}
           className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 bg-white shadow-premium rounded-2xl flex items-center justify-center hover:bg-dark hover:text-gold transition-premium opacity-0 group-hover/slider:opacity-100 translate-x-7"
-          aria-label="Next"
+          aria-label={copy.nextModels}
         >
           <i className="fas fa-chevron-right text-lg" />
         </button>

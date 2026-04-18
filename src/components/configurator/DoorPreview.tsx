@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useLocale } from 'next-intl';
 import type { DoorConfiguration, DoorModel } from '@/types/door';
-import { getColorsForType } from '@/lib/colors';
 import { getDoorImagePath, getColoredDoorImagePath, floorOptions } from '@/lib/door-models';
 import BackgroundRoom from './BackgroundRoom';
 import InteriorSidebar from './InteriorSidebar';
+import type { Locale } from '@/i18n/routing';
+import { getConfiguratorCopy } from '@/lib/configurator-i18n';
 
 interface DoorPreviewProps {
   config: DoorConfiguration;
@@ -15,6 +17,8 @@ interface DoorPreviewProps {
 }
 
 export default function DoorPreview({ config, model, onUpdate }: DoorPreviewProps) {
+  const locale = useLocale() as Locale;
+  const copy = getConfiguratorCopy(locale);
   const [headerHidden, setHeaderHidden] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isInteriorOpen, setIsInteriorOpen] = useState(false);
@@ -28,9 +32,6 @@ export default function DoorPreview({ config, model, onUpdate }: DoorPreviewProp
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
-
-  const colors = getColorsForType(config.doorType);
-  const color = colors.find((c) => c.code === config.color);
 
   const imagePath = config.color && config.color.endsWith('.png')
     ? getColoredDoorImagePath(model.id, config.variantIndex, config.color)
@@ -47,7 +48,7 @@ export default function DoorPreview({ config, model, onUpdate }: DoorPreviewProp
 
       <div className="flex flex-col items-center mb-10 pt-4">
         <h3 className="font-heading text-2xl font-black text-dark uppercase tracking-widest text-center">
-          {model.id} - Variant {config.variantIndex}
+          {model.id} - {copy.previewVariant} {config.variantIndex}
         </h3>
       </div>
 
@@ -91,7 +92,7 @@ export default function DoorPreview({ config, model, onUpdate }: DoorPreviewProp
         <button
           onClick={() => setIsInteriorOpen(true)}
           className="absolute top-6 right-6 z-30 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl flex items-center justify-center text-dark hover:bg-gold hover:text-dark transition-premium group/edit border border-gray-100"
-          title="Prispôsobiť interiér"
+          title={copy.editInterior}
         >
           <i className="fas fa-paint-brush text-sm group-hover/edit:rotate-12 transition-transform" />
           <span className="absolute inset-0 rounded-2xl bg-gold/20 animate-ping opacity-0 group-hover:opacity-100 transition-opacity" />

@@ -1,0 +1,312 @@
+{
+  "common": {
+    "home": "Startseite",
+    "aboutUs": "Über uns",
+    "contact": "Kontakt",
+    "references": "Referenzen",
+    "blog": "Blog",
+    "phone": "0948 380 618",
+    "phoneSecondary": "0914 225 257",
+    "email": "pmpprodukt@gmail.com",
+    "emailSecondary": "pemastolarstvo@gmail.com",
+    "companyName": "PMP-Produkt s.r.o.",
+    "showroom": "PeMa Schreinerei",
+    "address": "Vyšná Jedľová 37, 089 01 Svidník",
+    "send": "Senden",
+    "close": "Schließen",
+    "loading": "Wird geladen...",
+    "error": "Fehler",
+    "success": "Erfolg",
+    "questionsLabel": "Haben Sie Fragen?",
+    "openMenu": "Menü öffnen"
+  },
+  "languages": {
+    "label": "Sprache",
+    "sk": "SK",
+    "en": "EN",
+    "de": "DE"
+  },
+  "nav": {
+    "doors": "Innentüren",
+    "carpentry": "Schreinerei",
+    "aboutUs": "Über uns",
+    "customDoors": "Türen nach Maß",
+    "standardDoors": "Standardtüren",
+    "configurator": "Konfigurator",
+    "howToMeasure": "Wie misst man?",
+    "references": "Referenzen",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "builtInWardrobes": "Einbauschränke nach Maß",
+    "promoCatalog": "Aktionskatalog"
+  },
+  "homeHeader": {
+    "welcome": "Willkommen bei Türen und Schreinerei"
+  },
+  "home": {
+    "carpentry": "Schreinerei",
+    "interiorDoors": "Innentüren",
+    "doors": "Innentüren",
+    "doorsSubtitle": "Hochwertige Türen nach Maß und Standardlösungen für Ihr Zuhause",
+    "carpentrySubtitle": "Maßmöbel, Küchen, Schränke und komplette Schreinerarbeiten",
+    "metaTitle": "PMP-Produkt | Innentüren und Schreinerei nach Maß",
+    "metaDescription": "PMP-Produkt - Hochwertige Innentüren und Schreinerei nach Maß. Türkonfigurator, Küchen, Möbel und komplette Innenräume."
+  },
+  "metadata": {
+    "shared": {
+      "defaultTitle": "PMP-Produkt | Innentüren und Schreinerei nach Maß | Svidník",
+      "defaultDescription": "Innentüren nach Maß und Schreinerei von PMP-Produkt. Küchen, Einbauschränke und Möbel nach Maß. Showroom in Svidník, Ostslowakei.",
+      "structuredDataDescription": "Innentüren nach Maß und Schreinerei. Küchen, Einbauschränke und Möbel nach Maß.",
+      "structuredDoorOfferTitle": "Innentüren nach Maß",
+      "structuredDoorOfferDescription": "Herstellung von Innentüren nach Maß entsprechend Ihren Abmessungen und Anforderungen.",
+      "structuredCarpentryOfferTitle": "Schreinerei und Möbel nach Maß",
+      "structuredCarpentryOfferDescription": "Küchen, Einbauschränke, Möbel und komplette Innenräume nach Maß.",
+      "keywords": [
+        "Innentüren",
+        "Türen nach Maß",
+        "Schreinerei",
+        "Küchen nach Maß",
+        "Einbauschränke",
+        "Möbel nach Maß",
+        "PMP-Produkt",
+        "PeMa Schreinerei",
+        "Svidník"
+      ]
+    },
+    "home": {
+      "title": "PMP-Produkt | Innentüren und Schreinerei nach Maß | Svidník",
+      "description": "Hochwertige Innentüren nach Maß und komplette Schreinerarbeiten. Küchen, Einbauschränke und Möbel nach Maß. Familienunternehmen mit Showroom in Svidník."
+    },
+    "doors": {
+      "about": {
+        "title": "Über uns - Innentüren nach Maß",
+        "description": "Lernen Sie PMP-Produkt kennen, den Hersteller hochwertiger Innentüren nach Maß. Familienunternehmen mit internationaler Erfahrung und Showroom in Svidník."
+      },
+      "custom": {
+        "title": "Innentüren nach Maß",
+        "description": "Atypische Innentüren exakt nach Ihren Maßen. Hochwertige Materialien, professionelle Montage und kostenloses Aufmaß."
+      },
+      "standard": {
+        "title": "Standard-Innentüren",
+        "description": "Standard-Innentüren nach STN-Norm. Hochwertige Standardtüren für Ihr Zuhause mit schneller Lieferung."
+      },
+      "configurator": {
+        "title": "Konfigurator für Innentüren",
+        "description": "Online-Konfigurator für Innentüren. Wählen Sie Typ, Modell, Farbe und weitere Parameter. Kostenloses Angebot."
+      },
+      "advice": {
+        "title": "Ratgeber - Türen richtig messen",
+        "description": "Anleitung zum richtigen Messen und Vorbereiten der Öffnung für Innentüren. Anleitungsvideo und Tipps von PMP-Produkt."
+      },
+      "references": {
+        "title": "Referenzen - Innentüren",
+        "description": "Galerie realisierter Innentüren nach Maß. Sehen Sie unsere Referenzen aus realen Installationen in Svidník und Umgebung."
+      },
+      "blog": {
+        "title": "Blog - Neuigkeiten und Artikel über Türen",
+        "description": "Neuigkeiten und Artikel über Innentüren, Wohntrends und Schreinerei von PMP-Produkt."
+      },
+      "contact": {
+        "title": "Kontakt - Innentüren Svidník",
+        "description": "Kontaktieren Sie PMP-Produkt für Innentüren nach Maß. Showroom in Svidník, kostenloses Aufmaß und Angebot."
+      },
+      "inquiry": {
+        "title": "Anfrage für Türen nach Maß senden",
+        "description": "Füllen Sie das Formular aus und senden Sie eine Anfrage für Innentüren nach Maß. Kostenloses Angebot von PMP-Produkt."
+      },
+      "table": {
+        "title": "Maßtabelle für Innentüren",
+        "description": "Vollständige Tabelle der Standardmaße für Innentüren nach STN-Norm. Gefälzte und stumpfe Ausführung."
+      }
+    },
+    "carpentry": {
+      "about": {
+        "title": "Schreinerei - Möbel und Küchen nach Maß",
+        "description": "PeMa Schreinerei - Familienunternehmen mit reicher internationaler Erfahrung. Küchen, Einbauschränke, Möbel und Innenräume nach Maß in Svidník."
+      },
+      "wardrobes": {
+        "title": "Einbauschränke nach Maß - PeMa Schreinerei",
+        "description": "Einbauschränke nach Maß mit eigenen 18 mm DTDL-Korpussen, 2 mm ABS-Kanten und Blum-Auszügen. Qualität ohne Kompromisse in Svidník."
+      },
+      "references": {
+        "title": "Referenzen - Schreinerei und Möbel nach Maß",
+        "description": "Galerie realisierter Schreinerarbeiten. Küchen, Einbauschränke und Möbel nach Maß. Entdecken Sie unsere Referenzen."
+      },
+      "contact": {
+        "title": "Kontakt - Schreinerei und Möbel nach Maß Svidník",
+        "description": "Kontaktieren Sie PMP-Produkt für Schreinerei und Möbel nach Maß. Showroom in Svidník, kostenloses Aufmaß und Angebot."
+      }
+    }
+  },
+  "configurator": {
+    "title": "KONFIGURATOR",
+    "subtitle": "Türen nach Maß",
+    "selectDoorType": "Türtyp auswählen",
+    "frameDoors": "RAHMENTÜREN",
+    "sandwichDoors": "SANDWICHTÜREN",
+    "types10": "10 Typen",
+    "types13": "13 Typen",
+    "variants": "Varianten",
+    "variantsMore": "Varianten",
+    "clickToConfigure": "Zum Konfigurieren klicken",
+    "dimensions": "ABMESSUNGEN",
+    "height": "Höhe der Öffnung [cm] *",
+    "width": "Breite der Öffnung [cm] *",
+    "wallThickness": "Wandstärke [cm] *",
+    "cplLaminates": "CPL-LAMINATE",
+    "construction": "KONSTRUKTION",
+    "glassType": "GLASTYP",
+    "openingType": "ÖFFNUNGSART",
+    "frameType": "GEFÄLZTE / STUMPFE TÜREN",
+    "lock": "BESCHLAG - SCHLOSS",
+    "additionalOptions": "WEITERE OPTIONEN",
+    "assembly": "MONTAGE",
+    "notes": "NOTIZ",
+    "notesPlaceholder": "Hier können Sie Notizen oder besondere Anforderungen zu Ihrer Bestellung schreiben...",
+    "anyNote": "Beliebige Notiz",
+    "addToQuote": "Zum Angebot hinzufügen",
+    "added": "Hinzugefügt!",
+    "updated": "Aktualisiert!",
+    "update": "Aktualisieren",
+    "cart": "Warenkorb",
+    "cartEmpty": "Der Warenkorb ist leer",
+    "continueToOrder": "Zur Bestellung fortfahren",
+    "quantity": "Menge",
+    "editInterior": "Innenraum bearbeiten",
+    "wall": "Wand",
+    "wallColor": "Wandfarbe",
+    "floor": "Boden",
+    "floorColor": "Bodenfarbe",
+    "or": "oder",
+    "constructionMdf": "Volle MDF-Füllung",
+    "constructionHoneycomb": "Wabenkern (leichtere Tür)",
+    "constructionTubular": "Röhrenspan (schwerere Tür)",
+    "glassMatelux": "Matelux",
+    "glassCincila": "Klare Chinchilla",
+    "glassOak": "Klare Eichenrinde",
+    "openingRotary": "Drehflügel",
+    "openingSlidingWall": "Schiebetür an der Wand",
+    "openingSlidingPocket": "Schiebetür in der Wandtasche",
+    "openingFolding": "Falttür",
+    "openingSwing": "Pendeltür",
+    "openingFireproof": "Feuerschutz",
+    "frameFalcove": "Gefälzte Türen",
+    "frameBezfalcove": "Stumpfe Türen",
+    "lockBB": "Buntbartschloss (BB)",
+    "lockWC": "WC-Schloss (WC)",
+    "lockFab": "Profilzylinderschloss (PZ)",
+    "optionDoubleDoor": "Zweiflügelige Ausführung",
+    "optionAutoThreshold": "Option für eine automatische Absenkdichtung",
+    "optionVentGrill": "Option für den Einbau eines Lüftungsgitters",
+    "assemblyNone": "Ohne Montage",
+    "assemblyYes": "Mit Montage",
+    "defaultColor": "Nebraska grau Eiche",
+    "notSpecified": "Nicht angegeben"
+  },
+  "inquiry": {
+    "title": "ANFRAGE",
+    "orderItems": "ANFRAGEPOSITIONEN",
+    "firstName": "Vorname *",
+    "lastName": "Nachname *",
+    "company": "Firmenname",
+    "email": "E-Mail *",
+    "phone": "Telefon *",
+    "street": "Straße und Hausnummer *",
+    "zipCode": "PLZ *",
+    "city": "Stadt *",
+    "additionalInfo": "Zusätzliche Informationen",
+    "message": "Notizen",
+    "terms": "Ich stimme der Verarbeitung personenbezogener Daten gemäß der Datenschutzerklärung zu",
+    "submit": "Anfrage senden",
+    "sending": "Wird gesendet...",
+    "successTitle": "Die Anfrage wurde erfolgreich gesendet!",
+    "successMessage": "Vielen Dank für Ihre Anfrage. Unser Team wird Sie in Kürze mit einem Angebot kontaktieren.",
+    "orderSummary": "Bestellübersicht",
+    "priceOnRequest": "Auf Anfrage",
+    "configure": "Konfigurieren",
+    "remove": "Entfernen",
+    "emptyCart": "Ihr Warenkorb ist leer",
+    "emptyCartMessage": "Bitte konfigurieren Sie zuerst Ihre Türen im Konfigurator.",
+    "goToConfigurator": "Zum Konfigurator",
+    "continueInquiry": "Anfrage fortsetzen"
+  },
+  "contact": {
+    "title": "KONTAKT",
+    "headquarters": "Firmensitz",
+    "showroom": "Ausstellung",
+    "hours": "Öffnungszeiten",
+    "hoursByAppointment": "nach Vereinbarung",
+    "haveQuestions": "HABEN SIE FRAGEN?",
+    "contactUs": "Schreiben Sie uns und wir melden uns so schnell wie möglich bei Ihnen.",
+    "name": "Name *",
+    "email": "E-Mail *",
+    "phone": "Telefon",
+    "message": "Nachricht *",
+    "gdprConsent": "Ich stimme der Verarbeitung personenbezogener Daten zu",
+    "sendEmail": "E-Mail senden",
+    "submit": "E-Mail senden",
+    "sending": "Wird gesendet...",
+    "success": "Nachricht wurde gesendet!",
+    "error": "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut.",
+    "messageSent": "Nachricht wurde gesendet!",
+    "messageError": "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+  },
+  "about": {
+    "title": "ÜBER UNS",
+    "howWeWork": "SO ARBEITEN WIR",
+    "standardDoors": "Standardtüren",
+    "customDoors": "Türen nach Maß",
+    "standardDoorsDesc": "Preisgünstige Lösungen nach STN-Norm",
+    "customDoorsDesc": "Türen genau nach Ihren Vorstellungen"
+  },
+  "references": {
+    "title": "REFERENZEN",
+    "doorsTitle": "TÜRREFERENZEN",
+    "doorsSubtitle": "Sehen Sie sich unsere Projekte mit Innentüren an",
+    "carpentryTitle": "SCHREINEREI-REFERENZEN",
+    "carpentrySubtitle": "Sehen Sie sich unsere Möbel- und Innenraumprojekte an",
+    "categories": {
+      "all": "Alle",
+      "kitchens": "Küchen",
+      "bathrooms": "Badezimmer",
+      "wardrobes": "Einbauschränke",
+      "livingRooms": "Wohnzimmer",
+      "beds": "Betten",
+      "stairs": "Treppen",
+      "tables": "Tische",
+      "coatRacks": "Garderobenwände",
+      "exterior": "Außenbereich",
+      "other": "Sonstiges"
+    }
+  },
+  "gallery": {
+    "close": "Galerie schließen",
+    "previous": "Vorheriges Bild",
+    "next": "Nächstes Bild",
+    "imageAlt": "Bild {index}",
+    "portfolioImageAlt": "Referenzfoto {index}"
+  },
+  "footer": {
+    "showroomTitle": "Showroom",
+    "showroomAddress": "PeMa Schreinerei\nVyšná Jedľová 37\n089 01 Svidník",
+    "headquartersTitle": "Firmensitz",
+    "headquartersAddress": "PMP-Produkt s.r.o.\nVyšná Jedľová 37\n089 01 Svidník",
+    "contactTitle": "Kontakt",
+    "collaborationTitle": "Zusammenarbeit",
+    "collaborationDoorsTitle": "PeMa Schreinerei",
+    "collaborationDoorsText": "Wir fertigen Innentüren in enger Zusammenarbeit mit PeMa Schreinerei. Sehen Sie, was wir außer Türen noch für Sie entwerfen und realisieren können:",
+    "collaborationCarpentryTitle": "PMP-Produkt",
+    "collaborationCarpentryText": "Richten Sie Ihr Interieur mit Türen unseres Partners PMP-Produkt ein. Wir bieten eine große Auswahl an Innentüren nach Maß sowie Standardlösungen:",
+    "privacyPolicy": "Datenschutzerklärung",
+    "cookieSettings": "Cookie-Einstellungen",
+    "allRightsReserved": "Alle Rechte vorbehalten",
+    "viewMore": "Mehr ansehen"
+  },
+  "cookies": {
+    "title": "Cookies",
+    "message": "Diese Website verwendet Cookies, um die Benutzererfahrung zu verbessern.",
+    "accept": "Akzeptieren",
+    "decline": "Ablehnen",
+    "settings": "Einstellungen"
+  }
+}

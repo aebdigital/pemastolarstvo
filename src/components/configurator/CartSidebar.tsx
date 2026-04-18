@@ -1,19 +1,30 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { useLocale } from 'next-intl';
 import Image from 'next/image';
 import { useCart } from '@/hooks/useCart';
 import { useEffect } from 'react';
-import { getColorsForType } from '@/lib/colors';
+import { useLocale } from 'next-intl';
+import type { Locale } from '@/i18n/routing';
+import { getColorDisplayName } from '@/lib/colors';
 import { getDoorImagePath, getColoredDoorImagePath } from '@/lib/door-models';
+import {
+  getConfiguratorCopy,
+  getConstructionLabel,
+  getDoorTypeLabel,
+  getFrameTypeLabel,
+  getGlassTypeLabel,
+  getLockTypeLabel,
+  getOpeningTypeLabel,
+} from '@/lib/configurator-i18n';
+import { useRouter, usePathname } from '@/i18n/routing';
 
 export default function CartSidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const { items, removeItem, count } = useCart();
+  const locale = useLocale() as Locale;
+  const copy = getConfiguratorCopy(locale);
   const router = useRouter();
-  const locale = useLocale();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -22,7 +33,7 @@ export default function CartSidebar() {
     return () => window.removeEventListener('open-cart', handleOpen);
   }, []);
 
-  const isConfigurator = pathname?.includes('konfigurator');
+  const isConfigurator = pathname?.includes('/dvere/konfigurator');
 
   return (
     <>
@@ -31,7 +42,7 @@ export default function CartSidebar() {
       <button
         onClick={() => setIsOpen(true)}
         className={`fixed top-32 right-4 z-[120] w-16 h-16 bg-dark text-white rounded-full shadow-premium flex items-center justify-center group border-2 border-gold/20 transition-all duration-300 ${isOpen ? 'translate-x-32' : 'translate-x-0'}`}
-        aria-label="Open cart"
+        aria-label={copy.openCart}
       >
           <div className="relative">
             <i className="fas fa-shopping-cart text-xl group-hover:text-gold transition-colors" />
@@ -58,15 +69,15 @@ export default function CartSidebar() {
       >
         <div className="flex items-center justify-between p-8 border-b border-gray-100">
           <div className="flex flex-col gap-1">
-            <span className="text-gold font-black uppercase tracking-[0.3em] text-[10px]">Váš Výber</span>
+            <span className="text-gold font-black uppercase tracking-[0.3em] text-[10px]">{copy.yourSelection}</span>
             <h2 className="font-heading text-2xl font-black text-dark uppercase tracking-wider">
-              Košík <span className="text-gray-medium opacity-50 ml-2">({count})</span>
+              {copy.cart} <span className="text-gray-medium opacity-50 ml-2">({count})</span>
             </h2>
           </div>
           <button
             onClick={() => setIsOpen(false)}
             className="w-10 h-10 rounded-full bg-light text-dark flex items-center justify-center hover:bg-dark hover:text-white transition-premium shadow-sm"
-            aria-label="Close"
+            aria-label={copy.closeCart}
           >
             <i className="fas fa-times" />
           </button>
@@ -78,14 +89,11 @@ export default function CartSidebar() {
               <div className="w-16 h-16 rounded-full bg-light flex items-center justify-center text-gray-300">
                 <i className="fas fa-shopping-cart text-2xl" />
               </div>
-              <p className="text-gray-medium font-medium text-sm">Váš košík je momentálne prázdny</p>
+              <p className="text-gray-medium font-medium text-sm">{copy.cartEmpty}</p>
             </div>
           ) : (
             <div className="space-y-6">
-              {items.map((item, idx) => {
-                const colors = getColorsForType(item.configuration.doorType);
-                const color = colors.find((c) => c.code === item.configuration.color);
-                
+              {items.map((item) => {
                 // Image path logic same as DoorPreview
                 const imagePath = item.configuration.color && item.configuration.color.endsWith('.png')
                   ? getColoredDoorImagePath(item.configuration.modelId, item.configuration.variantIndex, item.configuration.color)
@@ -110,15 +118,15 @@ export default function CartSidebar() {
                       <div className="flex-1 space-y-4 px-2">
                         <div className="flex justify-between items-start">
                           <div>
-                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gold">{item.configuration.doorType === 'ramove' ? 'Rámové dvere' : 'Sendvičové dvere'}</span>
+                            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gold">{getDoorTypeLabel(locale, item.configuration.doorType)}</span>
                             <h3 className="font-heading text-xl font-black text-dark uppercase mt-1 leading-none tracking-tight">
-                              Model {item.configuration.modelId} — VARIANT {item.configuration.variantIndex}
+                              Model {item.configuration.modelId} — {copy.previewVariant} {item.configuration.variantIndex}
                             </h3>
                           </div>
                           <button
                             onClick={() => removeItem(item.id)}
                             className="w-10 h-10 rounded-full bg-white text-gray-400 flex items-center justify-center hover:bg-red-50 hover:text-red-500 transition-premium shadow-sm shrink-0"
-                            aria-label="Remove"
+                            aria-label={copy.removeItem}
                           >
                             <i className="fas fa-trash-alt text-xs" />
                           </button>
@@ -126,55 +134,35 @@ export default function CartSidebar() {
 
                         <div className="space-y-4 text-[12px] leading-relaxed">
                           <div className="space-y-2">
-                            <p className="font-black text-dark uppercase tracking-widest text-[10px] opacity-30">Technické Parametre</p>
+                            <p className="font-black text-dark uppercase tracking-widest text-[10px] opacity-30">{copy.technicalParameters}</p>
                             <div className="grid grid-cols-1 gap-1.5 pl-1 italic text-gray-medium">
-                              <p>— Výška stavebného otvoru [cm] → <span className="text-dark font-bold not-italic">{item.configuration.height} cm</span></p>
-                              <p>— Šírka stavebného otvoru [cm] → <span className="text-dark font-bold not-italic">{item.configuration.width} cm</span></p>
-                              <p>— Hrúbka muriva [cm] → <span className="text-dark font-bold not-italic">{item.configuration.thickness} cm</span></p>
+                              <p>— {copy.dimensions.height} [cm] → <span className="text-dark font-bold not-italic">{item.configuration.height} cm</span></p>
+                              <p>— {copy.dimensions.width} [cm] → <span className="text-dark font-bold not-italic">{item.configuration.width} cm</span></p>
+                              <p>— {copy.dimensions.thickness} [cm] → <span className="text-dark font-bold not-italic">{item.configuration.thickness} cm</span></p>
                             </div>
                           </div>
 
                           <div className="space-y-2 pt-4 border-t border-gray-200/50">
                             <div className="flex flex-col gap-1.5">
-                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">CPL lamináty / Dekor</span> {item.configuration.colorName.replace('.png', '')}</p>
-                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">Konštrukčné prevedenie</span> {
-                                item.configuration.construction === 'plna-mdf' ? 'Plná MDF výplň' : 
-                                item.configuration.construction === 'vostinove' ? 'Voštinová výplň' : 
-                                item.configuration.construction === 'dutinkove' ? 'Dutinková drevotrieska' : 'Plná MDF výplň'
-                              }</p>
-                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">Typ skla</span> {
-                                item.configuration.glassType === 'none' ? 'Bez skla' :
-                                item.configuration.glassType === 'matelux' ? 'Matelux' :
-                                item.configuration.glassType === 'cincila' ? 'Činčila číra' :
-                                item.configuration.glassType === 'dub-kora' ? 'Dubová kôra číra' : 'Matelux'
-                              }</p>
-                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">Typ otvárania</span> {
-                                item.configuration.openingType === 'otocne' ? 'Otočné' :
-                                item.configuration.openingType === 'posuvne-stena' ? 'Na stenu' :
-                                item.configuration.openingType === 'posuvne-puzdro' ? 'Do púzdra' :
-                                item.configuration.openingType === 'lomene' ? 'Lomené' :
-                                item.configuration.openingType === 'kyvne' ? 'Kyvné' :
-                                item.configuration.openingType === 'protipoziarne' ? 'Protipožiarne' : 'Otočné'
-                              }</p>
-                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">Prevedenie dverí</span> {item.configuration.frameType === 'falcove' ? 'Falcové dvere' : 'Bezfalcové dvere'}</p>
-                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">Kovanie - zámok</span> {
-                                item.configuration.lockType === 'dozicky-bb' ? 'Dózický zámok (BB)' :
-                                item.configuration.lockType === 'wc-zamok' ? 'WC zámok (WC)' :
-                                item.configuration.lockType === 'fab-zamok' ? 'Cylindrický zámok (PZ)' : 'Dózický zámok (BB)'
-                              }</p>
-                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block text-gold">Požadovaná montáž</span> {item.configuration.assembly ? 'ÁNO' : 'NIE'}</p>
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">{copy.colorDecor}</span> {getColorDisplayName(item.configuration.color, locale)}</p>
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">{copy.constructionSummary}</span> {getConstructionLabel(locale, item.configuration.construction)}</p>
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">{copy.glassSummary}</span> {getGlassTypeLabel(locale, item.configuration.glassType)}</p>
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">{copy.openingSummary}</span> {getOpeningTypeLabel(locale, item.configuration.openingType)}</p>
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">{copy.doorExecution}</span> {getFrameTypeLabel(locale, item.configuration.frameType)}</p>
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block">{copy.lockSummary}</span> {getLockTypeLabel(locale, item.configuration.lockType)}</p>
+                              <p className="text-gray-medium"><span className="font-black text-dark uppercase tracking-tighter text-[11px] block text-gold">{copy.requestedAssembly}</span> {item.configuration.assembly ? copy.yesCaps : copy.noCaps}</p>
                             </div>
                           </div>
 
                           {item.configuration.notes && (
                             <div className="pt-2 border-t border-gray-200/50">
-                              <p className="text-gray-medium italic"><span className="font-black text-dark uppercase tracking-tighter text-[10px] not-italic">Poznámka:</span> {item.configuration.notes}</p>
+                              <p className="text-gray-medium italic"><span className="font-black text-dark uppercase tracking-tighter text-[10px] not-italic">{copy.note}:</span> {item.configuration.notes}</p>
                             </div>
                           )}
 
                           <div className="pt-2 flex items-center justify-between">
-                            <span className="text-[10px] uppercase font-black tracking-widest text-gray-400">Množstvo:</span>
-                            <span className="text-sm font-black text-dark">{item.quantity} ks</span>
+                            <span className="text-[10px] uppercase font-black tracking-widest text-gray-400">{copy.quantity}:</span>
+                            <span className="text-sm font-black text-dark">{item.quantity} {copy.pieces}</span>
                           </div>
                         </div>
                       </div>
@@ -191,11 +179,11 @@ export default function CartSidebar() {
             <button
               onClick={() => {
                 setIsOpen(false);
-                router.push(`/${locale}/dvere/dopyt`);
+                router.push('/dvere/dopyt');
               }}
               className="w-full py-4 bg-dark text-white font-black uppercase tracking-[0.1em] text-sm rounded-xl hover:bg-gold hover:text-dark transition-premium shadow-xl flex items-center justify-center gap-3 group"
             >
-              <span>Odoslať dopyt</span>
+              <span>{copy.sendInquiry}</span>
               <i className="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -203,12 +191,4 @@ export default function CartSidebar() {
       </div>
     </>
   );
-}
-function SummaryTag({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white/50 rounded-full border border-gray-200">
-      <span className="text-[8px] font-black uppercase text-gray-400">{label}:</span>
-      <span className="text-[9px] font-black uppercase text-dark tracking-tighter">{value}</span>
-    </div>
-  )
 }

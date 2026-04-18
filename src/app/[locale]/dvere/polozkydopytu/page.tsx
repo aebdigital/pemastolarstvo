@@ -2,24 +2,36 @@
 
 import { useCart } from '@/hooks/useCart';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import type { Locale } from '@/i18n/routing';
+import { getColorDisplayName } from '@/lib/colors';
+import {
+    getConfiguratorCopy,
+    getDoorTypeLabel,
+    getFrameTypeLabel,
+    getLockTypeLabel,
+} from '@/lib/configurator-i18n';
+import { getSiteUiContent } from '@/lib/site-ui-content';
+import { useRouter } from '@/i18n/routing';
 
 export default function PolozkyDopytuPage() {
     const { items, removeItem, updateQuantity, count } = useCart();
+    const locale = useLocale() as Locale;
+    const tInquiry = useTranslations('inquiry');
+    const copy = getSiteUiContent(locale).inquiryForm;
+    const configCopy = getConfiguratorCopy(locale);
     const router = useRouter();
-    const locale = useLocale();
 
     if (items.length === 0) {
         return (
             <div className="max-w-4xl mx-auto px-4 py-24 text-center">
-                <h1 className="font-heading text-3xl font-bold mb-6 text-dark">Váš košík je prázdny</h1>
-                <p className="text-gray-medium mb-8">Zatiaľ ste si nevybrali žiadne dvere.</p>
+                <h1 className="font-heading text-3xl font-bold mb-6 text-dark">{copy.emptyCart}</h1>
+                <p className="text-gray-medium mb-8">{tInquiry('emptyCartMessage')}</p>
                 <button
-                    onClick={() => router.push(`/${locale}/dvere/konfigurator`)}
+                    onClick={() => router.push('/dvere/konfigurator')}
                     className="px-8 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-colors"
                 >
-                    Prejsť do konfigurátora
+                    {tInquiry('goToConfigurator')}
                 </button>
             </div>
         );
@@ -30,8 +42,8 @@ export default function PolozkyDopytuPage() {
             <div className="max-w-5xl mx-auto px-4">
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                     <div className="bg-dark text-white p-8 md:p-12 text-center">
-                        <h1 className="font-heading text-3xl md:text-4xl font-bold mb-2 uppercase">Položky dopytu</h1>
-                        <p className="text-gray-300">Prehľad vybraných dverí</p>
+                        <h1 className="font-heading text-3xl md:text-4xl font-bold mb-2 uppercase">{copy.summaryTitle}</h1>
+                        <p className="text-gray-300">{copy.summaryEyebrow}</p>
                     </div>
 
                     <div className="p-6 md:p-10 space-y-8">
@@ -44,7 +56,7 @@ export default function PolozkyDopytuPage() {
                                 <div className="relative w-full md:w-48 aspect-[3/4] bg-gray-100 rounded-lg overflow-hidden shrink-0">
                                     <Image
                                         src={`/sources/interierove/type.webp`} // fallback image
-                                        alt="Door item"
+                                        alt={getDoorTypeLabel(locale, item.configuration.doorType)}
                                         fill
                                         className="object-cover"
                                     />
@@ -54,14 +66,14 @@ export default function PolozkyDopytuPage() {
                                     <div className="flex justify-between items-start">
                                         <div>
                                             <h2 className="font-heading text-2xl font-bold text-dark uppercase">
-                                                {item.configuration.doorType === 'ramove' ? 'Rámové' : 'Sendvičové'} - Model {item.configuration.modelId}
+                                                {getDoorTypeLabel(locale, item.configuration.doorType)} - Model {item.configuration.modelId}
                                             </h2>
-                                            <p className="text-primary font-bold">Variant {item.configuration.variantIndex + 1}</p>
+                                            <p className="text-primary font-bold">{configCopy.previewVariant} {item.configuration.variantIndex}</p>
                                         </div>
                                         <button
                                             onClick={() => removeItem(item.id)}
                                             className="text-gray-light hover:text-red-500 transition-colors"
-                                            aria-label="Remove item"
+                                            aria-label={tInquiry('remove')}
                                         >
                                             <i className="fas fa-trash-alt text-xl" />
                                         </button>
@@ -69,20 +81,20 @@ export default function PolozkyDopytuPage() {
 
                                     <div className="grid sm:grid-cols-2 gap-4 text-sm text-gray-medium">
                                         <div className="space-y-1">
-                                            <p><strong>Farba:</strong> {item.configuration.colorName}</p>
-                                            <p><strong>Rozmery:</strong> {item.configuration.width} x {item.configuration.height} cm</p>
-                                            <p><strong>Hrúbka muriva:</strong> {item.configuration.thickness} cm</p>
+                                            <p><strong>{configCopy.colorDecor}:</strong> {getColorDisplayName(item.configuration.color, locale)}</p>
+                                            <p><strong>{configCopy.technicalDimensions}:</strong> {item.configuration.width} x {item.configuration.height} cm</p>
+                                            <p><strong>{configCopy.dimensions.thickness}:</strong> {item.configuration.thickness} cm</p>
                                         </div>
                                         <div className="space-y-1">
-                                            <p><strong>Zárubeň:</strong> {item.configuration.frameType === 'falcove' ? 'Falcová' : 'Bezfalcová'}</p>
-                                            <p><strong>Zámok:</strong> {item.configuration.lockType}</p>
-                                            <p><strong>Montáž:</strong> {item.configuration.assembly ? 'Áno' : 'Nie'}</p>
+                                            <p><strong>{configCopy.frameSection}:</strong> {getFrameTypeLabel(locale, item.configuration.frameType)}</p>
+                                            <p><strong>{configCopy.lockSummary}:</strong> {getLockTypeLabel(locale, item.configuration.lockType)}</p>
+                                            <p><strong>{configCopy.requestedAssembly}:</strong> {item.configuration.assembly ? configCopy.yes : configCopy.no}</p>
                                         </div>
                                     </div>
 
                                     <div className="flex items-center justify-between pt-4 border-t border-gray-50 mt-4">
                                         <div className="flex items-center gap-4">
-                                            <span className="text-sm font-semibold text-dark">Množstvo:</span>
+                                            <span className="text-sm font-semibold text-dark">{configCopy.quantity}:</span>
                                             <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden">
                                                 <button
                                                     onClick={() => updateQuantity(item.id, Math.max(1, item.quantity - 1))}
@@ -107,17 +119,17 @@ export default function PolozkyDopytuPage() {
 
                     <div className="bg-light p-8 md:p-10 flex flex-col sm:flex-row justify-between items-center gap-6">
                         <button
-                            onClick={() => router.push(`/${locale}/dvere/konfigurator`)}
+                            onClick={() => router.push('/dvere/konfigurator')}
                             className="text-primary font-bold hover:underline flex items-center gap-2"
                         >
                             <i className="fas fa-arrow-left" />
-                            Pridať ďalšie dvere
+                            {tInquiry('goToConfigurator')}
                         </button>
                         <button
-                            onClick={() => router.push(`/${locale}/dvere/dopyt`)}
+                            onClick={() => router.push('/dvere/dopyt')}
                             className="px-12 py-4 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                         >
-                            Pokračovať v dopyte ({count})
+                            {tInquiry('continueInquiry')} ({count})
                         </button>
                     </div>
                 </div>

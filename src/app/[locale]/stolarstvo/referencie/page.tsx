@@ -2,22 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import PortfolioGrid from '@/components/gallery/PortfolioGrid';
 import PageHero from '@/components/ui/PageHero';
 import stolarstvoGallery from '@/data/stolarstvo-gallery.json';
-
-const categories = [
-  { id: 'kuchyne', label: 'Kuchyne' },
-  { id: 'kupelne', label: 'Kúpeľne' },
-  { id: 'vstavane-skrine', label: 'Vstavané skrine' },
-  { id: 'obyvacie-izby', label: 'Obývacie izby' },
-  { id: 'postele', label: 'Postele a nočné stolíky' },
-  { id: 'schodiska', label: 'Schodiská' },
-  { id: 'stoly', label: 'Stoly' },
-  { id: 'vesiakove', label: 'Vešiakové steny' },
-  { id: 'exterierove', label: 'Exteriérové produkty' },
-  { id: 'ine', label: 'Iné' },
-];
 
 const galleryData: Record<string, string[]> = stolarstvoGallery.reduce(
   (acc, item) => {
@@ -28,8 +16,22 @@ const galleryData: Record<string, string[]> = stolarstvoGallery.reduce(
 );
 
 export default function StolarstvoReferenciePage() {
+  const tReferences = useTranslations('references');
+  const tCategories = useTranslations('references.categories');
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get('kategoria');
+  const categories = [
+    { id: 'kuchyne', label: tCategories('kitchens') },
+    { id: 'kupelne', label: tCategories('bathrooms') },
+    { id: 'vstavane-skrine', label: tCategories('wardrobes') },
+    { id: 'obyvacie-izby', label: tCategories('livingRooms') },
+    { id: 'postele', label: tCategories('beds') },
+    { id: 'schodiska', label: tCategories('stairs') },
+    { id: 'stoly', label: tCategories('tables') },
+    { id: 'vesiakove', label: tCategories('coatRacks') },
+    { id: 'exterierove', label: tCategories('exterior') },
+    { id: 'ine', label: tCategories('other') },
+  ];
   const [activeCategory, setActiveCategory] = useState(
     categories.some((c) => c.id === categoryParam) ? categoryParam! : 'kuchyne'
   );
@@ -42,7 +44,7 @@ export default function StolarstvoReferenciePage() {
 
   return (
     <main>
-      <PageHero title="REFERENCIE STOLÁRSTVA" subtitle="Pozrite si naše realizované stolárske projekty a nábytok na mieru." image="/sources/leftnabytok.jpg" />
+      <PageHero title={tReferences('carpentryTitle')} subtitle={tReferences('carpentrySubtitle')} image="/sources/leftnabytok.jpg" />
 
       {/* Filter Bar */}
       <section className="filter-section">

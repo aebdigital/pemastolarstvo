@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface LightboxProps {
@@ -13,6 +14,7 @@ interface LightboxProps {
 export default function Lightbox({ images, initialIndex, onClose }: LightboxProps) {
   const [index, setIndex] = useState(initialIndex);
   const [direction, setDirection] = useState(0);
+  const t = useTranslations('gallery');
 
   const prev = useCallback(() => {
     setDirection(-1);
@@ -70,7 +72,7 @@ export default function Lightbox({ images, initialIndex, onClose }: LightboxProp
       <button
         onClick={onClose}
         className="fixed top-8 right-8 z-[300002] w-14 h-14 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-gold hover:text-dark transition-premium shadow-2xl group"
-        aria-label="Close"
+        aria-label={t('close')}
       >
         <i className="fas fa-times text-xl" />
       </button>
@@ -81,14 +83,14 @@ export default function Lightbox({ images, initialIndex, onClose }: LightboxProp
           <button
             onClick={(e) => { e.stopPropagation(); prev(); }}
             className="fixed left-4 sm:left-12 top-1/2 -translate-y-1/2 z-[300002] w-14 h-14 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-gold hover:text-dark transition-premium shadow-2xl group"
-            aria-label="Previous"
+            aria-label={t('previous')}
           >
             <i className="fas fa-chevron-left text-xl" />
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); next(); }}
             className="fixed right-4 sm:right-12 top-1/2 -translate-y-1/2 z-[300002] w-14 h-14 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-gold hover:text-dark transition-premium shadow-2xl group"
-            aria-label="Next"
+            aria-label={t('next')}
           >
             <i className="fas fa-chevron-right text-xl" />
           </button>
@@ -116,7 +118,7 @@ export default function Lightbox({ images, initialIndex, onClose }: LightboxProp
               <div className="relative w-full h-full">
                 <Image
                   src={images[index]}
-                  alt={`Image ${index + 1}`}
+                  alt={t('imageAlt', { index: index + 1 })}
                   fill
                   className="object-contain shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)]"
                   priority

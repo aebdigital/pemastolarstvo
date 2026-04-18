@@ -1,8 +1,18 @@
 'use client';
 
+import { useLocale } from 'next-intl';
 import type { DoorConfiguration } from '@/types/door';
+import type { Locale } from '@/i18n/routing';
 import ColorPicker from './ColorPicker';
 import type { DoorColor } from '@/lib/colors';
+import {
+  getConfiguratorCopy,
+  getConstructionLabel,
+  getFrameTypeLabel,
+  getGlassTypeLabel,
+  getLockTypeLabel,
+  getOpeningTypeLabel,
+} from '@/lib/configurator-i18n';
 import Image from 'next/image';
 
 interface ConfigPanelProps {
@@ -10,7 +20,68 @@ interface ConfigPanelProps {
   onUpdate: (updates: Partial<DoorConfiguration>) => void;
 }
 
+const descriptions: Record<
+  Locale,
+  {
+    construction: Record<string, string>;
+    frame: Record<string, string>;
+    lock: Record<string, string>;
+  }
+> = {
+  sk: {
+    construction: {
+      'dutinkove': 'Zvýšená pevnosť a zvuková izolácia',
+      'plna-mdf': 'Masívna konštrukcia pre maximálnu stabilitu',
+      'vostinove': 'Ľahká konštrukcia vhodná do interiéru',
+    },
+    frame: {
+      'bezfalcove': 'Moderné dvere v jednej rovine so zárubňou',
+      'falcove': 'Klasické s viditeľným dorazom (falcom)',
+    },
+    lock: {
+      'dozicky-bb': 'Obyčajný kľúč pre vnútorné dvere',
+      'fab-zamok': 'Zámok na cylindrickú vložku (FAB)',
+      'wc-zamok': 'Špeciálne uzamykanie do kúpeľne/WC',
+    },
+  },
+  en: {
+    construction: {
+      'dutinkove': 'Greater strength and sound insulation',
+      'plna-mdf': 'Solid construction for maximum stability',
+      'vostinove': 'Lightweight construction suitable for interiors',
+    },
+    frame: {
+      'bezfalcove': 'Modern doors flush with the frame',
+      'falcove': 'Classic version with a visible rebate',
+    },
+    lock: {
+      'dozicky-bb': 'Standard key for interior doors',
+      'fab-zamok': 'Lock for a cylinder insert',
+      'wc-zamok': 'Special bathroom/WC locking',
+    },
+  },
+  de: {
+    construction: {
+      'dutinkove': 'Erhöhte Festigkeit und Schalldämmung',
+      'plna-mdf': 'Massive Konstruktion für maximale Stabilität',
+      'vostinove': 'Leichte Konstruktion für den Innenbereich',
+    },
+    frame: {
+      'bezfalcove': 'Moderne Türen in einer Ebene mit der Zarge',
+      'falcove': 'Klassische Variante mit sichtbarem Falz',
+    },
+    lock: {
+      'dozicky-bb': 'Standardschlüssel für Innentüren',
+      'fab-zamok': 'Schloss für Profilzylinder',
+      'wc-zamok': 'Spezielle Verriegelung für Bad/WC',
+    },
+  },
+};
+
 export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
+  const locale = useLocale() as Locale;
+  const copy = getConfiguratorCopy(locale);
+
   const handleColorSelect = (color: DoorColor) => {
     onUpdate({ color: color.code, colorName: color.name });
   };
@@ -24,7 +95,7 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
       <section className="space-y-8">
         <div className="flex items-center gap-6">
           <div className="w-12 h-12 rounded-2xl bg-dark text-gold flex items-center justify-center text-lg font-black shadow-xl rotate-3">1</div>
-          <h3 className="font-heading text-2xl font-black text-dark uppercase tracking-widest">CPL Lamináty a Dekory</h3>
+          <h3 className="font-heading text-2xl font-black text-dark uppercase tracking-widest">{copy.colorDecor}</h3>
         </div>
         <div className="bg-light p-0 rounded-[2.5rem] border border-gray-100 shadow-sm overflow-hidden">
           <ColorPicker selectedCode={config.color} onSelect={handleColorSelect} doorType={config.doorType} />
@@ -35,25 +106,25 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
       <section className="space-y-8">
         <div className="flex items-center gap-6">
           <div className="w-12 h-12 rounded-2xl bg-dark text-gold flex items-center justify-center text-lg font-black shadow-xl -rotate-3">2</div>
-          <h3 className="font-heading text-2xl font-black text-dark uppercase tracking-widest">Technické Rozmery</h3>
+          <h3 className="font-heading text-2xl font-black text-dark uppercase tracking-widest">{copy.technicalDimensions}</h3>
         </div>
         <div className="bg-white p-10 rounded-[2.5rem] border border-gray-100 shadow-inner-premium grid grid-cols-1 sm:grid-cols-3 gap-8">
           <DimensionInput
-            label="Výška stavebného otvoru"
+            label={copy.dimensions.height}
             value={config.height}
             onChange={(v) => onUpdate({ height: v })}
             min={150} max={250}
             unit="cm"
           />
           <DimensionInput
-            label="Šírka stavebného otvoru"
+            label={copy.dimensions.width}
             value={config.width}
             onChange={(v) => onUpdate({ width: v })}
             min={50} max={120}
             unit="cm"
           />
           <DimensionInput
-            label="Hrúbka dokončenej steny"
+            label={copy.dimensions.thickness}
             value={config.thickness}
             onChange={(v) => onUpdate({ thickness: v })}
             min={3} max={40}
@@ -68,15 +139,15 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
         <section className="space-y-8">
           <div className="flex items-center gap-6">
             <div className="w-12 h-12 rounded-2xl bg-dark text-gold flex items-center justify-center text-lg font-black shadow-xl rotate-3">3</div>
-            <h3 className="font-heading text-xl font-black text-dark uppercase tracking-widest text-balance">Typové prevedenie konštrukcie</h3>
+            <h3 className="font-heading text-xl font-black text-dark uppercase tracking-widest text-balance">{copy.constructionSection}</h3>
           </div>
           <div className="space-y-4">
             {isRamove ? (
               <OptionButton
                 selected={config.construction === 'plna-mdf'}
                 onClick={() => onUpdate({ construction: 'plna-mdf' })}
-                label="Plná MDF výplň"
-                description="Masívna konštrukcia pre maximálnu stabilitu"
+                label={getConstructionLabel(locale, 'plna-mdf')}
+                description={descriptions[locale].construction['plna-mdf']}
                 icon={`/sources/konfig/ramove konstrukcne 1.svg`}
               />
             ) : (
@@ -84,15 +155,15 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
                 <OptionButton
                   selected={config.construction === 'vostinove'}
                   onClick={() => onUpdate({ construction: 'vostinove' })}
-                  label="Voštinová výplň"
-                  description="Ľahká konštrukcia vhodná do interiéru"
+                  label={getConstructionLabel(locale, 'vostinove')}
+                  description={descriptions[locale].construction['vostinove']}
                   icon={`/sources/konfig/sendvic konstrukcne 1.svg`}
                 />
                 <OptionButton
                   selected={config.construction === 'dutinkove'}
                   onClick={() => onUpdate({ construction: 'dutinkove' })}
-                  label="Dutinková drevotrieska"
-                  description="Zvýšená pevnosť a zvuková izolácia"
+                  label={getConstructionLabel(locale, 'dutinkove')}
+                  description={descriptions[locale].construction['dutinkove']}
                   icon={`/sources/konfig/sendvic konstrukcne 2.svg`}
                 />
               </>
@@ -103,13 +174,13 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
         <section className="space-y-8">
           <div className="flex items-center gap-6">
             <div className="w-12 h-12 rounded-2xl bg-dark text-gold flex items-center justify-center text-lg font-black shadow-xl -rotate-3">4</div>
-            <h3 className="font-heading text-xl font-black text-dark uppercase tracking-widest text-balance">Výplň a zasklenie dverí</h3>
+            <h3 className="font-heading text-xl font-black text-dark uppercase tracking-widest text-balance">{copy.glassSection}</h3>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <OptionButton small selected={config.glassType === 'none'} onClick={() => onUpdate({ glassType: 'none' })} label="Bez skla" />
-            <OptionButton small selected={config.glassType === 'matelux'} onClick={() => onUpdate({ glassType: 'matelux' })} label="Matelux" icon="/sources/konfig/sklo 1.png" />
-            <OptionButton small selected={config.glassType === 'cincila'} onClick={() => onUpdate({ glassType: 'cincila' })} label="Činčila číra" icon="/sources/konfig/sklo 2.png" />
-            <OptionButton small selected={config.glassType === 'dub-kora'} onClick={() => onUpdate({ glassType: 'dub-kora' })} label="Dubová kôra číra" icon="/sources/konfig/sklo 3.png" />
+            <OptionButton small selected={config.glassType === 'none'} onClick={() => onUpdate({ glassType: 'none' })} label={getGlassTypeLabel(locale, 'none')} />
+            <OptionButton small selected={config.glassType === 'matelux'} onClick={() => onUpdate({ glassType: 'matelux' })} label={getGlassTypeLabel(locale, 'matelux')} icon="/sources/konfig/sklo 1.png" />
+            <OptionButton small selected={config.glassType === 'cincila'} onClick={() => onUpdate({ glassType: 'cincila' })} label={getGlassTypeLabel(locale, 'cincila')} icon="/sources/konfig/sklo 2.png" />
+            <OptionButton small selected={config.glassType === 'dub-kora'} onClick={() => onUpdate({ glassType: 'dub-kora' })} label={getGlassTypeLabel(locale, 'dub-kora')} icon="/sources/konfig/sklo 3.png" />
           </div>
         </section>
       </div>
@@ -118,16 +189,16 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
       <section className="space-y-8">
         <div className="flex items-center gap-6">
           <div className="w-12 h-12 rounded-2xl bg-dark text-gold flex items-center justify-center text-lg font-black shadow-xl rotate-3">5</div>
-          <h3 className="font-heading text-2xl font-black text-dark uppercase tracking-widest">Spôsob otvárania</h3>
+          <h3 className="font-heading text-2xl font-black text-dark uppercase tracking-widest">{copy.openingSection}</h3>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {[
-            { id: 'otocne', label: 'Otočné', icon: '/sources/konfig/otvaranie/otvaranie 1.svg' },
-            { id: 'posuvne-stena', label: 'Na stenu', icon: '/sources/konfig/otvaranie/otvaranie 2.svg' },
-            { id: 'posuvne-puzdro', label: 'Do púzdra', icon: '/sources/konfig/otvaranie/otvaranie 3.svg' },
-            { id: 'lomene', label: 'Lomené', icon: '/sources/konfig/otvaranie/otvaranie 4.svg' },
-            { id: 'kyvne', label: 'Kyvné', icon: '/sources/konfig/otvaranie/otvaranie 5.svg' },
-            { id: 'protipoziarne', label: 'Protipož.', icon: '/sources/konfig/otvaranie/otvaranie 6.svg' },
+            { id: 'otocne', label: getOpeningTypeLabel(locale, 'otocne', 'short'), icon: '/sources/konfig/otvaranie/otvaranie 1.svg' },
+            { id: 'posuvne-stena', label: getOpeningTypeLabel(locale, 'posuvne-stena', 'short'), icon: '/sources/konfig/otvaranie/otvaranie 2.svg' },
+            { id: 'posuvne-puzdro', label: getOpeningTypeLabel(locale, 'posuvne-puzdro', 'short'), icon: '/sources/konfig/otvaranie/otvaranie 3.svg' },
+            { id: 'lomene', label: getOpeningTypeLabel(locale, 'lomene', 'short'), icon: '/sources/konfig/otvaranie/otvaranie 4.svg' },
+            { id: 'kyvne', label: getOpeningTypeLabel(locale, 'kyvne', 'short'), icon: '/sources/konfig/otvaranie/otvaranie 5.svg' },
+            { id: 'protipoziarne', label: getOpeningTypeLabel(locale, 'protipoziarne', 'short'), icon: '/sources/konfig/otvaranie/otvaranie 6.svg' },
           ].map((opt) => (
             <OptionButton
               key={opt.id}
@@ -143,41 +214,41 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
 
       {/* 6. Frame & Locks */}
       <div className="grid md:grid-cols-2 gap-12">
-        <ConfigSection title="6. Prevedenie zárubne">
+        <ConfigSection title={`6.${copy.frameSection}`}>
           <OptionButton
             selected={config.frameType === 'falcove'}
             onClick={() => onUpdate({ frameType: 'falcove' })}
-            label="Falcové dvere"
-            description="Klasické s viditeľným dorazom (falcom)"
+            label={getFrameTypeLabel(locale, 'falcove')}
+            description={descriptions[locale].frame['falcove']}
             icon="/sources/konfig/falcove 1.svg"
           />
           <OptionButton
             selected={config.frameType === 'bezfalcove'}
             onClick={() => onUpdate({ frameType: 'bezfalcove' })}
-            label="Bezfalcové dvere"
-            description="Moderné dvere v jednej rovine so zárubňou"
+            label={getFrameTypeLabel(locale, 'bezfalcove')}
+            description={descriptions[locale].frame['bezfalcove']}
             icon="/sources/konfig/falcove 2.svg"
           />
         </ConfigSection>
 
-        <ConfigSection title="7. Typ uzamykania (Kovanie)">
+        <ConfigSection title={`7.${copy.lockSection}`}>
           <ConfigButton
             active={config.lockType === 'dozicky-bb'}
             onClick={() => onUpdate({ lockType: 'dozicky-bb' })}
-            label="Dózický zámok (BB)"
-            description="Obyčajný kľúč pre vnútorné dvere"
+            label={getLockTypeLabel(locale, 'dozicky-bb')}
+            description={descriptions[locale].lock['dozicky-bb']}
           />
           <ConfigButton
             active={config.lockType === 'wc-zamok'}
             onClick={() => onUpdate({ lockType: 'wc-zamok' })}
-            label="WC zámok (WC)"
-            description="Špeciálne uzamykanie do kúpeľne/WC"
+            label={getLockTypeLabel(locale, 'wc-zamok')}
+            description={descriptions[locale].lock['wc-zamok']}
           />
           <ConfigButton
             active={config.lockType === 'fab-zamok'}
             onClick={() => onUpdate({ lockType: 'fab-zamok' })}
-            label="Cylindrický zámok (PZ)"
-            description="Zámok na cylindrickú vložku (FAB)"
+            label={getLockTypeLabel(locale, 'fab-zamok')}
+            description={descriptions[locale].lock['fab-zamok']}
           />
         </ConfigSection>
       </div>
@@ -188,7 +259,7 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
           <div className="w-12 h-12 rounded-2xl bg-dark text-gold flex items-center justify-center text-lg font-black shadow-xl -rotate-2">
             <i className="fas fa-tools text-sm" />
           </div>
-          <h3 className="font-heading text-xl font-black text-dark uppercase tracking-widest">Odborná montáž</h3>
+          <h3 className="font-heading text-xl font-black text-dark uppercase tracking-widest">{copy.professionalAssembly}</h3>
         </div>
         <label className="flex items-center gap-6 p-8 bg-gold/5 rounded-[2.5rem] border-2 border-gold/10 cursor-pointer hover:bg-gold/10 hover:border-gold/30 transition-premium group/box">
           <div className="relative">
@@ -203,7 +274,7 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
             </div>
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-black uppercase tracking-widest text-dark">Požadujem odbornú montáž</span>
+            <span className="text-lg font-black uppercase tracking-widest text-dark">{copy.requestedAssembly}</span>
           </div>
         </label>
       </section>
@@ -216,14 +287,14 @@ export default function ConfigPanel({ config, onUpdate }: ConfigPanelProps) {
 
         <div className="relative z-10 w-full space-y-8">
           <div className="flex flex-col gap-2">
-            <span className="text-gold font-black uppercase tracking-[0.3em] text-[10px]">Dokončenie</span>
-            <h3 className="text-3xl font-black uppercase tracking-wider">Poznámka k dopytu</h3>
+            <span className="text-gold font-black uppercase tracking-[0.3em] text-[10px]">{copy.completion}</span>
+            <h3 className="text-3xl font-black uppercase tracking-wider">{copy.inquiryNote}</h3>
           </div>
           <textarea
             value={config.notes || ''}
             onChange={(e) => onUpdate({ notes: e.target.value })}
             rows={4}
-            placeholder="Špecifikujte prosím vaše požiadavky, napríklad atypické rozmery, špeciálne kovanie alebo iné detaily..."
+            placeholder={copy.notePlaceholder}
             className="w-full px-6 py-4 sm:px-8 sm:py-6 bg-white/5 border border-white/10 rounded-[1.5rem] sm:rounded-3xl focus:ring-2 focus:ring-gold focus:bg-white/10 outline-none resize-none text-white placeholder:text-white/20 transition-premium text-sm leading-relaxed"
           />
         </div>

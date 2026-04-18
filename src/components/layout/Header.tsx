@@ -3,13 +3,24 @@
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
+import type { InternalPathname } from "@/i18n/routing";
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 
-interface HeaderProps {
-  section?: "dvere" | "stolarstvo";
-}
+type NavLink =
+  | {
+      href: InternalPathname;
+      label: string;
+      isExternal?: false;
+    }
+  | {
+      href: string;
+      label: string;
+      isExternal: true;
+    };
 
-export default function Header({ section = "dvere" }: HeaderProps) {
+export default function Header() {
   const t = useTranslations("nav");
+  const tCommon = useTranslations("common");
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -26,7 +37,7 @@ export default function Header({ section = "dvere" }: HeaderProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  const doorLinks = [
+  const doorLinks: NavLink[] = [
     { href: "/dvere/o-nas", label: t("aboutUs") },
     { href: "/dvere/dverenamieru", label: t("customDoors") },
     { href: "/dvere/typizovane-dvere", label: t("standardDoors") },
@@ -34,12 +45,12 @@ export default function Header({ section = "dvere" }: HeaderProps) {
     { href: "/dvere/referencie", label: t("references") },
     { href: "/dvere/blog", label: t("blog") },
     { href: "/dvere/kontakt", label: t("contact") },
-    { href: "/Akciovy-katalog-5_26-1.pdf", label: "AKCIOVÝ KATALÓG", isExternal: true },
+    { href: "/Akciovy-katalog-5_26-1.pdf", label: t("promoCatalog"), isExternal: true },
   ];
 
-  const carpentryLinks = [
+  const carpentryLinks: NavLink[] = [
     { href: "/stolarstvo/o-nas", label: t("aboutUs") },
-    { href: "/stolarstvo/vstavane-skrine", label: "Vstavané skrine na mieru" },
+    { href: "/stolarstvo/vstavane-skrine", label: t("builtInWardrobes") },
     { href: "/stolarstvo/referencie", label: t("references") },
     { href: "/stolarstvo/kontakt", label: t("contact") },
   ];
@@ -73,16 +84,26 @@ export default function Header({ section = "dvere" }: HeaderProps) {
               <ul className="flex items-center gap-6">
                 {links.map((link) => (
                   <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      target={(link as any).isExternal ? "_blank" : undefined}
-                      rel={(link as any).isExternal ? "noopener noreferrer" : undefined}
-                      className={`text-[11px] font-black uppercase tracking-[0.2em] transition-premium relative py-1 group ${pathname === link.href ? "text-gold" : "text-dark"
-                        }`}
-                    >
-                      {link.label}
-                      <span className={`absolute -bottom-1 left-0 h-0.5 bg-gold transition-all duration-300 ${pathname === link.href ? "w-full" : "w-0 group-hover:w-full"}`} />
-                    </Link>
+                    {link.isExternal ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[11px] font-black uppercase tracking-[0.2em] transition-premium relative py-1 group text-dark"
+                      >
+                        {link.label}
+                        <span className="absolute -bottom-1 left-0 h-0.5 bg-gold transition-all duration-300 w-0 group-hover:w-full" />
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className={`text-[11px] font-black uppercase tracking-[0.2em] transition-premium relative py-1 group ${pathname === link.href ? "text-gold" : "text-dark"
+                          }`}
+                      >
+                        {link.label}
+                        <span className={`absolute -bottom-1 left-0 h-0.5 bg-gold transition-all duration-300 ${pathname === link.href ? "w-full" : "w-0 group-hover:w-full"}`} />
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -104,8 +125,9 @@ export default function Header({ section = "dvere" }: HeaderProps) {
               )}
 
               <div className="flex items-center gap-6">
+                <LanguageSwitcher />
                 <div className="flex flex-col text-right">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-0.5">Máte otázky?</span>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-0.5">{tCommon("questionsLabel")}</span>
                   <a href="tel:+421948380618" className="text-sm font-black text-dark hover:text-gold transition-premium tracking-wider">
                     0948 380 618
                   </a>
@@ -125,7 +147,7 @@ export default function Header({ section = "dvere" }: HeaderProps) {
                 e.stopPropagation();
                 window.dispatchEvent(new Event('open-mobile-menu'));
               }}
-              aria-label="Open menu"
+              aria-label={tCommon("openMenu")}
             >
               <span className="w-6 h-0.5 bg-white rounded-full transition-all group-hover:w-4" />
               <span className="w-6 h-0.5 bg-white rounded-full" />

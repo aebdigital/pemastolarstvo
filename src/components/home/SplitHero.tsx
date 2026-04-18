@@ -1,14 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
+import { useRouter } from '@/i18n/routing';
 
 export default function SplitHero() {
   const [hovered, setHovered] = useState<'left' | 'right' | null>(null);
   const router = useRouter();
-  const locale = useLocale();
   const t = useTranslations('home');
 
   return (
@@ -20,12 +19,12 @@ export default function SplitHero() {
         data-shrunk={hovered === 'right' ? 'true' : undefined}
         onMouseEnter={() => setHovered('left')}
         onMouseLeave={() => setHovered(null)}
-        onClick={() => router.push(`/${locale}/stolarstvo/o-nas`)}
+        onClick={() => router.push('/stolarstvo/o-nas')}
       >
         <div className="split-bg">
           <Image
             src="/sources/leftnabytok.jpg"
-            alt="Stolárstvo"
+            alt={t('carpentry')}
             fill
             className="object-cover"
             priority
@@ -45,12 +44,12 @@ export default function SplitHero() {
         data-shrunk={hovered === 'left' ? 'true' : undefined}
         onMouseEnter={() => setHovered('right')}
         onMouseLeave={() => setHovered(null)}
-        onClick={() => router.push(`/${locale}/dvere/o-nas`)}
+        onClick={() => router.push('/dvere/o-nas')}
       >
         <div className="split-bg">
           <Image
             src="/sources/rightdvere.jpg"
-            alt="Dvere"
+            alt={t('doors')}
             fill
             className="object-cover"
             priority

@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
+import { useLocale } from 'next-intl';
 import type { DoorConfiguration } from '@/types/door';
-import { floorOptions } from '@/lib/door-models';
 import Portal from '@/components/layout/Portal';
+import type { Locale } from '@/i18n/routing';
+import { getConfiguratorCopy, getLocalizedFloorOptions } from '@/lib/configurator-i18n';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface InteriorSidebarProps {
@@ -15,6 +16,10 @@ interface InteriorSidebarProps {
 }
 
 export default function InteriorSidebar({ isOpen, onClose, config, onUpdate }: InteriorSidebarProps) {
+  const locale = useLocale() as Locale;
+  const copy = getConfiguratorCopy(locale);
+  const floorOptions = getLocalizedFloorOptions(locale);
+
   return (
     <Portal>
       <AnimatePresence>
@@ -42,9 +47,9 @@ export default function InteriorSidebar({ isOpen, onClose, config, onUpdate }: I
             >
               <div className="flex items-center justify-between p-8 border-b border-gray-100">
                 <div className="flex flex-col gap-1">
-                  <span className="text-gold font-black uppercase tracking-[0.3em] text-[10px]">Prispôsobenie</span>
+                  <span className="text-gold font-black uppercase tracking-[0.3em] text-[10px]">{copy.editInterior}</span>
                   <h2 className="font-heading text-2xl font-black text-dark uppercase tracking-wider">
-                    Interiér miestnosti
+                    {copy.roomInterior}
                   </h2>
                 </div>
                 <button
@@ -60,7 +65,7 @@ export default function InteriorSidebar({ isOpen, onClose, config, onUpdate }: I
                 <section className="space-y-6">
                   <div className="flex items-center gap-4">
                     <div className="w-8 h-8 rounded-xl bg-dark text-gold flex items-center justify-center text-xs font-black shadow-lg">1</div>
-                    <h3 className="text-sm font-black uppercase tracking-widest text-dark">Farba steny</h3>
+                    <h3 className="text-sm font-black uppercase tracking-widest text-dark">{copy.wallColor}</h3>
                   </div>
                   
                   <div className="bg-light p-6 rounded-3xl border border-gray-100">
@@ -73,7 +78,7 @@ export default function InteriorSidebar({ isOpen, onClose, config, onUpdate }: I
                       />
                       <div className="flex flex-col gap-1">
                         <span className="text-sm font-black text-dark uppercase tracking-wider">{config.wallColor || '#c5bcb3'}</span>
-                        <span className="text-[10px] text-gray-400 leading-tight uppercase font-medium">Kliknite pre výber vlastnej farby steny</span>
+                        <span className="text-[10px] text-gray-400 leading-tight uppercase font-medium">{copy.chooseWallColor}</span>
                       </div>
                     </div>
                   </div>
@@ -83,7 +88,7 @@ export default function InteriorSidebar({ isOpen, onClose, config, onUpdate }: I
                 <section className="space-y-6">
                   <div className="flex items-center gap-4">
                     <div className="w-8 h-8 rounded-xl bg-dark text-gold flex items-center justify-center text-xs font-black shadow-lg">2</div>
-                    <h3 className="text-sm font-black uppercase tracking-widest text-dark">Typ podlahy</h3>
+                    <h3 className="text-sm font-black uppercase tracking-widest text-dark">{copy.floorType}</h3>
                   </div>
                   
                   <div className="grid grid-cols-1 gap-6">
@@ -117,7 +122,7 @@ export default function InteriorSidebar({ isOpen, onClose, config, onUpdate }: I
                   onClick={onClose}
                   className="w-full py-5 bg-dark text-white font-black uppercase tracking-widest rounded-2xl hover:bg-gold hover:text-dark transition-premium shadow-xl"
                 >
-                  Hotovo
+                  {copy.done}
                 </button>
               </div>
             </motion.div>

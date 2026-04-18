@@ -1,0 +1,312 @@
+{
+  "common": {
+    "home": "Home",
+    "aboutUs": "About us",
+    "contact": "Contact",
+    "references": "References",
+    "blog": "Blog",
+    "phone": "0948 380 618",
+    "phoneSecondary": "0914 225 257",
+    "email": "pmpprodukt@gmail.com",
+    "emailSecondary": "pemastolarstvo@gmail.com",
+    "companyName": "PMP-Produkt s.r.o.",
+    "showroom": "PeMa Carpentry",
+    "address": "Vyšná Jedľová 37, 089 01 Svidník",
+    "send": "Send",
+    "close": "Close",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "questionsLabel": "Have questions?",
+    "openMenu": "Open menu"
+  },
+  "languages": {
+    "label": "Language",
+    "sk": "SK",
+    "en": "EN",
+    "de": "DE"
+  },
+  "nav": {
+    "doors": "Interior doors",
+    "carpentry": "Carpentry",
+    "aboutUs": "About us",
+    "customDoors": "Custom doors",
+    "standardDoors": "Standard doors",
+    "configurator": "Configurator",
+    "howToMeasure": "How to measure?",
+    "references": "References",
+    "blog": "Blog",
+    "contact": "Contact",
+    "builtInWardrobes": "Built-in wardrobes",
+    "promoCatalog": "Promo catalog"
+  },
+  "homeHeader": {
+    "welcome": "Welcome to doors and carpentry"
+  },
+  "home": {
+    "carpentry": "Carpentry",
+    "interiorDoors": "Interior doors",
+    "doors": "Interior doors",
+    "doorsSubtitle": "Quality custom doors and standard solutions for your home",
+    "carpentrySubtitle": "Custom furniture, kitchens, wardrobes and complete carpentry work",
+    "metaTitle": "PMP-Produkt | Interior doors and custom carpentry",
+    "metaDescription": "PMP-Produkt - Quality interior doors and custom carpentry. Door configurator, kitchens, furniture and complete interiors."
+  },
+  "metadata": {
+    "shared": {
+      "defaultTitle": "PMP-Produkt | Interior doors and custom carpentry | Svidník",
+      "defaultDescription": "Custom interior doors and carpentry manufacturing by PMP-Produkt. Kitchens, built-in wardrobes and custom furniture. Showroom in Svidník, eastern Slovakia.",
+      "structuredDataDescription": "Custom interior doors and carpentry manufacturing. Kitchens, built-in wardrobes and custom furniture.",
+      "structuredDoorOfferTitle": "Custom interior doors",
+      "structuredDoorOfferDescription": "Production of custom interior doors according to your dimensions and requirements.",
+      "structuredCarpentryOfferTitle": "Custom carpentry and furniture",
+      "structuredCarpentryOfferDescription": "Kitchens, built-in wardrobes, furniture and complete custom interiors.",
+      "keywords": [
+        "interior doors",
+        "custom doors",
+        "carpentry",
+        "custom kitchens",
+        "built-in wardrobes",
+        "custom furniture",
+        "PMP-Produkt",
+        "PeMa Carpentry",
+        "Svidník"
+      ]
+    },
+    "home": {
+      "title": "PMP-Produkt | Interior doors and custom carpentry | Svidník",
+      "description": "Quality custom interior doors and complete carpentry work. Kitchens, built-in wardrobes and custom furniture. Family company with a showroom in Svidník."
+    },
+    "doors": {
+      "about": {
+        "title": "About us - Custom interior doors",
+        "description": "Meet PMP-Produkt, a manufacturer of quality custom interior doors. A family company with international experience and a showroom in Svidník."
+      },
+      "custom": {
+        "title": "Custom interior doors",
+        "description": "Atypical interior doors made exactly to your dimensions. Quality materials, professional installation and free measuring."
+      },
+      "standard": {
+        "title": "Standard interior doors",
+        "description": "Standard interior doors according to STN norms. Quality standard doors for your home with fast delivery."
+      },
+      "configurator": {
+        "title": "Interior door configurator",
+        "description": "Online configurator for interior doors. Choose the type, model, colour and additional parameters. Free quotation."
+      },
+      "advice": {
+        "title": "Advice - How to measure doors correctly",
+        "description": "Guide on how to correctly measure and prepare the opening for interior doors. Instructional video and tips from PMP-Produkt."
+      },
+      "references": {
+        "title": "References - Interior doors",
+        "description": "Gallery of completed custom interior door projects. See our references from real installations in Svidník and the surrounding area."
+      },
+      "blog": {
+        "title": "Blog - News and articles about doors",
+        "description": "News and articles about interior doors, living trends and carpentry production from PMP-Produkt."
+      },
+      "contact": {
+        "title": "Contact - Interior doors Svidník",
+        "description": "Contact PMP-Produkt for custom interior doors. Showroom in Svidník, free measuring and quotation."
+      },
+      "inquiry": {
+        "title": "Send an inquiry for custom doors",
+        "description": "Fill in the form and send an inquiry for custom interior doors. Free quotation from PMP-Produkt."
+      },
+      "table": {
+        "title": "Interior door size chart",
+        "description": "Complete chart of standard interior door dimensions according to STN norms. Rebated and flush options."
+      }
+    },
+    "carpentry": {
+      "about": {
+        "title": "Carpentry - Custom furniture and kitchens",
+        "description": "PeMa Carpentry - a family company with rich international experience. Kitchens, built-in wardrobes, furniture and custom interiors in Svidník."
+      },
+      "wardrobes": {
+        "title": "Built-in wardrobes made to measure - PeMa Carpentry",
+        "description": "Built-in wardrobes with custom 18 mm laminated chipboard carcasses, 2 mm ABS edges and Blum runners. Quality without compromise in Svidník."
+      },
+      "references": {
+        "title": "References - Carpentry and custom furniture",
+        "description": "Gallery of completed carpentry projects. Kitchens, built-in wardrobes and custom furniture. Explore our references."
+      },
+      "contact": {
+        "title": "Contact - Custom carpentry and furniture Svidník",
+        "description": "Contact PMP-Produkt for carpentry and custom furniture. Showroom in Svidník, free measuring and quotation."
+      }
+    }
+  },
+  "configurator": {
+    "title": "CONFIGURATOR",
+    "subtitle": "Custom doors",
+    "selectDoorType": "Select door type",
+    "frameDoors": "FRAME DOORS",
+    "sandwichDoors": "SANDWICH DOORS",
+    "types10": "10 types",
+    "types13": "13 types",
+    "variants": "variants",
+    "variantsMore": "variants",
+    "clickToConfigure": "Click to configure",
+    "dimensions": "DIMENSIONS",
+    "height": "Opening height [cm] *",
+    "width": "Opening width [cm] *",
+    "wallThickness": "Wall thickness [cm] *",
+    "cplLaminates": "CPL LAMINATES",
+    "construction": "CONSTRUCTION TYPE",
+    "glassType": "GLASS TYPE",
+    "openingType": "OPENING TYPE",
+    "frameType": "REBATED / FLUSH DOORS",
+    "lock": "HARDWARE - LOCK",
+    "additionalOptions": "ADDITIONAL OPTIONS",
+    "assembly": "INSTALLATION",
+    "notes": "NOTE",
+    "notesPlaceholder": "Here you can write notes or special requirements for your order...",
+    "anyNote": "Any note",
+    "addToQuote": "Add to quote",
+    "added": "Added!",
+    "updated": "Updated!",
+    "update": "Update",
+    "cart": "Cart",
+    "cartEmpty": "Cart is empty",
+    "continueToOrder": "Continue to order",
+    "quantity": "Quantity",
+    "editInterior": "Edit interior",
+    "wall": "Wall",
+    "wallColor": "Wall colour",
+    "floor": "Floor",
+    "floorColor": "Floor colour",
+    "or": "or",
+    "constructionMdf": "Solid MDF core",
+    "constructionHoneycomb": "Honeycomb core (lighter door)",
+    "constructionTubular": "Tubular core (heavier door)",
+    "glassMatelux": "Matelux",
+    "glassCincila": "Clear Chinchilla",
+    "glassOak": "Clear Oak Bark",
+    "openingRotary": "Hinged",
+    "openingSlidingWall": "Sliding on wall",
+    "openingSlidingPocket": "Pocket sliding",
+    "openingFolding": "Folding",
+    "openingSwing": "Swing",
+    "openingFireproof": "Fire-rated",
+    "frameFalcove": "Rebated doors",
+    "frameBezfalcove": "Flush doors",
+    "lockBB": "Key lock (BB)",
+    "lockWC": "Bathroom lock (WC)",
+    "lockFab": "Cylinder lock (PZ)",
+    "optionDoubleDoor": "Double-leaf version",
+    "optionAutoThreshold": "Option to install an automatic drop seal",
+    "optionVentGrill": "Option to install a ventilation grille",
+    "assemblyNone": "Without installation",
+    "assemblyYes": "With installation",
+    "defaultColor": "Nebraska gray oak",
+    "notSpecified": "Not specified"
+  },
+  "inquiry": {
+    "title": "INQUIRY",
+    "orderItems": "INQUIRY ITEMS",
+    "firstName": "First name *",
+    "lastName": "Last name *",
+    "company": "Company name",
+    "email": "Email *",
+    "phone": "Phone *",
+    "street": "Street and number *",
+    "zipCode": "ZIP code *",
+    "city": "City *",
+    "additionalInfo": "Additional information",
+    "message": "Notes",
+    "terms": "I agree to the processing of personal data according to the privacy policy",
+    "submit": "Send inquiry",
+    "sending": "Sending...",
+    "successTitle": "The inquiry was sent successfully!",
+    "successMessage": "Thank you for your inquiry. Our team will contact you soon with a quotation.",
+    "orderSummary": "Order summary",
+    "priceOnRequest": "On request",
+    "configure": "Configure",
+    "remove": "Remove",
+    "emptyCart": "Your cart is empty",
+    "emptyCartMessage": "Please configure your doors first in the configurator.",
+    "goToConfigurator": "Go to configurator",
+    "continueInquiry": "Continue inquiry"
+  },
+  "contact": {
+    "title": "CONTACT",
+    "headquarters": "Company headquarters",
+    "showroom": "Showroom",
+    "hours": "Opening hours",
+    "hoursByAppointment": "by appointment",
+    "haveQuestions": "DO YOU HAVE QUESTIONS?",
+    "contactUs": "Write to us and we will get back to you as soon as possible.",
+    "name": "Name *",
+    "email": "Email *",
+    "phone": "Phone",
+    "message": "Message *",
+    "gdprConsent": "I agree to the processing of personal data",
+    "sendEmail": "Send email",
+    "submit": "Send email",
+    "sending": "Sending...",
+    "success": "Message sent!",
+    "error": "The message could not be sent. Please try again.",
+    "messageSent": "Message sent!",
+    "messageError": "The message could not be sent. Please try again."
+  },
+  "about": {
+    "title": "ABOUT US",
+    "howWeWork": "HOW WE WORK",
+    "standardDoors": "Standard doors",
+    "customDoors": "Custom doors",
+    "standardDoorsDesc": "Cost-effective solutions according to STN norms",
+    "customDoorsDesc": "Doors exactly according to your ideas"
+  },
+  "references": {
+    "title": "REFERENCES",
+    "doorsTitle": "DOOR REFERENCES",
+    "doorsSubtitle": "See our interior door projects",
+    "carpentryTitle": "CARPENTRY REFERENCES",
+    "carpentrySubtitle": "See our furniture and interior projects",
+    "categories": {
+      "all": "All",
+      "kitchens": "Kitchens",
+      "bathrooms": "Bathrooms",
+      "wardrobes": "Built-in wardrobes",
+      "livingRooms": "Living rooms",
+      "beds": "Beds",
+      "stairs": "Stairs",
+      "tables": "Tables",
+      "coatRacks": "Coat walls",
+      "exterior": "Exterior",
+      "other": "Other"
+    }
+  },
+  "gallery": {
+    "close": "Close gallery",
+    "previous": "Previous image",
+    "next": "Next image",
+    "imageAlt": "Image {index}",
+    "portfolioImageAlt": "Reference photo {index}"
+  },
+  "footer": {
+    "showroomTitle": "Showroom",
+    "showroomAddress": "PeMa Carpentry\nVyšná Jedľová 37\n089 01 Svidník",
+    "headquartersTitle": "Headquarters",
+    "headquartersAddress": "PMP-Produkt s.r.o.\nVyšná Jedľová 37\n089 01 Svidník",
+    "contactTitle": "Contact",
+    "collaborationTitle": "Collaboration",
+    "collaborationDoorsTitle": "PeMa Carpentry",
+    "collaborationDoorsText": "We manufacture interior doors in close cooperation with PeMa Carpentry. See what else, besides doors, we can design and build for you:",
+    "collaborationCarpentryTitle": "PMP-Produkt",
+    "collaborationCarpentryText": "Furnish your interior with doors from our partner PMP-Produkt. We offer a wide selection of custom interior doors and standard solutions:",
+    "privacyPolicy": "Privacy policy",
+    "cookieSettings": "Cookie settings",
+    "allRightsReserved": "All rights reserved",
+    "viewMore": "View more"
+  },
+  "cookies": {
+    "title": "Cookies",
+    "message": "This website uses cookies to improve the user experience.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "settings": "Settings"
+  }
+}

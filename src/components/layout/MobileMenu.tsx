@@ -3,8 +3,22 @@
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
+import type { InternalPathname } from "@/i18n/routing";
 import { motion, AnimatePresence } from "framer-motion";
 import Portal from "./Portal";
+import LanguageSwitcher from "./LanguageSwitcher";
+
+type NavLink =
+  | {
+      href: InternalPathname;
+      label: string;
+      isExternal?: false;
+    }
+  | {
+      href: string;
+      label: string;
+      isExternal: true;
+    };
 
 export default function MobileMenu() {
   const [open, setOpen] = useState(false);
@@ -19,7 +33,7 @@ export default function MobileMenu() {
 
   const isStolarstvo = pathname.includes('/stolarstvo');
   
-  const doorLinks = [
+  const doorLinks: NavLink[] = [
     { href: "/dvere/o-nas", label: t("aboutUs") },
     { href: "/dvere/dverenamieru", label: t("customDoors") },
     { href: "/dvere/typizovane-dvere", label: t("standardDoors") },
@@ -29,9 +43,9 @@ export default function MobileMenu() {
     { href: "/dvere/kontakt", label: t("contact") },
   ];
 
-  const carpentryLinks = [
+  const carpentryLinks: NavLink[] = [
     { href: "/stolarstvo/o-nas", label: t("aboutUs") },
-    { href: "/stolarstvo/vstavane-skrine", label: "Vstavané skrine na mieru" },
+    { href: "/stolarstvo/vstavane-skrine", label: t("builtInWardrobes") },
     { href: "/stolarstvo/referencie", label: t("references") },
     { href: "/stolarstvo/kontakt", label: t("contact") },
   ];
@@ -80,6 +94,9 @@ export default function MobileMenu() {
               </div>
 
               <div className="flex-1 overflow-y-auto px-8 py-4">
+                <div className="mb-6">
+                  <LanguageSwitcher />
+                </div>
                  <div className="flex flex-col">
                   {links.map((link, idx) => (
                     <motion.div
@@ -88,19 +105,32 @@ export default function MobileMenu() {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + idx * 0.05 }}
                     >
-                      <Link
-                        href={link.href}
-                        onClick={closeMenu}
-                        target={(link as any).isExternal ? "_blank" : undefined}
-                        rel={(link as any).isExternal ? "noopener noreferrer" : undefined}
-                        className={`group flex items-center gap-4 py-4 border-b border-gray-100 transition-premium ${pathname === link.href ? "text-gold" : "text-dark"
-                          }`}
-                      >
-                        <span className="text-[10px] font-black text-gold/50 group-hover:text-gold transition-colors">0{idx + 1}</span>
-                        <span className="text-xl font-black uppercase tracking-wider">
-                          {link.label}
-                        </span>
-                      </Link>
+                      {link.isExternal ? (
+                        <a
+                          href={link.href}
+                          onClick={closeMenu}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group flex items-center gap-4 py-4 border-b border-gray-100 transition-premium text-dark"
+                        >
+                          <span className="text-[10px] font-black text-gold/50 group-hover:text-gold transition-colors">0{idx + 1}</span>
+                          <span className="text-xl font-black uppercase tracking-wider">
+                            {link.label}
+                          </span>
+                        </a>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          onClick={closeMenu}
+                          className={`group flex items-center gap-4 py-4 border-b border-gray-100 transition-premium ${pathname === link.href ? "text-gold" : "text-dark"
+                            }`}
+                        >
+                          <span className="text-[10px] font-black text-gold/50 group-hover:text-gold transition-colors">0{idx + 1}</span>
+                          <span className="text-xl font-black uppercase tracking-wider">
+                            {link.label}
+                          </span>
+                        </Link>
+                      )}
                     </motion.div>
                   ))}
 
@@ -118,7 +148,7 @@ export default function MobileMenu() {
                       >
                         <span className="text-[10px] font-black text-gold/50 group-hover:text-dark/50 transition-colors">0{links.length + 1}</span>
                         <span className="text-xl font-black uppercase tracking-wider">
-                          Konfigurátor
+                          {t("configurator")}
                         </span>
                       </Link>
                     </motion.div>

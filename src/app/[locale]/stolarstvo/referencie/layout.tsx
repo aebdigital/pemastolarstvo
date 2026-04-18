@@ -1,10 +1,27 @@
 import type { Metadata } from 'next';
+import { getTranslations } from 'next-intl/server';
+import { buildPageMetadata } from '@/lib/seo';
+import type { Locale } from '@/i18n/routing';
 
-export const metadata: Metadata = {
-    title: 'Referencie - Stolárstvo a nábytok na mieru',
-    description:
-        'Galéria realizácií stolárskych prác. Kuchyne, vstavané skrine, nábytok na mieru. Pozrite si naše referencie.',
-};
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+    const { locale } = await params;
+    const t = await getTranslations({
+        locale,
+        namespace: 'metadata.carpentry.references',
+    });
+
+    return buildPageMetadata({
+        locale,
+        pathname: '/stolarstvo/referencie',
+        title: t('title'),
+        description: t('description'),
+        image: '/sources/leftnabytok.jpg',
+    });
+}
 
 export default function ReferencieLayout({ children }: { children: React.ReactNode }) {
     return children;

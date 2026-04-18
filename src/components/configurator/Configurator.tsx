@@ -2,14 +2,19 @@
 
 import { useConfigurator } from '@/hooks/useConfigurator';
 import { useCart } from '@/hooks/useCart';
+import { useLocale } from 'next-intl';
 import DoorTypeSelector from './DoorTypeSelector';
 import ModelSlider from './ModelSlider';
 import VariantSlider from './VariantSlider';
 import ConfigPanel from './ConfigPanel';
 import DoorPreview from './DoorPreview';
+import type { Locale } from '@/i18n/routing';
+import { getConfiguratorCopy } from '@/lib/configurator-i18n';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Configurator() {
+  const locale = useLocale() as Locale;
+  const copy = getConfiguratorCopy(locale);
   const {
     config,
     step,
@@ -35,7 +40,7 @@ export default function Configurator() {
     window.dispatchEvent(new CustomEvent('open-cart'));
   };
 
-  const steps = ['Typ', 'Model', 'Variant', 'Konfigurácia'];
+  const steps = copy.steps;
 
   return (
     <div className="min-h-screen bg-white">
@@ -66,7 +71,7 @@ export default function Configurator() {
                     )}
                   </div>
                   <div className="flex flex-col items-start translate-y-0.5 whitespace-nowrap hidden sm:flex">
-                    <span className="text-[8px] font-black uppercase tracking-[0.2em] leading-none mb-1 opacity-50">Krok {i + 1}</span>
+                    <span className="text-[8px] font-black uppercase tracking-[0.2em] leading-none mb-1 opacity-50">{copy.stepLabel} {i + 1}</span>
                     <span className={`text-[10px] font-black uppercase tracking-widest ${step === i ? 'text-dark' : ''}`}>
                       {label}
                     </span>
@@ -114,7 +119,7 @@ export default function Configurator() {
                 doorType={config.doorType}
                 onSelect={setModel}
               />
-              <NavigationButtons onBack={() => setStep(0)} />
+              <NavigationButtons label={copy.back} onBack={() => setStep(0)} />
             </motion.div>
           )}
 
@@ -133,7 +138,7 @@ export default function Configurator() {
                 selectedIndex={config.variantIndex}
                 onSelect={setVariant}
               />
-              <NavigationButtons onBack={() => setStep(1)} />
+              <NavigationButtons label={copy.back} onBack={() => setStep(1)} />
             </motion.div>
           )}
 
@@ -165,14 +170,14 @@ export default function Configurator() {
                     onClick={handleAddToCart}
                     className="flex-1 py-6 bg-dark text-white font-black uppercase tracking-[0.2em] rounded-full hover:bg-gold hover:text-dark transition-premium shadow-2xl group flex items-center justify-center gap-4 text-sm sm:text-base"
                   >
-                    <span>Pridať k naceneniu</span>
+                    <span>{copy.addToQuote}</span>
                     <i className="fas fa-file-invoice text-sm opacity-50 group-hover:opacity-100 transition-opacity" />
                   </button>
                   <button
                     onClick={resetConfig}
                     className="px-8 sm:px-12 py-6 border-2 border-dark text-dark font-black uppercase tracking-[0.2em] rounded-full hover:bg-dark hover:text-white transition-premium text-sm sm:text-base"
                   >
-                    Resetovať
+                    {copy.reset}
                   </button>
                 </div>
 
@@ -181,7 +186,7 @@ export default function Configurator() {
                   className="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-gold transition-colors flex items-center gap-2"
                 >
                   <i className="fas fa-arrow-left" />
-                  Späť na výber varianty
+                  {copy.backToVariantSelection}
                 </button>
               </div>
             </motion.div>
@@ -193,7 +198,7 @@ export default function Configurator() {
   );
 }
 
-function NavigationButtons({ onBack }: { onBack: () => void }) {
+function NavigationButtons({ label, onBack }: { label: string; onBack: () => void }) {
   return (
     <div className="max-w-4xl mx-auto flex justify-start mt-12">
       <button
@@ -201,7 +206,7 @@ function NavigationButtons({ onBack }: { onBack: () => void }) {
         className="flex items-center gap-4 px-8 py-4 rounded-full border-2 border-dark/10 font-black uppercase tracking-widest text-[10px] hover:border-dark transition-premium"
       >
         <i className="fas fa-arrow-left" />
-        Späť
+        {label}
       </button>
     </div>
   );

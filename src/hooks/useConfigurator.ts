@@ -9,7 +9,7 @@ const defaultConfig: DoorConfiguration = {
   modelId: 'O',
   variantIndex: 1, // Start with variant 1
   color: 'dub nebraska sedy.png',
-  colorName: 'Dub Nebraska šedý',
+  colorName: 'dub nebraska sedy.png',
   construction: 'konstrukcne-1',
   glassType: 'none',
   openingType: 'otocne', // Match with allOpeningOptions id

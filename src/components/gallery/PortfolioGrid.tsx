@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import Lightbox from './Lightbox';
 
@@ -12,6 +13,7 @@ interface PortfolioGridProps {
 
 export default function PortfolioGrid({ images, variant = 'default' }: PortfolioGridProps) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const t = useTranslations('gallery');
 
   const gridClass = variant === 'dvere' ? 'gallery-grid dvere-active' : 'gallery-grid';
   const itemClass = variant === 'dvere' ? 'gallery-item dvere-tall' : 'gallery-item';
@@ -27,7 +29,7 @@ export default function PortfolioGrid({ images, variant = 'default' }: Portfolio
           >
             <Image
               src={src}
-              alt={`Portfolio image ${i + 1}`}
+              alt={t('portfolioImageAlt', { index: i + 1 })}
               fill
               className="object-cover"
               sizes="(max-width: 767px) 100vw, (max-width: 991px) 50vw, (max-width: 1200px) 33vw, 25vw"

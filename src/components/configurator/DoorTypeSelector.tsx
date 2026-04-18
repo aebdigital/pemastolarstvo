@@ -1,6 +1,9 @@
 'use client';
 
 import Image from 'next/image';
+import { useLocale } from 'next-intl';
+import type { Locale } from '@/i18n/routing';
+import { getConfiguratorCopy } from '@/lib/configurator-i18n';
 import type { DoorType } from '@/types/door';
 
 interface DoorTypeSelectorProps {
@@ -8,26 +11,28 @@ interface DoorTypeSelectorProps {
   onSelect: (type: DoorType) => void;
 }
 
-const types = [
-  {
-    id: 'ramove' as DoorType,
-    title: 'Rámové dvere',
-    description: 'Klasické rámové dvere s dreveným rámom a výplňou. 10 modelov.',
-    image: '/sources/konfig/ramove.jpg',
-  },
-  {
-    id: 'sendvicove' as DoorType,
-    title: 'Sendvičové dvere',
-    description: 'Moderné sendvičové dvere s vynikajúcou izoláciou. 13 modelov.',
-    image: '/sources/konfig/sendvic.jpg',
-  },
-];
-
 export default function DoorTypeSelector({ selected, onSelect }: DoorTypeSelectorProps) {
+  const locale = useLocale() as Locale;
+  const copy = getConfiguratorCopy(locale);
+  const types = [
+    {
+      id: 'ramove' as DoorType,
+      title: copy.doorTypeCards.ramove.title,
+      description: copy.doorTypeCards.ramove.description,
+      image: '/sources/konfig/ramove.jpg',
+    },
+    {
+      id: 'sendvicove' as DoorType,
+      title: copy.doorTypeCards.sendvicove.title,
+      description: copy.doorTypeCards.sendvicove.description,
+      image: '/sources/konfig/sendvic.jpg',
+    },
+  ];
+
   return (
     <div className="mb-16">
       <h2 className="font-heading text-3xl font-black text-dark mb-10 text-center uppercase tracking-widest">
-        Vyberte typ dverí
+        {copy.chooseDoorType}
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-5xl mx-auto">
         {types.map((type) => (

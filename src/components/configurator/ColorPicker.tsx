@@ -1,7 +1,10 @@
 'use client';
 
 import Image from 'next/image';
+import { useLocale } from 'next-intl';
+import type { Locale } from '@/i18n/routing';
 import { getColorsForType } from '@/lib/colors';
+import { getConfiguratorCopy } from '@/lib/configurator-i18n';
 import type { DoorColor } from '@/lib/colors';
 import { DoorType } from '@/types/door';
 
@@ -12,14 +15,16 @@ interface ColorPickerProps {
 }
 
 export default function ColorPicker({ selectedCode, onSelect, doorType }: ColorPickerProps) {
-  const colors = getColorsForType(doorType);
+  const locale = useLocale() as Locale;
+  const copy = getConfiguratorCopy(locale);
+  const colors = getColorsForType(doorType, locale);
   const selectedColor = colors.find(c => c.code === selectedCode);
 
   return (
     <div className="bg-white rounded-3xl p-3 sm:p-6 border-0 shadow-none">
       <div className="flex justify-between items-baseline mb-6 px-1">
         <label className="text-[10px] font-black uppercase tracking-widest text-gray-400">
-          Dostupné dekory
+          {copy.availableDecors}
         </label>
         <span className="text-xs font-black text-gold uppercase tracking-wider">
           {selectedColor?.name || selectedCode.replace('.png', '')}
