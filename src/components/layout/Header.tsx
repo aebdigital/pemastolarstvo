@@ -63,7 +63,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`fixed top-4 left-[2.5vw] right-[2.5vw] md:left-[5vw] md:right-[5vw] lg:left-1/2 lg:-translate-x-1/2 z-[200] transition-premium lg:w-[95vw] max-w-[1920px] rounded-[2rem] overflow-hidden ${scrolled ? "bg-white/95 backdrop-blur-xl shadow-premium border border-gray-100" : "bg-white border border-gray-100"
+        className={`fixed top-4 left-[2.5vw] right-[2.5vw] md:left-[5vw] md:right-[5vw] lg:left-1/2 lg:-translate-x-1/2 z-[200] transition-premium lg:w-[95vw] max-w-[1920px] rounded-[2rem] overflow-visible ${scrolled ? "bg-white/95 backdrop-blur-xl shadow-premium border border-gray-100" : "bg-white border border-gray-100"
           } ${hidden ? "-translate-y-40" : "translate-y-0"}`}
       >
         <div className="max-w-[1920px] mx-auto px-8 lg:px-12">
@@ -114,7 +114,7 @@ export default function Header() {
               {!isStolarstvo && (
                 <Link
                   href="/dvere/konfigurator"
-                  className={`px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-premium shadow-lg hover:shadow-gold/20 flex items-center gap-3 ${pathname === '/dvere/konfigurator'
+                  className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-[0.15em] transition-premium shadow-lg hover:shadow-gold/20 flex items-center gap-2 ${pathname === '/dvere/konfigurator'
                       ? 'bg-gold text-dark'
                       : 'bg-dark text-white hover:bg-gold hover:text-dark'
                     }`}
@@ -125,13 +125,7 @@ export default function Header() {
               )}
 
               <div className="flex items-center gap-6">
-                <LanguageSwitcher />
-                <div className="flex flex-col text-right">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-0.5">{tCommon("questionsLabel")}</span>
-                  <a href="tel:+421948380618" className="text-sm font-black text-dark hover:text-gold transition-premium tracking-wider">
-                    0948 380 618
-                  </a>
-                </div>
+                <LanguageSwitcher variant="dropdown" />
                 <div className="w-12 h-12 rounded-2xl border-2 border-dark/5 flex items-center justify-center text-dark hover:bg-dark hover:text-white transition-premium cursor-pointer group shadow-sm bg-white">
                   <a href="tel:+421948380618" className="flex items-center justify-center w-full h-full">
                     <i className="fas fa-phone text-base group-hover:rotate-12 transition-transform" />
@@ -140,19 +134,22 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Mobile Toggle */}
-            <button
-              className="lg:hidden relative z-[500] w-12 h-12 bg-dark text-white rounded-2xl flex flex-col items-center justify-center gap-1.5 shadow-xl transition-premium active:scale-95 group"
-              onClick={(e) => {
-                e.stopPropagation();
-                window.dispatchEvent(new Event('open-mobile-menu'));
-              }}
-              aria-label={tCommon("openMenu")}
-            >
-              <span className="w-6 h-0.5 bg-white rounded-full transition-all group-hover:w-4" />
-              <span className="w-6 h-0.5 bg-white rounded-full" />
-              <span className="w-6 h-0.5 bg-white rounded-full transition-all group-hover:w-4" />
-            </button>
+            {/* Mobile Actions */}
+            <div className="lg:hidden flex items-center gap-3">
+              <LanguageSwitcher variant="dropdown" />
+              <button
+                className="relative z-[500] w-12 h-12 bg-dark text-white rounded-2xl flex flex-col items-center justify-center gap-1.5 shadow-xl transition-premium active:scale-95 group"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.dispatchEvent(new Event('open-mobile-menu'));
+                }}
+                aria-label={tCommon("openMenu")}
+              >
+                <span className="w-6 h-0.5 bg-white rounded-full transition-all group-hover:w-4" />
+                <span className="w-6 h-0.5 bg-white rounded-full" />
+                <span className="w-6 h-0.5 bg-white rounded-full transition-all group-hover:w-4" />
+              </button>
+            </div>
           </div>
         </div>
       </header>

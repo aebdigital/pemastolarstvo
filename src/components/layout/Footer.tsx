@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/routing";
 import PrivacyModal from "@/components/ui/PrivacyModal";
 import CookieSettingsModal from "@/components/ui/CookieSettingsModal";
-import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -122,7 +121,6 @@ export default function Footer() {
               {t("allRightsReserved")}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
-              <LanguageSwitcher />
               <button
                 onClick={() => setCookiesOpen(true)}
                 className="hover:text-white transition-colors"

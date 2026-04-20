@@ -6,7 +6,6 @@ import { Link, usePathname } from "@/i18n/routing";
 import type { InternalPathname } from "@/i18n/routing";
 import { motion, AnimatePresence } from "framer-motion";
 import Portal from "./Portal";
-import LanguageSwitcher from "./LanguageSwitcher";
 
 type NavLink =
   | {
@@ -94,10 +93,7 @@ export default function MobileMenu() {
               </div>
 
               <div className="flex-1 overflow-y-auto px-8 py-4">
-                <div className="mb-6">
-                  <LanguageSwitcher />
-                </div>
-                 <div className="flex flex-col">
+                <div className="flex flex-col">
                   {links.map((link, idx) => (
                     <motion.div
                       key={link.href}
@@ -161,7 +157,6 @@ export default function MobileMenu() {
                   <div className="w-10 h-10 rounded-full border border-dark/10 flex items-center justify-center group-hover:bg-dark group-hover:text-white transition-premium">
                      <i className="fas fa-phone text-xs" />
                   </div>
-                  <span className="text-sm font-black tracking-wider">0948 380 618</span>
                 </a>
                 <a href="mailto:pmpprodukt@gmail.com" className="flex items-center gap-4 text-dark group">
                   <div className="w-10 h-10 rounded-full border border-dark/10 flex items-center justify-center group-hover:bg-dark group-hover:text-white transition-premium">
