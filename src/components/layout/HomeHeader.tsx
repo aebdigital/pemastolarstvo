@@ -32,7 +32,7 @@ export default function HomeHeader() {
           </h2>
         </div>
 
-        <div className="flex-1 hidden md:flex justify-end">
+        <div className="flex-1 flex justify-end">
           <LanguageSwitcher variant="dropdown" />
         </div>
       </div>
